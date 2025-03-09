@@ -1,0 +1,71 @@
+1.  What is Function Statement ?
+A.  A normal function that we create using Naming convention.
+ & By this we can do the Hoisting.
+      For Ex  -  function xyz(){
+                            console.log("Function Statement");
+                       }
+
+2.  What is Function Expression ?
+A.  When we assign a function into a variable that is Function Expression.
+ & We can not do Hoisting by this becz it acts like variable.
+      For Ex - var a = function(){
+                            console.log("Function Expression");
+                    }
+                    //function acts like a value 
+
+3.  What is Anonymous Function ?
+A.  A Function without the name is known as Anonymous Function. & 
+It is used in a place where function are treated as value.
+      For Ex - function(){
+                     }
+
+4.  What is Named Function Expression ?
+A.  A function with a name is known as Named Function Expression.
+      For Ex - var a = function xyx(){
+                            console.log("Names Function Expression");
+                     }
+
+5.  Difference b/w Parameters and Arguments ?
+A.  When we creating a function  & put some variabels in this ( ) that is our Parameters.
+       For Ex - function ab( param1, param2 ){
+                              console.log("
+                      }
+       & When we call this function & pass a variabel in this ( ) that is our Arguments
+       For Ex - ab( 4, 5 );
+
+6.  What is First Class Function Or First class citizens?
+A.   The Ability of use function as value,
+*     Can be passed as an Argument,
+*     Can be executed inside a closured function &
+*     Can be taken as return form.
+       For Ex - var b = function(param){
+                             return function xyz(){
+                                     console.log(" F C F ");
+                             }
+                     } 
+
+7. Function are heart of JS. They are called first class citizens or 
+first class functions because they have the ability to be stored in the variables, 
+passed as parameters and arguments. They can also be returned in the function.
+
+CALLBACK FUNCTIONS 
+1. Function that is passed on as argument to another function is called callback function.
+2. setTimeout helps turn JS which is sinhlethreaded and synchronous into asynchronous.
+3. Event listeners can also invoke closures with scope.
+4. Event listeners consume a lot of memory which can potentially slow down the website therefore it is good practice to remove if it is not used.
+
+EVENTLOOP  
+
+1. When does the event loop actually start? - Event loop, as the name suggests, is a single-thread, loop that is `almost infinite`. It's always running and doing its job. ❤️
+2.  Are only asynchronous web API callbacks are registered in the web API environment? - YES, the synchronous callback functions like what we pass inside map, filter, and reduce aren't registered in the Web API environment. It's just those async callback functions that go through all this.
+3. Does the web API environment stores only the callback function and pushes the same callback to queue/microtask queue? - Yes, the callback functions are stored, and a reference is scheduled in the queues. Moreover, in the case of event listeners(for example click handlers), the original callbacks stay in the web API environment forever, that's why it's advised to explicitly remove the listeners when not in use so that the garbage collector does its job.
+4. How does it matter if we delay for setTimeout would be 0ms. Then callback will move to queue without any wait? 
+No, there are trust issues with setTimeout() 😅. The callback function needs to wait until the Call Stack is empty. So the 0 ms callback might have to wait for 100ms also if the stack is busy.  
+
+1. Browser has superpowers that are lent to JS engine to execute some tasks, these superpowers include web API's such as console, location, DOM API, setTimeout, fetch, local storage.
+2. Callback functions and event handers are first stored in Web API environment and then transferred to callback queue.
+3. Promises and mutation observer are stored in API environment and then transferred to microtask queue.
+4. Event loop continuously observes call stack and when it is empty it transfers task to call stack.
+5. Micro task is given priority over callback tasks.
+6. Too many micro tasks generated can cause Starvation (nit giving time to callback tasks to execute).
+ 

@@ -1,0 +1,29 @@
+*{
+    background-image: url('students.jpg');
+}
+.square{
+    height: 100px;
+    width: 100px;
+    border: solid;
+    border-radius: 0px;
+    border-color: black;
+}
+
+.circle{
+    height: 95px;
+    width: 95px;
+    border: solid;
+    border-radius: 50%;
+    border-color: black;
+}
+
+.rhombus{
+    height: 63px;
+    width: 63px;
+    border: solid;
+    rotate: 45deg;
+    margin: 12px;
+    margin-left: 12px;
+    border-radius: 0px;
+    border-color: black;
+}
