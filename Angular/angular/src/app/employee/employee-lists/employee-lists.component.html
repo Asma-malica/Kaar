@@ -1,0 +1,25 @@
+<div class="overall-container">
+    <p>{{ title }}</p>
+    <div>
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search by name" />
+      <!-- ngModel -> It is 2 way binding which is used for synchronization between the ts and html -->
+      <button class="close" (click)="clearResult()">X</button> <!-- event binding> -->
+    </div>
+    <table class="styled-table">
+      <thead>
+        <th>Name</th>
+        <th>Role</th>
+        <th>years</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of fetchthefilteredData()">
+            <!-- 1 way binding 
+             from ts file (logic ) to html file (UI template) -->
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.role }}</td>
+          <td>{{ employee.years }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="fetchthefilteredData().length === 0">No employee Data found</p>
+  </div>
