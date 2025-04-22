@@ -8,7 +8,6 @@ import { Component , OnInit } from '@angular/core';
   styleUrls: ['./employee-lists.component.css'] //component css
 })
 
-
 export class EmployeeListsComponent implements OnInit {
   title = 'Employee Data';
   searchTerm: string = '';
@@ -24,24 +23,24 @@ export class EmployeeListsComponent implements OnInit {
     //get the data from api
     this.employeeData = [
       {
-        name: 'Alice',
+        name: 'Eg',
         role: 'Associate Analyst',
         years: 2,
       },
       {
-        name: 'Bob',
+        name: 'Sr',
         role: 'Senior Analyst',
-        years: 5,
+        years: 3,
       },
       {
-        name: 'Rue',
-        role: 'Principal Analyst',
-        years: 7,
+        name: 'As',
+        role: 'SAP Analyst',
+        years: 4,
       },
     ];
   }
   clearResult() {
-    this.searchTerm = '';
+    this.searchTerm = ''; 
   }
   //class which is used for searching the data 
   fetchthefilteredData() {

@@ -7,6 +7,6 @@ import { EmployeeComponent } from './employee.component';
 @NgModule({
   declarations: [EmployeeComponent, EmployeeListsComponent], //the component we are using
   imports: [CommonModule, FormsModule], 
-  exports: [EmployeeComponent],
+  exports: [EmployeeComponent], // exporting the EmployeeComponent so it can be used in AppModule
 })
 export class EmployeeModule {}
