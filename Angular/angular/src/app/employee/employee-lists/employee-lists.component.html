@@ -3,6 +3,10 @@
     <p>{{ title }}</p> 
     <div>
       <input type="text" [(ngModel)]="searchTerm" placeholder="Search by name" />
+<!-- 
+2 way binding 
+      If the data changes in the component, it automatically updates the view (HTML),and
+      if the user changes the data in the view (input field etc.), it automatically updates the component's data. -->
       <!-- ngModel -> It is 2 way binding which is used for synchronization between the ts and html -->
       <button class="close" (click)="clearResult()">X</button> <!-- event binding> -->
     </div>
@@ -24,3 +28,16 @@
     </table>
     <p *ngIf="fetchthefilteredData().length === 0">No employee Data found</p>
   </div>
+
+<!--Three Types of Angular Directives:
+
+Types
+1 Component (special type of directive)	
+  Directives with a template (HTML + logic)	
+  @Component({...})
+2 Structural Directive	
+  Changes the structure of the DOM (adds/removes elements)	
+  *ngIf, *ngFor, *ngSwitch
+3 Attribute Directive	
+  Changes the appearance or behavior of an existing element	
+  ngClass, ngStyle, custom ones   -->
