@@ -1,1 +1,46 @@
-<app-employee-lists></app-employee-lists>
+<app-employee-lists [employeeData]="employeeData"></app-employee-lists>
+
+<!-- see the employeeData is being passed to the child sent from parent
+input decorator = pass data -->
+
+<!-- <app-employee-lists></app-employee-lists> -->
+
+<!-- 
+<form (ngSubmit)="submitData()">
+    <input
+      type="text"
+      placeholder="Name"
+      [(ngModel)]="employee.name"
+      name="name"
+    />
+  
+    <input
+      type="text"
+      placeholder="Username"
+      [(ngModel)]="employee.username"
+      name="username"
+    />
+  
+    <input
+      type="email"
+      placeholder="Email"
+      [(ngModel)]="employee.email"
+      name="email"
+    />
+  
+    <input
+      type="text"
+      placeholder="Phone"
+      [(ngModel)]="employee.phone"
+      name="phone"
+    />
+  
+    <input
+      type="text"
+      placeholder="Website"
+      [(ngModel)]="employee.website"
+      name="website"
+    />
+  
+    <button type="submit">Submit</button>
+  </form> -->

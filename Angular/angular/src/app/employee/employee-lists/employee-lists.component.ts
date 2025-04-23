@@ -1,4 +1,4 @@
-import { Component , OnInit } from '@angular/core';
+import { Component , Input, OnInit } from '@angular/core';
 //decorator -> shows the meta data of the component 
 @Component({
   selector: 'app-employee-lists', 
@@ -10,8 +10,9 @@ import { Component , OnInit } from '@angular/core';
 
 export class EmployeeListsComponent implements OnInit {
   title = 'Employee Data';
+  @Input()employeeData:any[] = [];
   searchTerm: string = '';
-  employeeData: any[] = [];
+  // employeeData: any[] = [];
   
 // OnInit -> It is the interface 
 // on initializing the app the content would be running here 

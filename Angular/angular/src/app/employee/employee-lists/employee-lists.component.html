@@ -13,16 +13,18 @@
     <table class="styled-table">
       <thead>
         <th>Name</th>
-        <th>Role</th>
-        <th>years</th>
+        <th>email</th>
+        <th>Phone</th>
       </thead>
       <tbody>
         <tr *ngFor="let employee of fetchthefilteredData()">
             <!-- 1 way binding 
              from ts file (logic ) to html file (UI template) -->
           <td>{{ employee.name }}</td>
-          <td>{{ employee.role }}</td>
-          <td>{{ employee.years }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.phone }}</td>
+          <!-- <td>{{ employee.role }}</td>
+          <td>{{ employee.years }}</td> -->
         </tr>
       </tbody>
     </table>

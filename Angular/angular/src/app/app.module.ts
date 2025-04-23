@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { EmployeeModule } from './employee/employee.module'; 
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,9 +16,14 @@ import { EmployeeModule } from './employee/employee.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    EmployeeModule // AppModule knows about app-employee
+    EmployeeModule ,// AppModule knows about app-employee
+    HttpClientModule
   ],
+  // providers:[EmployeeService],
   providers: [],
   bootstrap: [AppComponent] //it says what is the 1st module to be rendered when it is launching
 })
 export class AppModule { }
+
+
+

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { EmployeeListsComponent } from './employee-lists/employee-lists.component';
 import { EmployeeComponent } from './employee.component';
 
+
 @NgModule({
   declarations: [EmployeeComponent, EmployeeListsComponent], //the component we are using
   imports: [CommonModule, FormsModule], 
