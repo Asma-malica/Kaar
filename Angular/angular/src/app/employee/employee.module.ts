@@ -11,3 +11,19 @@ import { EmployeeComponent } from './employee.component';
   exports: [EmployeeComponent], // exporting the EmployeeComponent so it can be used in AppModule
 })
 export class EmployeeModule {}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
