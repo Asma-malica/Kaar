@@ -1,0 +1,56 @@
+<mvc:View controllerName="crudappCrudApp.controller.View1" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m">
+	<App>
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+					<Table id="EmployeeTable"
+					    items="{/EmployeeData}"
+					    inset="false"
+					    mode="SingleSelectMaster"
+					    selectionChange = "onSelectionChange"
+					    >
+						<headerToolbar>
+							<OverflowToolbar>
+								<content>
+									<Title text="Employee Items" level="H2"/>
+									<ToolbarSpacer/>
+									<ToggleButton id="toggleInfoToolbar" text="Add Employee" press="onAddEmployee"/>
+								</content>
+							</OverflowToolbar>
+						</headerToolbar>
+						<infoToolbar>
+							<OverflowToolbar>
+								<Label text="List of Employees"/>
+							</OverflowToolbar>
+						</infoToolbar>
+						<columns>
+							<Column width="12em">
+								<Text text="Employee Name"/>
+							</Column>
+							<Column width="12em">
+								<Text text="Employee Age"/>
+							</Column>
+							<Column width="12em">
+								<Text text="Employee Salary"/>
+							</Column>
+							<Column width="12em">
+								<Text text="Position"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem vAlign="Middle">
+								<cells>
+									<Text text="{name}"></Text>
+									<Text text="{age}"></Text>
+									<Text text="{salary}"></Text>
+									<Text text="{role}"></Text>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

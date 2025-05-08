@@ -1,0 +1,27 @@
+{
+	"EmployeeData":[{
+		"name" : "mohan",
+		"age" : "22",
+		"role" : "DeepTech - FTE",
+		"salary" : "30000"
+	},
+	{
+		"name" : "siva",
+		"age" : "23",
+		"role" : "Buy Side - FTF",
+		"salary" : "60000"
+	},
+	{
+		"name" : "selva",
+		"age" : "24",
+		"role" : "Buy Side - FTF",
+		"salary" : "50000"
+	},
+	{
+		"name" : "sathish",
+		"age" : "25",
+		"role" : "Buy Side - FTF",
+		"salary" : "40000"
+	}
+	]
+}

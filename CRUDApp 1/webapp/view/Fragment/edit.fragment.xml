@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+	>
+	<Dialog title="Update Employee">
+		<l:Grid defaultSpan="L12 M12 S12" width="auto" id="idGrid">
+			<l:content>
+				<f:SimpleForm id="simpleFormToolbar" editable="true" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="4"
+				labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1"
+				singleContainerFullSize="false" ariaLabelledBy="Title1">
+					<f:content>
+						<Label text="Employee Name"/>
+						<Input id="eempname" value=""/>
+						<Label text="Employee Age"/>
+						<Input id="eempage" value=""/>
+						<Label text="Employee Role"/>
+						<Input id="eemprole" value=""/>
+						<Label text="Employee Salary"/>
+						<Input id="eempsalary" value=""/>
+						
+					</f:content>
+					
+				</f:SimpleForm>
+			</l:content>
+		</l:Grid>
+		<buttons>
+			<Button text="Update" press="onEdit"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
