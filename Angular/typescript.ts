@@ -65,4 +65,54 @@
 // }
 // draw({x:1,y:1,z:2})
 
-class
+// class 
+// class Point{
+//     x:number
+//     y:number
+//     z:number
+//     draw = ():any =>{
+//         console.log('x:'+this.x,'y:'+this.y,'z:'+this.z)
+//     }
+//     drawTriangle : ()=>{
+//     draw()
+// }
+// }
+
+// let shape : Point = new Point();
+// shape.x = 5 ;
+// shape.y = 7 ;
+// shape.z = 9 ;
+// shape.draw()
+
+// let shape1 : Point = new Point();
+// shape1.x = 51 ;
+// shape1.y = 71 ;
+// shape1.z = 91 ;
+// shape1.draw()
+
+//constructor
+class Point{
+    x:number
+    y:number
+    z:number
+    constructor(x:number,y:number,z:number){
+        this.x = x;
+        this.y = y;
+        this.z = z;
+
+    }
+    draw = ():any =>{
+        console.log('x:'+this.x,'y:'+this.y,'z:'+this.z)
+    }
+    drawTriangle : ()=>{
+    draw()
+}
+}
+
+let shape : Point = new Point(1,2,3);
+shape.draw()
+
+let shape1 : Point = new Point(3,2,1);
+shape1.draw()
+
+
