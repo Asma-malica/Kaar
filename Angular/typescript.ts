@@ -115,7 +115,7 @@
 // let shape1 : Point = new Point(3,2,1);
 // shape1.draw()
 
-// object accessors - getter , setter 
-
+// object accessors - getter and setter 
+// used to control the objects properties 
 
 
