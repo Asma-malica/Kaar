@@ -15,17 +15,61 @@
 <img src="{{ imageUrl }}" alt="This is the {{ imageAlt }}" />
 <!-- property Binding  -->
 <button [disabled]="isDisabled">Click</button>
-<br>
-<br>
+<br />
+<br />
 <h1 [innerText]="text"></h1>
 <!-- Property binding with safe Navigation operator  ?. -->
 <p [textContent]="user.name"></p>
 <p [textContent]="user.age"></p>
 <!-- -------------------------------------- -->
-<p [textContent]="user1?.name"></p> <!-- first there will not be showing any error or after seing ngOnInit function it displays Malica as output  -->
+<p [textContent]="user1?.name"></p>
+<!-- first there will not be showing any error or after seing ngOnInit function it displays Malica as output  -->
 
 <!-- Event Binding  -->
-<h1>clicked {{count}} times</h1>
+<h1>clicked {{ count }} times</h1>
 <button (click)="clickMe()">Click</button>
 
-<!-- Directives -->
+<!-- Directives -  directives are like instructions you give to your HTML to tell it what to do 
+ or how to behave. Some directives help you show or hide things on the screen (like *ngIf), 
+ some help you repeat things (like *ngFor for showing a list), -->
+
+<!-- There are three types of directives in Angular:
+Component – A directive with its own design (HTML template), used to build parts of the page.
+Structural Directive – Changes the layout by adding or removing elements (like *ngIf, *ngFor).
+Attribute Directive – Changes the look or behavior of an element (like ngClass, ngStyle). -->
+
+<!-- ngFor  -->
+<h1>ngFor Example</h1>
+<ul>
+    <li *ngFor="let movie of movies">{{movie}}</li>
+</ul>
+
+<!-- index  -->
+ <h1>ngFor - Index Example</h1>
+ <ul>
+    <li *ngFor="let fruit of fruits ; let i = index">{{i+1}} .  {{fruit}}</li>
+ </ul>
+ <br>
+ 
+ <!-- First and last variable -->
+ <h1>ngFor - First and last variable Example</h1>
+ <ul>
+    <li *ngFor="let fruit of fruits ; let isFirst = first; let isLast= last;">
+        <strong *ngIf = "isFirst">First : </strong>
+        <strong *ngIf = "isLast">Last : </strong>
+        {{fruit}}
+    </li>
+ </ul>
+
+  <!-- even and odd variable -->
+ <h1>ngFor - Even and odd  Example</h1>
+ <ul>
+    <li *ngFor="let fruit of fruits ; let isEven = even;let isOdd = odd;" 
+    [ngClass]="{'even' : isEven,'odd' : isOdd}"
+    >
+        
+        {{fruit}}
+    </li>
+ </ul>
+
+

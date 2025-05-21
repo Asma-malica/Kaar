@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-root',
   templateUrl: './app.component.html',
   // template :"<h1>{{title}}</h1>",
-  // styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
   title = 'Basics';
@@ -43,9 +43,14 @@ clickMe(){
   this.count++
 }
 
-// Directives
-
-
+// Directives 
+//ngFor
+movies = [
+  'Journey to the center of the Earth',
+  'Sky kids 2'
+]
+//ngFor Index
+fruits = ['Plums' , 'Apple' , 'Pomegranate']
 
 
 }
