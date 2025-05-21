@@ -39,37 +39,63 @@ Structural Directive – Changes the layout by adding or removing elements (like
 Attribute Directive – Changes the look or behavior of an element (like ngClass, ngStyle). -->
 
 <!-- ngFor  -->
+<h1>STRUCTURAL DIRECTIVE</h1>
 <h1>ngFor Example</h1>
 <ul>
-    <li *ngFor="let movie of movies">{{movie}}</li>
+  <li *ngFor="let movie of movies">{{ movie }}</li>
 </ul>
 
 <!-- index  -->
- <h1>ngFor - Index Example</h1>
- <ul>
-    <li *ngFor="let fruit of fruits ; let i = index">{{i+1}} .  {{fruit}}</li>
- </ul>
- <br>
- 
- <!-- First and last variable -->
- <h1>ngFor - First and last variable Example</h1>
- <ul>
-    <li *ngFor="let fruit of fruits ; let isFirst = first; let isLast= last;">
-        <strong *ngIf = "isFirst">First : </strong>
-        <strong *ngIf = "isLast">Last : </strong>
-        {{fruit}}
-    </li>
- </ul>
+<h1>ngFor - Index Example</h1>
+<ul>
+  <li *ngFor="let fruit of fruits; let i = index">{{ i + 1 }} . {{ fruit }}</li>
+</ul>
+<br />
 
-  <!-- even and odd variable -->
- <h1>ngFor - Even and odd  Example</h1>
- <ul>
-    <li *ngFor="let fruit of fruits ; let isEven = even;let isOdd = odd;" 
-    [ngClass]="{'even' : isEven,'odd' : isOdd}"
-    >
-        
-        {{fruit}}
-    </li>
- </ul>
+<!-- First and last variable -->
+<h1>ngFor - First and last variable Example</h1>
+<ul>
+  <li *ngFor="let fruit of fruits; let isFirst = first; let isLast = last">
+    <strong *ngIf="isFirst">First : </strong>
+    <strong *ngIf="isLast">Last : </strong>
+    {{ fruit }}
+  </li>
+</ul>
+
+<!-- even and odd variable -->
+<h1>ngFor - Even and odd Example</h1>
+<ul>
+  <li
+    *ngFor="let fruit of fruits; let isEven = even; let isOdd = odd"
+    [ngClass]="{ even: isEven, odd: isOdd }"
+  >
+    {{ fruit }}
+  </li>
+</ul>
+
+<!-- ngIf  -->
+<!-- <p *ngIf="true">ngIf</p> -->
+<!-- *ngIf is a built-in Angular directive 
+ that is used to show or hide elements in the HTML based on a condition. -->
+<h1>ngIf Example</h1>
+<input type="checkbox" [(ngModel)]="showMe" />
+<h1 *ngIf="showMe">ngIf</h1>
+
+<!-- Attribute Directive  -->
+<h1>ATTRIBUTE DIRECTIVE</h1>
+<!-- ngClass -->
+<h2>ngClass</h2>
+<!-- <p [ngClass]="['primary', 'big']">Sample text</p> -->
+
+<span>Apply Blue 
+    <input type="checkbox"[(ngModel)]="applyBlue">
+</span>
+<p [ngClass]="{'primary':applyBlue}">Sample text</p>
+
+<!-- ngStyle  -->
+<h2>ngStyle</h2>
+
+<p [ngStyle]="{'color':'red','font-size':'40px'}">Sample text</p>
+
 
 

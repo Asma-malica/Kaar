@@ -52,5 +52,11 @@ movies = [
 //ngFor Index
 fruits = ['Plums' , 'Apple' , 'Pomegranate']
 
+// ngIf
+showMe = true;
+
+//Attribute Directive 
+//ngClass
+applyBlue = false ;
 
 }
