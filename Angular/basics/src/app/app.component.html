@@ -1,1 +1,31 @@
-{{title}}
+{{ title }}
+<h1>{{ Name }}</h1>
+<input type="text" [(ngModel)]="Name" />
+<br />
+<br />
+<!-- STRING INTERPOLATION -> not -->
+{{ rollno }}
+<br />
+{{ getName() }}
+<br />
+<!-- STRING INTERPOLATION WITH ATTRIBUTE BINDING-->
+<img [src]="imageUrl" alt="This is the {{ imageAlt }}" />
+<br />
+<br />
+<img src="{{ imageUrl }}" alt="This is the {{ imageAlt }}" />
+<!-- property Binding  -->
+<button [disabled]="isDisabled">Click</button>
+<br>
+<br>
+<h1 [innerText]="text"></h1>
+<!-- Property binding with safe Navigation operator  ?. -->
+<p [textContent]="user.name"></p>
+<p [textContent]="user.age"></p>
+<!-- -------------------------------------- -->
+<p [textContent]="user1?.name"></p> <!-- first there will not be showing any error or after seing ngOnInit function it displays Malica as output  -->
+
+<!-- Event Binding  -->
+<h1>clicked {{count}} times</h1>
+<button (click)="clickMe()">Click</button>
+
+<!-- Directives -->

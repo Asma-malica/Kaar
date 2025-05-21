@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +6,46 @@ import { Component } from '@angular/core';
   // template :"<h1>{{title}}</h1>",
   // styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Basics';
+  // 2way binding
+  Name = "Asma Malica"
+//string interpolation
+  rollno = "21CSR011" //VARIABLE
+  getName(){ //FUNCTION ( method calls)
+    return "Asma" ;
+  }
+  // string interpolation with attribute binding
+  imageUrl = "assets/quote.jpg"
+  imageAlt = "image "
+// property binding 
+isDisabled = false
+text = "Property Binding"
+// property binding with safe navigation operator
+user = {
+  name : 'Asma',
+  age :21
+}
+// if we didnt give value like above one means we will get error therefore use safe navigation operator 
+
+user1 : any = null; //  maybe user data comes later from an API
+// to avoid the error we use safe navigation operator 
+// to use the data from user1 use ngonInit
+
+ngOnInit(){
+  this.user1 = {
+    name : "Malica"
+  }
+}
+// Event Binding  
+count = 0
+clickMe(){
+  this.count++
+}
+
+// Directives
+
+
+
+
 }
