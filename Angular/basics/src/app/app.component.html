@@ -87,18 +87,67 @@ Attribute Directive – Changes the look or behavior of an element (like ngClass
 <h2>ngClass</h2>
 <!-- <p [ngClass]="['primary', 'big']">Sample text</p> -->
 
-<span>Apply Blue 
-    <input type="checkbox"[(ngModel)]="applyBlue">
+<span
+  >Apply Blue
+  <input type="checkbox" [(ngModel)]="applyBlue" />
 </span>
-<p [ngClass]="{'primary':applyBlue}">Sample text</p>
+<p [ngClass]="{ primary: applyBlue }">Sample text</p>
 
 <!-- ngStyle  -->
 <h2>ngStyle</h2>
 
-<p [ngStyle]="{'color':'red','font-size':'40px'}">Sample text</p>
+<p [ngStyle]="{ color: 'red', 'font-size': '40px' }">Sample text</p>
 
+<!-- Pipes  -->
+<!-- Pipes are like little tools in Angular that change 
+how data looks when you show it on the screen.
+For example, if you have a date or a number, a pipe can make it look nice and easy to read — 
+like changing a date from 2025-05-22 to May 22, 2025 or making text all uppercase.
+ -->
+<h1>Pipe</h1>
+<h3>Date Pipe</h3>
+<p>unformatted Date - {{ toDate }}</p>
+<!-- pipe -->
+<p>formatted Date - {{ toDate | date }}</p>
+<P>medium date : {{ toDate | date : "medium" }}</P>
+<P>short date : {{ toDate | date : "short" }}</P>
+<P>full date : {{ toDate | date : "fullDate" }}</P>
+<P>Long date : {{ toDate | date : "longDate" }}</P>
 
+<p>Short time: {{ toDate | date : 'shortTime' }}</p>
+<p>Medium time: {{ toDate | date : 'mediumTime' }}</p>
+<p>Full time: {{ toDate | date : 'fullTime' }}</p>
+<p>Long time: {{ toDate | date : 'longTime' }}</p>
 
+<p>Custom format (dd/MM/yyyy): {{ toDate | date:'dd/MM/yyyy' }}</p>
+<p>Custom format (MM-dd-yyyy): {{ toDate | date:'MM-dd-yyyy' }}</p>
+<p>Custom format (yyyy-MM-dd HH:mm): {{ toDate | date:'yyyy-MM-dd HH:mm' }}</p>
+<p>Custom format (EEEE, MMMM d, y): {{ toDate | date:'EEEE, MMMM d, y' }}</p>
 
+<h3>Slice Pipe</h3>
+<p>Name : {{name}}</p>
+<p>Getting First Name : {{name | slice:0:4}}</p>
+<p>Getting Last Name : {{name | slice:4:11}}</p>
 
+<p>Displaying Array Items</p>
+<ul>
+  <li *ngFor = "let item of items">{{item}}</li>
+</ul>
+<p>Array Items - slice pipe</p>
+<ul>
+  <li *ngFor = "let item of items | slice:0:2">{{item}}</li>
+</ul>
+
+<!-- Uppercase and lowercase pipe  -->
+<h3>Uppercase and lowercase pipe </h3>
+<p>Name : {{nam}}</p>
+<p>Uppercase : {{nam | uppercase}}</p>
+<p>Lowercase : {{nam | lowercase}}</p>
+
+<!-- Currency pipe  -->
+<h3>currency pipe </h3>
+<p>Price without Formatting : {{price}}</p>
+<p>Price with Formatting : {{price | currency}}</p><!-- default us dollar --> 
+<p>Indian Currency : {{price | currency : 'INR'}}</p><!-- default us dollar --> 
+<p>European Currency : {{price | currency : 'EUR'}}</p><!-- default us dollar --> 
 

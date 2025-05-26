@@ -59,4 +59,16 @@ showMe = true;
 //ngClass
 applyBlue = false ;
 
+// Date pipe
+toDate = new Date();
+
+// slice pipe
+name = 'Asma Malica'
+
+items = ['one','two','three','four']
+
+// upper and lowercase pipe
+nam = 'Asma Malica'
+//currency pipe
+price = 100
 }
