@@ -71,4 +71,13 @@ items = ['one','two','three','four']
 nam = 'Asma Malica'
 //currency pipe
 price = 100
+
+// sharing data between component
+onCarAdded(carName : string){
+  console.log(carName , 'From App')
+}
+
+
+
+
 }
