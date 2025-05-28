@@ -151,11 +151,14 @@ like changing a date from 2025-05-22 to May 22, 2025 or making text all uppercas
 <p>Indian Currency : {{price | currency : 'INR'}}</p><!-- default us dollar --> 
 <p>European Currency : {{price | currency : 'EUR'}}</p><!-- default us dollar --> 
 
+<p>--------------------------------------------------------</p>
 <!-- sharing data between component  -->
 <div>
+  <p> sharing data between component </p>
   <app-form (carAdded)="onCarAdded($event)"></app-form>
-  <app-list></app-list>
+  <app-list [carNames]="carNames"></app-list>
 </div>
+<p>--------------------------------------------------------</p>
 
 
 

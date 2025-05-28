@@ -73,8 +73,13 @@ nam = 'Asma Malica'
 price = 100
 
 // sharing data between component
+
+// to get the data from form component to list component we create carNames 
+carNames : string[] = []
+
 onCarAdded(carName : string){
   console.log(carName , 'From App')
+  this.carNames.push(carName)
 }
 
 
