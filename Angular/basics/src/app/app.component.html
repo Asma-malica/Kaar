@@ -155,8 +155,14 @@ like changing a date from 2025-05-22 to May 22, 2025 or making text all uppercas
 <!-- sharing data between component  -->
 <div>
   <p> sharing data between component </p>
-  <app-form (carAdded)="onCarAdded($event)"></app-form>
-  <app-list [carNames]="carNames"></app-list>
+  <!-- this is for decorator -->
+  <!-- <app-form (carAdded)="onCarAdded($event)"></app-form> -->   
+  <!-- <app-list [carNames]="carNames"></app-list> -->
+
+  <!-- this is using services -->
+  <app-form></app-form> 
+  <app-list></app-list>
+
 </div>
 <p>--------------------------------------------------------</p>
 

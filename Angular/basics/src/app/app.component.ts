@@ -75,12 +75,15 @@ price = 100
 // sharing data between component
 
 // to get the data from form component to list component we create carNames 
-carNames : string[] = []
+// this is for using decorator we have created carNames 
+// carNames : string[] = []
+// onCarAdded(carName : string){
+//   console.log(carName , 'From App')
+//   this.carNames.push(carName)
+// }
 
-onCarAdded(carName : string){
-  console.log(carName , 'From App')
-  this.carNames.push(carName)
-}
+// Now Using Services 
+
 
 
 
