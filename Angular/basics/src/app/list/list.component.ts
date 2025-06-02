@@ -15,6 +15,7 @@ export class ListComponent implements OnInit {
 
   }
   ngOnInit() : void{
+    // carNames1 -> observable property - if we use this property means we can access the values of Behavior subject
     this.carService.carNames1.subscribe((names)=>{
       this.carNames = names ;
     })

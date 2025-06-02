@@ -83,8 +83,8 @@ price = 100
 // }
 
 // Now Using Services 
-
-
+// so no need the previous properties 
+ 
 
 
 
