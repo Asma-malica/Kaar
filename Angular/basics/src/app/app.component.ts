@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChange  } from '@angular/core';
+import { Component, DoCheck, OnChanges, OnInit, SimpleChange } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +6,7 @@ import { Component, OnChanges, OnInit, SimpleChange  } from '@angular/core';
   // template :"<h1>{{title}}</h1>",
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit,DoCheck{
   title = 'Basics';
   // 2way binding
   Name = "Asma Malica"
@@ -97,6 +97,24 @@ price = 100
   ]
   topic = 'hello'
 
-  //ngOnInit
+  //ngOnInit - done
 
-}0
+  // ngDoCheck
+  doCheck = 'hii'
+  doCheck1 = 'hii'
+
+  ngDoCheck(): void {
+      // console.log('change')
+      if(this.doCheck !== this.doCheck1){
+        console.log('Property changed',this.doCheck)
+        this.doCheck = this.doCheck1
+      }
+  }
+
+  // ngOnDestroy
+  submitButton = true
+  
+
+
+
+}

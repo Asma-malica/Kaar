@@ -7,13 +7,19 @@ import { FormsModule } from '@angular/forms';
 import { FormComponent } from './form/form.component';
 import { ListComponent } from './list/list.component';
 import { ChildComponent } from './child/child.component';
+import { NgAfterContentInitComponent } from './ng-after-content-init/ng-after-content-init.component';
+import { NgAfterViewInitComponent } from './ng-after-view-init/ng-after-view-init.component';
+import { NgOnDestroyComponent } from './ng-on-destroy/ng-on-destroy.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormComponent,
     ListComponent,
-    ChildComponent
+    ChildComponent,
+    NgAfterContentInitComponent,
+    NgAfterViewInitComponent,
+    NgOnDestroyComponent
   ],
   imports: [
     BrowserModule,

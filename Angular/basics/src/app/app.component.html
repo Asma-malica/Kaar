@@ -166,15 +166,27 @@ like changing a date from 2025-05-22 to May 22, 2025 or making text all uppercas
 </div>
 <p>--------------------------------------------------------</p>
 
-
 <h2> LifeCycle Hooks </h2>
 
 <h4>ngOnChanges</h4>
 <input type="text" name="topic"[(ngModel)]="topic">
-<app-child [items]="itemList"[topic]="topic"></app-child>
+<!-- <app-child [items]="itemList"[topic]="topic"></app-child> -->
 
+<h4>ngDoCheck</h4>
+<input type="text" name="doCheck"[(ngModel)]="doCheck">
 
+<h4>ngAfterContentInit</h4>
+<app-ng-after-content-init>
+  <p #messageContent>Hello World</p>
+  <p #messageContent>This is a simple example</p>
+</app-ng-after-content-init>
 
+<h4>ngAfterViewInit</h4>
+<app-ng-after-view-init></app-ng-after-view-init>
 
+<h4>ngOnDestroy</h4>
+<app-ng-on-destroy *ngIf="submitButton"></app-ng-on-destroy>
+submitButton
+<input type="checkbox"[(ngModel)]="submitButton">
 
 
