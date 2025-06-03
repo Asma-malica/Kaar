@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChange  } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -85,7 +85,18 @@ price = 100
 // Now Using Services 
 // so no need the previous properties 
  
+//lifecycle hooks
 
+// ngOnChanges 
+  itemList = [
+    { id : 1 , name : 'A'},
+    { id : 2 , name : 'B'},
+    { id : 3 , name : 'C'},
+    { id : 4 , name : 'D'},
+    { id : 5 , name : 'E'}
+  ]
+  topic = 'hello'
 
+  //ngOnInit
 
-}
+}0
