@@ -13,7 +13,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     AppComponent,
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+
   ],
   imports: [
     BrowserModule,
