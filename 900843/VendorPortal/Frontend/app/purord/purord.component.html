@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div class="side-menu">
+        <div class="brand-name">
+            <h1><img class="logo" src="/assets/images/Kaar-Logo.jpg" alt=""> 
+                <br> Kaar Technologies</h1>
+        </div>
+        <ul>
+            <li><a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Profile</span> </a></li>
+            <li><a routerLink="/purord" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Purchase Order</span> </a></li>
+            <li><a routerLink="/quotation" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Quotation</span> </a></li>
+            <li><a routerLink="/cad" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Credit Debit</span> </a></li>
+            <li><a routerLink="/goodsrecpt" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Goods Receipt</span> </a></li>
+            <li><a routerLink="/payment" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Payment</span> </a></li>
+
+
+            
+        </ul>
+    </div>
+    <div class="container">
+        
+        <div class="content">
+          
+            <div class="content-2">
+                <div class="recent-payments">
+                    <div class="title">
+                        <h2>Vendor Purchase Order View</h2>
+                        
+                    </div>
+                   
+                 <table>
+                        <tr>
+                            <th>Doc No</th>
+                            <th>item no</th>
+                            <th>Event type</th>
+                            <th>Account Doc No</th>
+                            <th>Entry date</th>
+                            <th>Time of data Entry</th>
+                            <th>MovType</th>
+                           <th>DelCostEntry</th>
+                        </tr>
+                        <tr *ngFor="let code of code">
+                            <td>{{this.code.EBELN._text}}</td>
+                            <td>{{this.code.EBELP._text}}</td>
+                            <td>{{this.code.VGABE._text}}</td>
+                            <td>{{this.code.BELNR._text}}</td>
+                            <td>{{this.code.CPUDT._text}}</td>
+                            <td>{{this.code.CPUTM._text}}</td>
+                            <td>{{this.code.BWART._text}}</td>
+                            <td>{{this.code.BEWTP._text}}</td>
+                        </tr>
+                       
+                    </table>
+                </div>
+            </div>  
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+

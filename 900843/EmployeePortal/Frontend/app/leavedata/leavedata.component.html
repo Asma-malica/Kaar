@@ -1,0 +1,70 @@
+<p>leavedata works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div class="side-menu">
+        <div class="brand-name">
+            <h1><img class="logo" src="/assets/images/Kaar-Logo.jpg" alt=""> 
+                <br> Kaar Technologies</h1>
+        </div>
+        <ul>
+            <li><a routerLink="/leavedata" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Leave Data</span></a> </li>
+            <li><a routerLink="/payslip" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Pay Slip</span></a> </li>
+            <li><a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Profile</span> </a></li>
+
+              
+        </ul>
+    </div>
+    <div class="container">
+        
+        <div class="content">
+          
+            <div class="content-2">
+                <div class="recent-payments">
+                    <div class="title">
+                        <h2>Employee Leavedata View</h2>
+                        
+                    </div>
+                   
+                 <table>
+                        <tr>
+                            <th>AbsQuotatype</th>
+                            <th>Leave Type</th>
+                            <th>Quotation Text</th>
+                            <th>Quotation End</th>
+                            <th>Quotation Beginning</th>
+                            <th>Entitle</th>
+                            <th>Deduct</th>
+                            <th>Ordered</th>
+                            <th>Quotation Number</th>
+                            <th>Time Unit</th>
+                            <th>Time Unit Ext</th>
+                        </tr>
+                        <tr >
+                            <td>{{this.code.QUOTATYPE._text}}</td>
+                            <td>{{this.code.LEAVETYPE._text}}</td>
+                            <td>{{this.code.QUOTATEXT._text}}</td>
+                            <td>{{this.code.QUOTAEND._text}}</td>
+                            <td>{{this.code.QUOTABEG._text}}</td>
+                            <td>{{this.code.ENTITLE._text}}</td>
+                            <td>{{this.code.DEDUCT._text}}</td>
+                            <td>{{this.code.ORDERED._text}}</td>
+                            <td>{{this.code.QUOTANUM._text}}</td>
+                            <td>{{this.code.TIME_UNIT._text}}</td>
+                            <td>{{this.code.TIUNITEXT._text}}</td>
+                        </tr>
+                       
+                    </table>
+
+                    
+
+                    
+                </div>
+            </div>  
+        </div>
+    </div>
+</body>
+
+</html>
+

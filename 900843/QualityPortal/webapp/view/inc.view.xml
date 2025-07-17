@@ -1,0 +1,82 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="NITHYAEHSMNITHYAEHSM.controller.inc"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App id = "app">
+		<pages>
+			<Page title="INCIDENT">
+			<Button width="39.375rem" text="INCIDENT" type="Emphasized" press="onLogins"></Button>
+				<Button width="39.375rem" text=" RISK MANAGEMENT" type="Emphasized" press="onLogin"></Button>
+				<content>
+					<Table id="producttable" items="{/results}">
+						<columns>
+							<Column width="4em">
+								<Text text="Client"/>
+							</Column>
+							<Column width="4em">
+								<Text text="DataRecord"/>
+							</Column>
+							<Column width="4em">
+								<Text text="SeqNoRec"/>
+							</Column>
+								<Column width="4em">
+								<Text text="ValidFromDate"/>
+							</Column>
+								<Column width="4em">
+								<Text text="ValidToDate"/>
+							</Column>
+								<Column width="4em">
+								<Text text="Status"/>
+							</Column>
+								<Column width="4em">
+								<Text text="CreationDate"/>
+							</Column>
+								<Column width="4em">
+								<Text text="LastChangedOn"/>
+							</Column>
+								<Column width="4em">
+								<Text text="LastChangedBy"/>
+							</Column>
+								<Column width="4em">
+								<Text text="ReferToWA"/>
+							</Column>
+								<Column width="4em">
+								<Text text="IncLogEntry"/>
+							</Column>
+								<Column width="4em">
+								<Text text="IncEntryType"/>
+							</Column>
+								<Column width="4em">
+								<Text text="EventDate"/>
+							</Column>
+							
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{Mandt}"/>
+								    <Text text="{Recn}"/>
+								    <Text text="{Recnroot}"/>
+								    <Text text="{Valfr}"/>
+	                                <Text text="{Valto}"/>
+								    <Text text="{Iastatus}"/>
+							        <Text text="{Crdat}"/>
+									<Text text="{Upddat}"/>
+								    <Text text="{Updnam}"/>
+								    <Text text="{Recntwah}"/>
+								    <Text text="{Ialid}"/>
+								    <Text text="{Iatype}"/>
+								    <Text text="{Evdat}"/>
+								    <!--<Text text="{Rem}"/>-->
+								    <!-- <Text text="{Rainvresult}"/>-->
+								    <!-- <Text text="{Riskassetnum}"/>-->
+								    <!-- <Text text="{Assctrper}"/>-->
+								    <!--<Button icon="sap-icon://display-more" width="80px" id="__button1" press="onClickCell"/>-->
+								     
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

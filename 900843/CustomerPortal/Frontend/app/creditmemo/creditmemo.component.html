@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div class="side-menu">
+        <div class="brand-name">
+            <h1><img class="logo" src="/assets/images/Kaar-Logo.jpg" alt=""> 
+                <br> Kaar Technologies</h1>
+        </div>
+        <ul>
+            <li><a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Profile</span> </a></li>
+            <li><a routerLink="/cusdel" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Delivery</span> </a></li>
+              <li><a routerLink="/creditmemo" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Credit/debit memo</span></a> </li>
+              <li><a routerLink="/salesorder" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Sale Order</span></a> </li>
+              <li><a routerLink="/payment" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Payment</span></a> </li>
+
+        </ul>
+    </div>
+    <div class="container">
+        
+        <div class="content">
+          
+            <div class="content-2">
+                <div class="recent-payments">
+                    <div class="title">
+                        <h2>Customer creditmemo View</h2>
+                        
+                    </div>
+                   
+                 <table>
+                        <tr>
+                            <th>Customer Id</th>
+                            <th>Material</th>
+                            <th>Plant</th>
+                            <th>Quantity</th>
+                            <th>Base Unit</th>
+                            <th>Company Code</th>
+                            <th>Document Number</th>
+                            <th>Line Item</th>
+                            
+                            <th>Account Type</th>
+                            <th>Valuation diff</th>
+                        </tr>
+                        <tr *ngFor="let code of code">
+                            <td>{{+this.code.KUNNR._text}}</td>
+                            <td>{{+this.code.MATNR._text}}</td>
+                            <td>{{this.code.WERKS._text}}</td>
+                            <td>{{this.code.MENGE._text}}</td>
+                            <td>{{this.code.MEINS._text}}</td>
+                            <td>{{+this.code.BUKRS._text}}</td>
+                            <td>{{this.code.BELNR._text}}</td>
+                            <td>{{this.code.BUZEI._text}}</td>
+                            
+                            <td>{{this.code.KOART._text}}</td>
+                            <td>{{this.code.BDIFF._text}}</td>
+                        </tr>
+                       
+                    </table>
+                </div>
+            </div>  
+        </div>
+    </div>
+</body>
+
+</html>
+
+

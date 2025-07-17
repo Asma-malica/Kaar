@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div class="side-menu">
+        <div class="brand-name">
+            <h1><img class="logo" src="/assets/images/Kaar-Logo.jpg" alt=""> 
+                <br> Kaar Technologies</h1>
+        </div>
+        <ul>
+            <li><a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Profile</span> </a></li>
+
+            <li><a routerLink="/cusdel" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Delivery</span> </a></li>
+            <li><a routerLink="/creditmemo" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Credit/debit memo</span></a> </li>
+            <li><a routerLink="/salesorder" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Sale Order</span></a> </li>
+            <li><a routerLink="/payment" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Payment</span></a> </li>
+
+        </ul>
+    </div>
+    <div class="container">
+        
+        <div class="content">
+          
+            <div class="content-2">
+                <div class="recent-payments">
+                    <div class="title">
+                        <h2>Customer CusDel View</h2>
+                        
+                    </div>
+                   
+                 <table>
+                        <tr>
+                            <th>DocNo</th>
+                            <th>Entry time</th>
+                            <th>Record Created Date</th>
+                            <th>Sales Organization</th>
+                            <th>Delivery type</th>
+                            <th>Incoterms</th>
+                            <th>Purchasing Doc Info</th>
+                            <th>Time of delivery</th>
+                            
+                        </tr>
+                        <tr *ngFor="let code of code">
+                            <td>{{+this.code.VBELN._text}}</td>
+                            <td>{{this.code.ERZET._text}}</td>
+                            <td>{{this.code.ERDAT._text}}</td>
+                            <td>{{+this.code.VKORG._text}}</td>
+                            <td>{{this.code.LFART._text}}</td>
+                            <td>{{this.code.INCO2._text}}</td>
+                            <td>{{this.code.ARKTX._text}}</td>
+                            <td>{{this.code.LFUHR._text}}</td>
+                            
+                        </tr>
+                       
+                    </table>
+                </div>
+            </div>  
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+

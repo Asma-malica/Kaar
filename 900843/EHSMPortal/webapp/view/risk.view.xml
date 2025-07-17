@@ -1,0 +1,82 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="NITHYAEHSMNITHYAEHSM.controller.risk"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App id ="app">
+		<pages>
+			<Page title="RISK">
+			<Button width="39.375rem" text="INCIDENT" type="Emphasized" press="onLogins"></Button>
+				<Button width="39.375rem" text=" RISK MANAGEMENT" type="Emphasized" press="onLogin"></Button>
+				<content>
+					<Table id="producttable" items="{/results}">
+						<columns>
+							<Column width="4em">
+								<Text text="Clientt"/>
+							</Column>
+							<Column width="4em">
+								<Text text="DataRecordt"/>
+							</Column>
+							<Column width="4em">
+								<Text text="Last changed On"/>
+							</Column>
+								<Column width="4em">
+								<Text text="LastChangedBy"/>
+							</Column>
+								<Column width="4em">
+								<Text text="DataProvider"/>
+							</Column>
+								<Column width="4em">
+								<Text text="AgentType"/>
+							</Column>
+								<Column width="4em">
+								<Text text="Agent"/>
+							</Column>
+								<Column width="4em">
+								<Text text="Status"/>
+							</Column>
+								<Column width="4em">
+								<Text text="Note"/>
+							</Column>
+								<Column width="4em">
+								<Text text="DataRecord"/>
+							</Column>
+								<Column width="4em">
+								<Text text="SrcOfData"/>
+							</Column>
+								<Column width="4em">
+								<Text text="ExpoRateCat"/>
+							</Column>
+								<Column width="4em">
+								<Text text="RiskSeverity"/>
+							</Column>
+							
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{Mandt}"/>
+								    <Text text="{Recn}"/>
+								    <Text text="{Upddat}"/>
+								    <Text text="{Updnam}"/>
+	                                <Text text="{Ownid}"/>
+								    <Text text="{Eptype}"/>
+							        <Text text="{Epid}"/>
+									<Text text="{Erstatus}"/>
+								    <Text text="{Rem}"/>
+								    <Text text="{Recnroot}"/>
+								    <Text text="{Srsid}"/>
+								    <Text text="{Ratingcat}"/>
+								    <Text text="{Severe}"/>
+								    <!--<Text text="{Rem}"/>-->
+								    <!-- <Text text="{Rainvresult}"/>-->
+								    <!-- <Text text="{Riskassetnum}"/>-->
+								    <!-- <Text text="{Assctrper}"/>-->
+								    <!--<Button icon="sap-icon://display-more" width="80px" id="__button1" press="onClickCell"/>-->
+								     
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

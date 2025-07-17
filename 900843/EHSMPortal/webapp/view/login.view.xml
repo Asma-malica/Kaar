@@ -1,0 +1,19 @@
+<mvc:View controllerName="NITHYAEHSMNITHYAEHSM.controller.login" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m">
+	<App id ="app">
+		<pages>
+			<Page title="LOGIN">
+			<content>
+                    <VBox fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center">
+                        <items>
+                            <Text text="Enter your login credentials"/>
+                            <Input width="20rem" id="uid" placeholder="User ID"></Input>
+                            <Input width="20rem" id="pasw" placeholder="Password" type="Password"></Input>
+                            <Button width="20rem" text="Login" type="Emphasized" press="onLogin"></Button>
+                        </items>
+                    </VBox>
+                </content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

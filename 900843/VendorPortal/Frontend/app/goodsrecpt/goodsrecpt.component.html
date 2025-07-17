@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div class="side-menu">
+        <div class="brand-name">
+            <h1><img class="logo" src="/assets/images/Kaar-Logo.jpg" alt=""> 
+                <br> Kaar Technologies</h1>
+        </div>
+        <ul>
+            <li><a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Profile</span> </a></li>
+            <li><a routerLink="/purord" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Purchase Order</span> </a></li>
+            <li><a routerLink="/quotation" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Quotation</span> </a></li>
+            <li><a routerLink="/cad" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Credit Debit</span> </a></li>
+            <li><a routerLink="/goodsrecpt" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Goods Receipt</span> </a></li>
+            <li><a routerLink="/payment" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Payment</span> </a></li>
+
+
+            
+        </ul>
+    </div>
+    <div class="container">
+        
+        <div class="content">
+          
+            <div class="content-2">
+                <div class="recent-payments">
+                    <div class="title">
+                        <h2>Vendor goods Receipt View</h2>
+                        
+                    </div>
+                   
+                 <table>
+                        <tr>
+                            <th>NoOfMatDoc</th>
+                            <th>DocYear</th>
+                            <th>EventType</th>
+                            <th>Docdate</th>
+                            <th>PostngDate</th>
+                            <th>Entrydate</th>
+                            <th>EntryTime</th>
+                           <th>Username</th>
+                           <th>VersionOfGI</th>
+                           
+                        </tr>
+                        <tr *ngFor="let code of code">
+                            <td>{{this.code.MAT_DOC._text}}</td>
+                            <td>{{this.code.DOC_YEAR._text}}</td>
+                            <td>{{this.code.TR_EV_TYPE._text}}</td>
+                            <td>{{this.code.DOC_DATE._text}}</td>
+                            <td>{{this.code.PSTNG_DATE._text}}</td>
+                            <td>{{this.code.ENTRY_DATE._text}}</td>
+                            <td>{{this.code.ENTRY_TIME._text}}</td>
+                            <td>{{this.code.USERNAME._text}}</td>
+                            <td>{{this.code.VER_GR_GI_SLIP._text}}</td>
+                            
+                        </tr>
+                       
+                    </table>
+                </div>
+            </div>  
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+
+
+

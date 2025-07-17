@@ -1,0 +1,132 @@
+{
+	"_version": "1.7.0",
+	"sap.app": {
+		"id": "NITHYASHOPFLOOR1NITHYASHOPFLOOR1",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponent",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"ZPB_ODATA_SHOPFLOOR_SRV": {
+				"uri": "/sap/opu/odata/sap/ZPB_ODATA_SHOPFLOOR_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": ["sap_hcb", "sap_belize"]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "NITHYASHOPFLOOR1NITHYASHOPFLOOR1.view.login",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {},
+				"sap.ushell": {},
+				"sap.collaboration": {},
+				"sap.ui.comp": {},
+				"sap.uxap": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "NITHYASHOPFLOOR1NITHYASHOPFLOOR1.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"targets": {
+				"login": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "login",
+					"viewLevel": 1
+				},
+				"pur": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "pur",
+					"viewLevel": 2
+				},
+				"plan": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "plan",
+					"viewLevel": 3
+				}
+			},
+			"routes": [{
+				"name": "login",
+				"pattern": "login",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["login"]
+			}, {
+				"name": "pur",
+				"pattern": "pur",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["pur"]
+			}, {
+				"name": "plan",
+				"pattern": "plan",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["plan"]
+			}],
+			"config": {
+				"viewPath": "NITHYASHOPFLOOR1NITHYASHOPFLOOR1.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"routerClass": "sap.m.routing.Router",
+				"viewLevel": 1,
+				"clearControlAggregation": false,
+				"async": true
+			}
+		}
+	}
+}

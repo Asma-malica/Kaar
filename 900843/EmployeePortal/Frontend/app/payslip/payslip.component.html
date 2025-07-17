@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div class="side-menu">
+        <div class="brand-name">
+            <h1><img class="logo" src="/assets/images/Kaar-Logo.jpg" alt=""> 
+                <br> Kaar Technologies</h1>
+        </div>
+        <ul>
+            <li><a routerLink="/leavedata" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Leave Data</span></a> </li>
+            <li><a routerLink="/payslip" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>PaySlip</span> </a></li>
+            <li><a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page">&nbsp;<span>Profile</span> </a></li>
+
+              
+        </ul>
+    </div>
+    <div class="container">
+        
+        <div class="content">
+          
+            <div class="content-2">
+                <div class="recent-payments">
+                    <div class="title">
+                        <h2>Employee Payslip View</h2>
+                        
+                    </div>
+                   
+                 <table>
+                        <tr>
+                            <th>Sequence Number</th>
+                            <th>For period for Payroll</th>
+                            <th>Start Date of Payroll period</th>
+                            <th>End of Payroll period</th>
+                            <th>off cycle payroll payment date</th>
+                            <th>pay date for payroll</th>
+                            
+                            <th>Short text for fixed value</th>
+                        </tr>
+                        <tr *ngFor="let code of code">
+                            <td>{{this.code.SEQUENCENUMBER._text}}</td>
+                            <td>{{this.code.FPPERIOD._text}}</td>
+                            <td>{{this.code.FPBEGIN._text}}</td>
+                            <td>{{this.code.FPEND._text}}</td>
+                            <td>{{this.code.BONUSDATE._text}}</td>
+                            <td>{{this.code.PAYDATE._text}}</td>
+                            
+                            <td>{{this.code.PAYTYPE_TEXT._text}}</td>
+                        </tr>
+                       
+                    </table>
+                </div>
+            </div>  
+        </div>
+    </div>
+</body>
+
+</html>
+
+
