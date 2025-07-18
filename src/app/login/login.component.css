@@ -1,0 +1,158 @@
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+body {
+  margin: 0;
+  font-family: 'Times New Roman', serif;
+  background: linear-gradient(to right, #4b0000, #800000);
+  color: #fff;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.login-box {
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  width: 900px;
+  max-width: 100%;
+}
+
+.left-panel, .right-panel {
+  flex: 1;
+  padding: 40px;
+}
+
+.left-panel {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+.left-panel img {
+  width: 120px;
+  margin-bottom: 20px;
+}
+
+.left-panel h2 {
+  font-size: 28px;
+  color: #990000;
+  margin-bottom: 10px;
+}
+
+.left-panel p {
+  font-size: 16px;
+  color: #cc3333;
+}
+
+.right-panel h2 {
+  font-size: 24px;
+  color: #990000;
+  margin-bottom: 10px;
+}
+
+.right-panel .subtitle {
+  font-size: 14px;
+  color: #cc3333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 10px 40px 10px 10px;
+  border: 1px solid #990000;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  font-family: 'Times New Roman', serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.input-wrapper input:focus {
+  border: 1px solid #660000;
+  outline: none;
+  box-shadow: 0 0 6px rgba(153, 0, 0, 0.4);
+}
+
+.icon-right {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #990000;
+}
+
+.toggle-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle-btn i {
+  color: #990000;
+  font-size: 16px;
+}
+
+button[type='submit'] {
+  width: 100%;
+  padding: 12px;
+  background-color: #990000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: 'Times New Roman', serif;
+  transition: background-color 0.3s;
+}
+
+button[type='submit']:hover {
+  background-color: #660000;
+}
+
+.toast {
+  margin-top: 16px;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.toast.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.toast.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
