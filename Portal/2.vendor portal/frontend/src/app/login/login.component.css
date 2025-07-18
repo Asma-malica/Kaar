@@ -1,0 +1,16 @@
+.login-card {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+h2 {
+  text-align: center;
+  color: #3f51b5;
+}
