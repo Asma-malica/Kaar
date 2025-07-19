@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       this.loginService.loginVendor(this.loginForm.value).subscribe({
         next: (response) => {
           console.log('✅ Login Successful:', response);
-          // this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard']);
         },
         error: (error) => {
           console.error('❌ Login Failed:', error);

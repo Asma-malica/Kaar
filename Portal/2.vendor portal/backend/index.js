@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import loginRoutes from './routes/login.js';
+import profileRoutes from './routes/profile.js';
 
 const app = express();  // ✅ Initialize app first
 
@@ -9,6 +10,7 @@ app.use(cors());        // ✅ Then use middleware
 app.use(bodyParser.json());
 
 app.use('/api', loginRoutes);
+app.use('/api', profileRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () => {

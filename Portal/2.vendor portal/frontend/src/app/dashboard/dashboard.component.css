@@ -1,0 +1,56 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.welcome-text {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.tiles-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.tile {
+  width: 220px;
+  height: 220px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tile:hover {
+  transform: scale(1.05);
+}
+
+.tile mat-icon {
+  font-size: 48px;
+  color: #3f51b5;
+}
+
+.tile h3 {
+  margin: 10px 0 5px;
+}
+
+.tile p {
+  color: #555;
+  font-size: 0.9rem;
+}
