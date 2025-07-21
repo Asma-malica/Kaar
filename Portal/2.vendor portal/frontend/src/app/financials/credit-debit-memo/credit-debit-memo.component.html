@@ -1,0 +1,34 @@
+<div class="container">
+  <h2 class="heading">Credit / Debit Memos</h2>
+
+  <table class="custom-table" *ngIf="creditDebits.length > 0">
+    <thead>
+      <tr>
+        <th>Memo Number</th>
+        <th>Fiscal Year</th>
+        <th>Posting Date</th>
+        <th>Amount</th>
+        <th>Currency</th>
+        <th>Doc Type</th>
+        <th>Created By</th>
+        <th>Memo Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let memo of creditDebits">
+        <td>{{ memo.MemoNumber }}</td>
+        <td>{{ memo.FiscalYear }}</td>
+        <td>{{ parseDate(memo.PostingDate) }}</td>
+        <td>{{ memo.Amount }}</td>
+        <td>{{ memo.Currency }}</td>
+        <td>{{ memo.DocType }}</td>
+        <td>{{ memo.CreatedBy }}</td>
+        <td>{{ memo.MemoType }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="creditDebits.length === 0" class="no-data">
+    No Credit/Debit Memos found.
+  </p>
+</div>

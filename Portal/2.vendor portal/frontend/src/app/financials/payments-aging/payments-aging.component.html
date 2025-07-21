@@ -1,0 +1,28 @@
+<h2 class="heading">Payments & Aging</h2>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Invoice Number</th>
+        <th>Fiscal Year</th>
+        <th>Invoice Date</th>
+        <th>Due Date</th>
+        <th>Amount</th>
+        <th>Currency</th>
+        <th>Aging Days</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payment of payments">
+        <td>{{ payment.InvoiceNumber }}</td>
+        <td>{{ payment.FiscalYear }}</td>
+        <td>{{ parseDate(payment.InvoiceDate) }}</td>
+        <td>{{ parseDate(payment.DueDate) }}</td>
+        <td>{{ payment.Amount }}</td>
+        <td>{{ payment.Currency }}</td>
+        <td>{{ payment.AgingDays }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

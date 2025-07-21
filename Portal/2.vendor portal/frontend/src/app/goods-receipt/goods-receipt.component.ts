@@ -27,7 +27,7 @@ export class GoodsReceiptComponent implements OnInit {
           this.goodsReceipts = res.data || [];
         },
         error: (err) => {
-          console.error('Error fetching Goods Receipts:', err);
+          console.error('❌ Error fetching Goods Receipts:', err);
         }
       });
     }

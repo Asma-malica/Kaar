@@ -1,0 +1,64 @@
+<h2 class="page-title">Invoices</h2>
+
+<div *ngIf="invoices.length > 0; else noData">
+  <table mat-table [dataSource]="invoices" class="custom-table mat-elevation-z2">
+
+    <!-- Invoice Number Column -->
+    <ng-container matColumnDef="InvoiceNumber">
+      <th mat-header-cell *matHeaderCellDef> Invoice # </th>
+      <td mat-cell *matCellDef="let element"> {{ element.InvoiceNumber }} </td>
+    </ng-container>
+
+    <!-- Fiscal Year Column -->
+    <ng-container matColumnDef="FiscalYear">
+      <th mat-header-cell *matHeaderCellDef> Fiscal Year </th>
+      <td mat-cell *matCellDef="let element"> {{ element.FiscalYear }} </td>
+    </ng-container>
+
+    <!-- Invoice Date Column -->
+    <ng-container matColumnDef="InvoiceDate">
+      <th mat-header-cell *matHeaderCellDef> Invoice Date </th>
+      <td mat-cell *matCellDef="let element"> {{ parseDate(element.InvoiceDate) }} </td>
+    </ng-container>
+
+    <!-- PO Number Column -->
+    <ng-container matColumnDef="PoNumber">
+      <th mat-header-cell *matHeaderCellDef> PO Number </th>
+      <td mat-cell *matCellDef="let element"> {{ element.PoNumber }} </td>
+    </ng-container>
+
+    <!-- PO Item Column -->
+    <ng-container matColumnDef="PoItem">
+      <th mat-header-cell *matHeaderCellDef> PO Item </th>
+      <td mat-cell *matCellDef="let element"> {{ element.PoItem }} </td>
+    </ng-container>
+
+    <!-- Material Column -->
+    <ng-container matColumnDef="Material">
+      <th mat-header-cell *matHeaderCellDef> Material </th>
+      <td mat-cell *matCellDef="let element"> {{ element.Material }} </td>
+    </ng-container>
+
+    <!-- Quantity Column -->
+    <ng-container matColumnDef="Quantity">
+      <th mat-header-cell *matHeaderCellDef> Quantity </th>
+      <td mat-cell *matCellDef="let element"> {{ element.Quantity }} {{ element.Unit }} </td>
+    </ng-container>
+
+    <!-- Amount Column -->
+    <ng-container matColumnDef="Amount">
+      <th mat-header-cell *matHeaderCellDef> Amount </th>
+      <td mat-cell *matCellDef="let element"> {{ element.Amount }} {{ element.Currency }} </td>
+    </ng-container>
+
+    <!-- Header and Row Definitions -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+</div>
+
+<!-- Fallback if no data -->
+<ng-template #noData>
+  <p class="no-data">No Invoice Details Available</p>
+</ng-template>

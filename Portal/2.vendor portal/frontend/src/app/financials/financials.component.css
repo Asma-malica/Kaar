@@ -1,0 +1,53 @@
+.title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.tile-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.tile {
+  width: 220px;
+  height: 220px;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s;
+}
+
+.tile:hover {
+  transform: translateY(-5px);
+}
+
+.icon {
+  font-size: 40px;
+  color: #3f51b5;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.tile h3 {
+  font-size: 18px;
+  margin: 10px 0 5px;
+}
+
+.tile p {
+  font-size: 14px;
+  color: #666;
+}

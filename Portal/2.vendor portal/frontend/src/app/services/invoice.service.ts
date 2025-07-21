@@ -5,12 +5,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class GoodsReceiptService {
-  private apiUrl = 'http://localhost:3000/api/goodsreceipt';
+export class InvoiceService {
+  private apiUrl = 'http://localhost:3000/api/invoice';
 
   constructor(private http: HttpClient) {}
 
-  getGoodsReceipts(vendorId: string): Observable<any> {
+  getInvoices(vendorId: string): Observable<any> {
     return this.http.post<any>(this.apiUrl, { VendorId: vendorId });
   }
 }
