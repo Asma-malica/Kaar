@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AuthService } from '../services/auth.service'; // ✅ Import AuthService
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,12 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   errorMessage: string = '';
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private router: Router,
+    private authService: AuthService // ✅ Inject AuthService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -39,9 +45,21 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       this.loginService.loginVendor(this.loginForm.value).subscribe({
-        next: (response) => {
+        next: (response: any) => {
           console.log('✅ Login Successful:', response);
-          this.router.navigate(['/dashboard']);
+
+          const vendorId =
+            response?.vendorId ||
+            response?.data?.vendorId ||
+            this.loginForm.value.vendorId;
+
+          if (vendorId) {
+            this.authService.setVendorId(vendorId);  // ✅ Store in AuthService
+            this.router.navigate(['/dashboard']);
+          } else {
+            console.warn('⚠️ Vendor ID not found in response.');
+            this.errorMessage = 'Vendor ID not found in response.';
+          }
         },
         error: (error) => {
           console.error('❌ Login Failed:', error);

@@ -1,11 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
+import { ProfileService } from '../services/profile.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-profile',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, MatCardModule, MatIconModule, HttpClientModule],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrl: './profile.component.css',
+  providers: [ProfileService]
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
+  vendorProfile: any;
+  vendorId = '';
 
+  constructor(
+    private profileService: ProfileService,
+    private authService: AuthService // ✅ Inject AuthService
+  ) {}
+
+  ngOnInit() {
+    this.vendorId = this.authService.getVendorId() || ''; // ✅ Get from AuthService
+    if (this.vendorId) {
+      this.profileService.getVendorProfile(this.vendorId).subscribe({
+        next: (res) => {
+          this.vendorProfile = res.data;
+        },
+        error: (err) => {
+          console.error('❌ Error fetching profile:', err);
+        }
+      });
+    } else {
+      console.warn('⚠️ No VendorId found in AuthService.');
+    }
+  }
 }

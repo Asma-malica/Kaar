@@ -1,1 +1,14 @@
-<p>profile works!</p>
+<!-- profile.component.html -->
+<mat-card *ngIf="vendorProfile">
+  <h2>Vendor Profile</h2>
+  <p><strong>Vendor ID:</strong> {{ vendorProfile.VendorId }}</p>
+  <p><strong>Name:</strong> {{ vendorProfile.Name }}</p>
+  <p><strong>City:</strong> {{ vendorProfile.City }}</p>
+  <p><strong>Country:</strong> {{ vendorProfile.Country }}</p>
+  <p><strong>Phone:</strong> {{ vendorProfile.Phone }}</p>
+  <!-- Add other details as per your SAP Response -->
+</mat-card>
+
+<mat-card *ngIf="!vendorProfile">
+  <p>Loading profile or no data available.</p>
+</mat-card>

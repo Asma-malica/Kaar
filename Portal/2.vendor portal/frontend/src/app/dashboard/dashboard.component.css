@@ -54,3 +54,8 @@
   color: #555;
   font-size: 0.9rem;
 }
+.vendor-id {
+  margin-right: 10px;
+  color: black;
+  font-weight: bold;
+}
