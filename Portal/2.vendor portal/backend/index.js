@@ -5,6 +5,7 @@ import loginRoutes from './routes/login.js';
 import profileRoutes from './routes/profile.js';
 import rfqRoutes from './routes/rfq.js';
 import purchaseOrderRoutes from './routes/purchaseorder.js';
+import goodsReceiptRoutes from './routes/goodsreceipt.js';
 
 
 
@@ -18,6 +19,7 @@ app.use('/api', loginRoutes);
 app.use('/api', profileRoutes);
 app.use('/api', rfqRoutes);
 app.use('/api', purchaseOrderRoutes);
+app.use('/api', goodsReceiptRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () => {

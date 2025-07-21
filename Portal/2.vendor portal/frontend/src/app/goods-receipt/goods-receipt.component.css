@@ -1,0 +1,74 @@
+h2 {
+  text-align: center;
+  margin: 20px 0;
+  color: #3f51b5;
+  font-weight: bold;
+}
+
+.receipt-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+}
+
+.receipt-card {
+  width: 320px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  background: #fff;
+  transition: transform 0.3s ease;
+}
+
+.receipt-card:hover {
+  transform: translateY(-5px);
+}
+
+.receipt-field {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+  transition: box-shadow 0.3s;
+}
+
+.receipt-field:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.label {
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+.value {
+  color: #333;
+}
+
+.no-data {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+  margin-top: 40px;
+}
+
+.no-data mat-icon {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+  .receipt-card {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .receipt-field {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
