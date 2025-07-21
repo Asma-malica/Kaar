@@ -1,1 +1,18 @@
-<p>purchase-orders works!</p>
+<h2>Purchase Orders</h2>
+
+<div *ngIf="purchaseOrderList.length === 0" class="no-data">
+  <mat-icon>info</mat-icon> No Purchase Orders found for your account.
+</div>
+
+<div class="po-container" *ngIf="purchaseOrderList.length > 0">
+  <mat-card *ngFor="let po of purchaseOrderList" class="po-card">
+    <h3>PO Number: {{ po.PoNumber }}</h3>
+    <div class="po-field"><span class="label">Document Type:</span> <span class="value">{{ po.DocType }}</span></div>
+    <div class="po-field"><span class="label">Purchase Org:</span> <span class="value">{{ po.PurchaseOrg }}</span></div>
+    <div class="po-field"><span class="label">Document Date:</span> <span class="value">{{ formatDate(po.DocDate) }}</span></div>
+    <div class="po-field"><span class="label">Material Number:</span> <span class="value">{{ po.Material }}</span></div>
+    <div class="po-field"><span class="label">Short Text:</span> <span class="value">{{ po.ShortText }}</span></div>
+    <div class="po-field"><span class="label">Quantity:</span> <span class="value">{{ po.Quantity }} {{ po.UnitMeasure }}</span></div>
+    <div class="po-field"><span class="label">Net Price:</span> <span class="value">{{ po.NetPrice }} {{ po.Currency }}</span></div>
+  </mat-card>
+</div>

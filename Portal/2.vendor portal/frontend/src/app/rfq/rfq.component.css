@@ -1,0 +1,76 @@
+h2 {
+  font-size: 24px;
+  color: #3f51b5;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.rfq-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 10px;
+}
+
+.rfq-card {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 12px;
+  background: #fdfdfd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.rfq-field {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  transition: box-shadow 0.3s;
+}
+
+.rfq-field:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rfq-label {
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+.rfq-value {
+  color: #333;
+  word-break: break-word;
+}
+
+.no-data {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+  margin-top: 40px;
+}
+
+.no-data mat-icon {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+  .rfq-card {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  .rfq-field {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+}

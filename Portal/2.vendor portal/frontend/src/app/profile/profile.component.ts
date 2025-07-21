@@ -11,8 +11,7 @@ import { AuthService } from '../services/auth.service';
   standalone: true,
   imports: [CommonModule, MatCardModule, MatIconModule, HttpClientModule],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css',
-  providers: [ProfileService]
+  styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
   vendorProfile: any;
@@ -20,11 +19,11 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private profileService: ProfileService,
-    private authService: AuthService // ✅ Inject AuthService
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
-    this.vendorId = this.authService.getVendorId() || ''; // ✅ Get from AuthService
+    this.vendorId = this.authService.getVendorId() || '';
     if (this.vendorId) {
       this.profileService.getVendorProfile(this.vendorId).subscribe({
         next: (res) => {

@@ -1,1 +1,48 @@
-<p>rfq works!</p>
+<h2>RFQ List</h2>
+
+<div *ngIf="rfqList.length === 0" class="no-data">
+  <mat-icon>info</mat-icon> No RFQs found for your account.
+</div>
+
+<div *ngFor="let rfq of rfqList" class="rfq-card">
+  <div class="rfq-field">
+    <span class="rfq-label">RFQ Number:</span>
+    <span class="rfq-value">{{ rfq.RfqNumber }}</span>
+  </div>
+
+  <div class="rfq-field">
+    <span class="rfq-label">Document Type:</span>
+    <span class="rfq-value">{{ rfq.DocType }}</span>
+  </div>
+
+  <div class="rfq-field">
+    <span class="rfq-label">Purchase Org:</span>
+    <span class="rfq-value">{{ rfq.PurchaseOrg }}</span>
+  </div>
+
+  <div class="rfq-field">
+  <span class="rfq-label">Document Date:</span>
+  <span class="rfq-value">{{ parseSAPDate(rfq.DocDate) }}</span>
+</div>
+
+
+  <div class="rfq-field">
+    <span class="rfq-label">Material Number:</span>
+    <span class="rfq-value">{{ rfq.MatNumber }}</span>
+  </div>
+
+  <div class="rfq-field">
+    <span class="rfq-label">Short Text:</span>
+    <span class="rfq-value">{{ rfq.ShortText }}</span>
+  </div>
+
+  <div class="rfq-field">
+    <span class="rfq-label">Quantity:</span>
+    <span class="rfq-value">{{ rfq.Quantity }} {{ rfq.UnitMeasure }}</span>
+  </div>
+
+  <div class="rfq-field">
+    <span class="rfq-label">Net Price:</span>
+    <span class="rfq-value">{{ rfq.NetPrice }} {{ rfq.Currency }}</span>
+  </div>
+</div>
