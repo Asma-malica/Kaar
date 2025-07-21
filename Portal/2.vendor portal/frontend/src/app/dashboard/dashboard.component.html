@@ -12,50 +12,27 @@
 </div>
 
 <div class="tiles-container">
-  <mat-card 
-    class="tile" 
-    (click)="navigateTo('rfq')" 
-    tabindex="0" 
-    (keydown.enter)="navigateTo('rfq')" 
-    (keydown.space)="navigateTo('rfq')">
+  <mat-card class="tile" (click)="navigateTo('rfq')">
     <mat-icon>assignment</mat-icon>
     <h3>RFQ</h3>
     <p>Manage your Requests for Quotation</p>
   </mat-card>
 
-  <mat-card 
-    class="tile" 
-    (click)="navigateTo('purchase-orders')" 
-    tabindex="0" 
-    (keydown.enter)="navigateTo('purchase-orders')" 
-    (keydown.space)="navigateTo('purchase-orders')">
+  <mat-card class="tile" (click)="navigateTo('purchase-orders')">
     <mat-icon>shopping_cart</mat-icon>
     <h3>Purchase Orders</h3>
     <p>View and track your Purchase Orders</p>
   </mat-card>
 
-  <mat-card 
-    class="tile" 
-    (click)="navigateTo('goods-receipt')" 
-    tabindex="0" 
-    (keydown.enter)="navigateTo('goods-receipt')" 
-    (keydown.space)="navigateTo('goods-receipt')">
+  <mat-card class="tile" (click)="navigateTo('goods-receipt')">
     <mat-icon>inventory_2</mat-icon>
     <h3>Goods Receipt</h3>
     <p>Check and manage received goods</p>
   </mat-card>
 
-  <mat-card 
-    class="tile" 
-    (click)="navigateTo('financials')" 
-    tabindex="0" 
-    (keydown.enter)="navigateTo('financials')" 
-    (keydown.space)="navigateTo('financials')">
+  <mat-card class="tile" (click)="navigateTo('financials')">
     <mat-icon>account_balance_wallet</mat-icon>
     <h3>Financials</h3>
     <p>View invoices, payments, and financial reports</p>
   </mat-card>
 </div>
-
-<!-- This is the key router outlet for child components -->
-<!-- <router-outlet></router-outlet> -->
