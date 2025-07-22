@@ -2,11 +2,11 @@
 
 <div class="toolbar">
   <input type="text" placeholder="Search by Material / PO Number" [(ngModel)]="searchTerm" />
-  <button mat-icon-button (click)="toggleSort()">
-    <mat-icon>sort</mat-icon>
+  <button (click)="toggleSort()">
+    <mat-icon>sort</mat-icon> {{ sortAsc ? 'Sort Asc' : 'Sort Desc' }}
   </button>
-  <button mat-icon-button (click)="printTable()">
-    <mat-icon>print</mat-icon>
+  <button (click)="printTable()">
+    <mat-icon>print</mat-icon> Print
   </button>
 </div>
 

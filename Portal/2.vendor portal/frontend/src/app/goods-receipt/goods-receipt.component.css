@@ -8,28 +8,44 @@ h2 {
 .toolbar {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 10px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .toolbar input {
   padding: 6px 10px;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  width: 220px;
+  border-radius: 6px;
+  width: 250px;
+}
+
+.toolbar button {
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.toolbar button:hover {
+  background-color: #303f9f;
 }
 
 .table-container {
-  max-width: 95%;
-  margin: auto;
+  max-width: 100%;
   overflow-x: auto;
 }
 
 .styled-table {
-  width: 100%;
+  width: 90%;
+  margin: 0 auto 20px auto;
   border-collapse: collapse;
-  margin-bottom: 20px;
 }
 
 .styled-table th,
@@ -42,6 +58,7 @@ h2 {
 .styled-table th {
   background-color: #3f51b5;
   color: white;
+  font-weight: bold;
 }
 
 .styled-table tr:nth-child(even) {
@@ -65,12 +82,22 @@ h2 {
 }
 
 @media (max-width: 768px) {
+  h2 {
+    font-size: 20px;
+  }
+
   .toolbar {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
   }
 
   .toolbar input {
-    width: 100%;
+    width: 90%;
+  }
+
+  .styled-table th,
+  .styled-table td {
+    font-size: 12px;
+    padding: 6px;
   }
 }
