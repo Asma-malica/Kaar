@@ -3,19 +3,23 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 import { PurchaseOrderService } from '../services/purchaseorder.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-purchase-orders',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, MatCardModule, MatIconModule],
+  imports: [CommonModule, HttpClientModule, MatCardModule, MatIconModule, FormsModule],
   templateUrl: './purchase-orders.component.html',
   styleUrl: './purchase-orders.component.css'
 })
 export class PurchaseOrdersComponent implements OnInit {
   purchaseOrderList: any[] = [];
   vendorId: string = '';
+
+  searchTerm: string = '';
+  sortAsc: boolean = true;
 
   constructor(private poService: PurchaseOrderService, private authService: AuthService) {}
 
@@ -36,5 +40,25 @@ export class PurchaseOrdersComponent implements OnInit {
   formatDate(odataDate: string): string {
     const timestamp = parseInt(odataDate.replace(/\D/g, ''), 10);
     return new Date(timestamp).toLocaleDateString();
+  }
+
+  getFilteredAndSortedPOs() {
+    let filtered = this.purchaseOrderList.filter(po =>
+      po.PoNumber.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      po.Material.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+
+    return filtered.sort((a, b) => {
+      const comparison = a.PoNumber.localeCompare(b.PoNumber);
+      return this.sortAsc ? comparison : -comparison;
+    });
+  }
+
+  toggleSort() {
+    this.sortAsc = !this.sortAsc;
+  }
+
+  printPOs() {
+    window.print();
   }
 }

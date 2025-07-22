@@ -1,48 +1,44 @@
 <h2>RFQ List</h2>
 
-<div *ngIf="rfqList.length === 0" class="no-data">
+<div class="rfq-actions">
+  <input [(ngModel)]="searchTerm" placeholder="Search by RFQ or Material Number" />
+  <button (click)="toggleSort()">
+    <mat-icon>sort</mat-icon> {{ sortAsc ? 'Sort Asc' : 'Sort Desc' }}
+  </button>
+  <button (click)="printRFQs()">
+    <mat-icon>print</mat-icon> Print
+  </button>
+</div>
+
+<div *ngIf="getFilteredAndSortedRFQs().length === 0" class="no-data">
   <mat-icon>info</mat-icon> No RFQs found for your account.
 </div>
 
-<div *ngFor="let rfq of rfqList" class="rfq-card">
-  <div class="rfq-field">
-    <span class="rfq-label">RFQ Number:</span>
-    <span class="rfq-value">{{ rfq.RfqNumber }}</span>
-  </div>
-
-  <div class="rfq-field">
-    <span class="rfq-label">Document Type:</span>
-    <span class="rfq-value">{{ rfq.DocType }}</span>
-  </div>
-
-  <div class="rfq-field">
-    <span class="rfq-label">Purchase Org:</span>
-    <span class="rfq-value">{{ rfq.PurchaseOrg }}</span>
-  </div>
-
-  <div class="rfq-field">
-  <span class="rfq-label">Document Date:</span>
-  <span class="rfq-value">{{ parseSAPDate(rfq.DocDate) }}</span>
-</div>
-
-
-  <div class="rfq-field">
-    <span class="rfq-label">Material Number:</span>
-    <span class="rfq-value">{{ rfq.MatNumber }}</span>
-  </div>
-
-  <div class="rfq-field">
-    <span class="rfq-label">Short Text:</span>
-    <span class="rfq-value">{{ rfq.ShortText }}</span>
-  </div>
-
-  <div class="rfq-field">
-    <span class="rfq-label">Quantity:</span>
-    <span class="rfq-value">{{ rfq.Quantity }} {{ rfq.UnitMeasure }}</span>
-  </div>
-
-  <div class="rfq-field">
-    <span class="rfq-label">Net Price:</span>
-    <span class="rfq-value">{{ rfq.NetPrice }} {{ rfq.Currency }}</span>
-  </div>
+<div class="rfq-container">
+  <table class="rfq-table" *ngIf="getFilteredAndSortedRFQs().length > 0">
+    <thead>
+      <tr>
+        <th>RFQ Number</th>
+        <th>Document Type</th>
+        <th>Purchase Org</th>
+        <th>Document Date</th>
+        <th>Material Number</th>
+        <th>Short Text</th>
+        <th>Quantity</th>
+        <th>Net Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rfq of getFilteredAndSortedRFQs()">
+        <td>{{ rfq.RfqNumber }}</td>
+        <td>{{ rfq.DocType }}</td>
+        <td>{{ rfq.PurchaseOrg }}</td>
+        <td>{{ parseSAPDate(rfq.DocDate) }}</td>
+        <td>{{ rfq.MatNumber }}</td>
+        <td>{{ rfq.ShortText }}</td>
+        <td>{{ rfq.Quantity }} {{ rfq.UnitMeasure }}</td>
+        <td>{{ rfq.NetPrice }} {{ rfq.Currency }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

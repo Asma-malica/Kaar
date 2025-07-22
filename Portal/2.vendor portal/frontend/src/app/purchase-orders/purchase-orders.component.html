@@ -1,18 +1,44 @@
 <h2>Purchase Orders</h2>
 
-<div *ngIf="purchaseOrderList.length === 0" class="no-data">
+<div class="po-actions">
+  <input [(ngModel)]="searchTerm" placeholder="Search by PO or Material Number" />
+  <button (click)="toggleSort()">
+    <mat-icon>sort</mat-icon> {{ sortAsc ? 'Sort Asc' : 'Sort Desc' }}
+  </button>
+  <button (click)="printPOs()">
+    <mat-icon>print</mat-icon> Print
+  </button>
+</div>
+
+<div *ngIf="getFilteredAndSortedPOs().length === 0" class="no-data">
   <mat-icon>info</mat-icon> No Purchase Orders found for your account.
 </div>
 
-<div class="po-container" *ngIf="purchaseOrderList.length > 0">
-  <mat-card *ngFor="let po of purchaseOrderList" class="po-card">
-    <h3>PO Number: {{ po.PoNumber }}</h3>
-    <div class="po-field"><span class="label">Document Type:</span> <span class="value">{{ po.DocType }}</span></div>
-    <div class="po-field"><span class="label">Purchase Org:</span> <span class="value">{{ po.PurchaseOrg }}</span></div>
-    <div class="po-field"><span class="label">Document Date:</span> <span class="value">{{ formatDate(po.DocDate) }}</span></div>
-    <div class="po-field"><span class="label">Material Number:</span> <span class="value">{{ po.Material }}</span></div>
-    <div class="po-field"><span class="label">Short Text:</span> <span class="value">{{ po.ShortText }}</span></div>
-    <div class="po-field"><span class="label">Quantity:</span> <span class="value">{{ po.Quantity }} {{ po.UnitMeasure }}</span></div>
-    <div class="po-field"><span class="label">Net Price:</span> <span class="value">{{ po.NetPrice }} {{ po.Currency }}</span></div>
-  </mat-card>
+<div class="po-container" *ngIf="getFilteredAndSortedPOs().length > 0">
+  <table class="po-table">
+    <thead>
+      <tr>
+        <th>PO Number</th>
+        <th>Document Type</th>
+        <th>Purchase Org</th>
+        <th>Document Date</th>
+        <th>Material Number</th>
+        <th>Short Text</th>
+        <th>Quantity</th>
+        <th>Net Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let po of getFilteredAndSortedPOs()">
+        <td>{{ po.PoNumber }}</td>
+        <td>{{ po.DocType }}</td>
+        <td>{{ po.PurchaseOrg }}</td>
+        <td>{{ formatDate(po.DocDate) }}</td>
+        <td>{{ po.Material }}</td>
+        <td>{{ po.ShortText }}</td>
+        <td>{{ po.Quantity }} {{ po.UnitMeasure }}</td>
+        <td>{{ po.NetPrice }} {{ po.Currency }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

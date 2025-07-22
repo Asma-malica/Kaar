@@ -5,49 +5,51 @@ h2 {
   font-weight: bold;
 }
 
-.receipt-container {
+.toolbar {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  padding: 10px;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.receipt-card {
-  width: 320px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  background: #fff;
-  transition: transform 0.3s ease;
-}
-
-.receipt-card:hover {
-  transform: translateY(-5px);
-}
-
-.receipt-field {
-  border: 1px solid #ddd;
+.toolbar input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 8px 12px;
-  margin-bottom: 8px;
-  display: flex;
-  justify-content: space-between;
+  width: 220px;
+}
+
+.table-container {
+  max-width: 95%;
+  margin: auto;
+  overflow-x: auto;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.styled-table th,
+.styled-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.styled-table th {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.styled-table tr:nth-child(even) {
   background-color: #f9f9f9;
-  transition: box-shadow 0.3s;
 }
 
-.receipt-field:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.label {
-  font-weight: bold;
-  color: #3f51b5;
-}
-
-.value {
-  color: #333;
+.styled-table tr:hover {
+  background-color: #f1f1f1;
 }
 
 .no-data {
@@ -63,12 +65,12 @@ h2 {
 }
 
 @media (max-width: 768px) {
-  .receipt-card {
-    width: 90%;
-    margin: 0 auto;
-  }
-  .receipt-field {
+  .toolbar {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+  }
+
+  .toolbar input {
+    width: 100%;
   }
 }

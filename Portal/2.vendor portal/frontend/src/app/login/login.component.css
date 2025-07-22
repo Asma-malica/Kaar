@@ -1,16 +1,170 @@
+.login-wrapper {
+    font-family: 'Times New Roman', Times, serif; /* Retaining this for general text */
+    text-align: center;
+    background: linear-gradient(135deg, #e3f2fd, #ffffff); /* Light blue to white gradient */
+    min-height: 100vh;
+    padding: 30px;
+    display: flex; /* Use flexbox for vertical centering if content is short */
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+
+.main-heading {
+    font-family: 'Playfair Display', serif; /* A more elegant serif font for the main heading */
+    font-size: 2.8em; /* Slightly larger */
+    font-weight: bold;
+    margin-bottom: 40px; /* More space below heading */
+    color: #1A397E; /* Darker blue, similar to the left panel */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* Make panels equal height */
+    gap: 0; /* Ensure no gap between panels */
+    max-width: 900px; /* Max width remains */
+    margin: 0 auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* More pronounced, softer shadow */
+    border-radius: 10px;
+    overflow: hidden; /* Ensures rounded corners apply cleanly */
+}
+
+.left-panel {
+    width: 50%;
+    /* height: 50%; /* Remove fixed height, let content define it */
+    background: #1A397E; /* Darker blue as per image */
+    color: white;
+    padding: 40px;
+    text-align: left;
+    font-family: 'Segoe UI', Arial, sans-serif; /* A more common sans-serif for clarity */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content within left panel */
+}
+
+.left-panel h2 {
+    font-size: 2em; /* Slightly larger for emphasis */
+    margin-bottom: 25px; /* More space below heading */
+    font-weight: 600; /* Bolder */
+}
+
+.left-panel p {
+    font-size: 1.15em; /* Slightly larger text */
+    margin: 12px 0; /* More vertical spacing between list items */
+    display: flex;
+    align-items: center;
+}
+
+.left-panel p::before {
+    content: '✓'; /* Checkmark symbol */
+    margin-right: 10px;
+    font-size: 1.3em; /* Larger checkmark */
+    color: #A9D18E; /* A subtle green for the checkmark for visual appeal, or keep white */
+    font-weight: bold;
+}
+
+
+.right-panel {
+    width: 50%;
+    background: #F8F8F8; /* Lighter grey/off-white background */
+    padding: 40px;
+    display: flex; /* Use flexbox to center the card */
+    flex-direction: column;
+    justify-content: center; /* Vertically center the login card */
+    align-items: center;
+}
+
 .login-card {
-  max-width: 400px;
-  margin: 100px auto;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 30px; /* More padding inside the card */
+    box-shadow: none; /* No shadow on the card itself, as the container has it */
+    background: transparent; /* Make card background transparent to show right-panel background */
+    width: 100%; /* Ensure card takes full width of its container */
+    max-width: 350px; /* Limit max width for the login form */
+}
+
+.right-panel h2 { /* Targeting the login heading specifically */
+    text-align: center;
+    color: #1A397E; /* Dark blue matching main heading and left panel */
+    font-size: 2.2em; /* Larger, more prominent "Login" */
+    margin-bottom: 30px; /* Space below login heading */
+    font-family: 'Playfair Display', serif; /* Consistent elegant font */
+    font-weight: bold;
 }
 
 .full-width {
-  width: 100%;
-  margin-bottom: 15px;
+    width: 100%;
+    margin-bottom: 25px; /* More space between form fields */
 }
 
-h2 {
-  text-align: center;
-  color: #3f51b5;
+/* Angular Material overrides for input fields to match image */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
+    margin: 0 !important; /* Remove default margin */
+    padding-bottom: 0 !important; /* Remove default padding */
 }
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+    border: 1px solid #ddd; /* Light grey border */
+    border-radius: 5px; /* Slightly rounded corners */
+    padding: 0 10px !important;
+    background-color: white; /* Ensure white background for input area */
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-flex {
+    border-color: #6C8EBF; /* Subtle blue focus border */
+    box-shadow: 0 0 0 2px rgba(108, 142, 191, 0.2); /* Subtle focus shadow */
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    display: none; /* Hide the default outline */
+}
+
+::ng-deep .mat-form-field-label {
+    color: #777; /* Grey for labels */
+    font-size: 1em;
+    padding-left: 5px; /* Adjust label position */
+}
+
+::ng-deep .mat-form-field-prefix .mat-icon {
+    color: #777; /* Grey for icons */
+    margin-right: 8px;
+}
+
+/* Specific style for error state (Vendor ID in image) */
+/* You would typically add a class to the mat-form-field or input when an error occurs */
+.mat-form-field.ng-invalid.ng-touched .mat-form-field-flex { /* Example for Angular forms validation */
+    border-color: #DC3545 !important; /* Red border for invalid state */
+}
+
+.mat-form-field.ng-invalid.ng-touched .mat-form-field-label {
+    color: #DC3545 !important; /* Red label for invalid state */
+}
+
+
+/* Styling the button to match the image */
+.mat-raised-button.mat-primary {
+    background-color: #E6F0FF !important; /* Very light blue background */
+    color: #1A397E !important; /* Dark blue text */
+    border-radius: 25px; /* More rounded corners for pill shape */
+    height: 50px; /* Taller button */
+    font-size: 1.1em;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.2s ease-in-out;
+}
+
+.mat-raised-button.mat-primary:hover {
+    background-color: #D0E0F5 !important; /* Slightly darker on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* More shadow on hover */
+}
+
+
+.error-msg {
+    color: #DC3545; /* Red color for error messages */
+    text-align: center;
+    margin-bottom: 15px; /* More space below error */
+    font-weight: bold;
+    font-size: 0.95em;
+}
+

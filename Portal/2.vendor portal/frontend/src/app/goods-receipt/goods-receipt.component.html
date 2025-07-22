@@ -1,19 +1,46 @@
 <h2>Goods Receipt List</h2>
 
-<div *ngIf="goodsReceipts.length === 0" class="no-data">
-  <mat-icon>info</mat-icon> No Goods Receipts found for your account.
+<div class="toolbar">
+  <input type="text" placeholder="Search by Material / PO Number" [(ngModel)]="searchTerm" />
+  <button mat-icon-button (click)="toggleSort()">
+    <mat-icon>sort</mat-icon>
+  </button>
+  <button mat-icon-button (click)="printTable()">
+    <mat-icon>print</mat-icon>
+  </button>
 </div>
 
-<div class="receipt-container" *ngIf="goodsReceipts.length > 0">
-  <mat-card *ngFor="let gr of goodsReceipts" class="receipt-card">
-    <div class="receipt-field"><span class="label">Material Document:</span> <span class="value">{{ gr.MaterialDoc }}</span></div>
-    <div class="receipt-field"><span class="label">Document Year:</span> <span class="value">{{ gr.DocYear }}</span></div>
-    <div class="receipt-field"><span class="label">Item Number:</span> <span class="value">{{ gr.ItemNumber }}</span></div>
-    <div class="receipt-field"><span class="label">Material:</span> <span class="value">{{ gr.Material }}</span></div>
-    <div class="receipt-field"><span class="label">Quantity:</span> <span class="value">{{ gr.Quantity }} {{ gr.Unit }}</span></div>
-    <div class="receipt-field"><span class="label">Posting Date:</span> <span class="value">{{ parseODataDate(gr.PostingDate) }}</span></div>
-    <div class="receipt-field"><span class="label">GR Date:</span> <span class="value">{{ parseODataDate(gr.GrDate) }}</span></div>
-    <div class="receipt-field"><span class="label">PO Number:</span> <span class="value">{{ gr.PoNumber }}</span></div>
-    <div class="receipt-field"><span class="label">PO Item:</span> <span class="value">{{ gr.PoItem }}</span></div>
-  </mat-card>
+<div *ngIf="filteredGoodsReceipts().length === 0" class="no-data">
+  <mat-icon>info</mat-icon> No Goods Receipts found.
+</div>
+
+<div class="table-container" *ngIf="filteredGoodsReceipts().length > 0">
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Material Doc</th>
+        <th>Doc Year</th>
+        <th>Item Number</th>
+        <th>Material</th>
+        <th>Quantity</th>
+        <th>Posting Date</th>
+        <th>GR Date</th>
+        <th>PO Number</th>
+        <th>PO Item</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let gr of filteredGoodsReceipts()">
+        <td>{{ gr.MaterialDoc }}</td>
+        <td>{{ gr.DocYear }}</td>
+        <td>{{ gr.ItemNumber }}</td>
+        <td>{{ gr.Material }}</td>
+        <td>{{ gr.Quantity }} {{ gr.Unit }}</td>
+        <td>{{ parseODataDate(gr.PostingDate) }}</td>
+        <td>{{ parseODataDate(gr.GrDate) }}</td>
+        <td>{{ gr.PoNumber }}</td>
+        <td>{{ gr.PoItem }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

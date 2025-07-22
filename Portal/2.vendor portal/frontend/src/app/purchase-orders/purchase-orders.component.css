@@ -5,49 +5,66 @@ h2 {
   font-weight: bold;
 }
 
-.po-container {
+.po-actions {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  padding: 10px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.po-card {
-  width: 320px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  background: #fff;
-  transition: transform 0.3s ease;
+.po-actions input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 250px;
 }
 
-.po-card:hover {
-  transform: translateY(-5px);
-}
-
-h3 {
-  color: #3f51b5;
-  margin-bottom: 10px;
-}
-
-.po-field {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 8px 12px;
-  margin-bottom: 8px;
+.po-actions button {
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
   display: flex;
-  justify-content: space-between;
-  background-color: #fff;
+  align-items: center;
+  gap: 4px;
 }
 
-.label {
+.po-actions button:hover {
+  background-color: #303f9f;
+}
+
+.po-container {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.po-table {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.po-table th,
+.po-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.po-table th {
+  background-color: #3f51b5;
+  color: white;
   font-weight: bold;
-  color: #3f51b5;
 }
 
-.value {
-  color: #333;
+.po-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.po-table tr:hover {
+  background-color: #f1f1f1;
 }
 
 .no-data {
@@ -60,4 +77,25 @@ h3 {
 .no-data mat-icon {
   vertical-align: middle;
   margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 20px;
+  }
+
+  .po-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .po-actions input {
+    width: 90%;
+  }
+
+  .po-table th,
+  .po-table td {
+    font-size: 12px;
+    padding: 6px;
+  }
 }
