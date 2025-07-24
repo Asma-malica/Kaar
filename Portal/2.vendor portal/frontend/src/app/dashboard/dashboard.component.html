@@ -12,25 +12,9 @@
 </mat-toolbar>
 
 <div class="dashboard-container">
-  <div class="side-nav" [class.collapsed]="isSidebarCollapsed">
-    <h3>Menu</h3>
-    <ul class="nav-list">
-      <li (click)="navigateTo('rfq')"><mat-icon>description</mat-icon><span>RFQ</span></li>
-      <li (click)="navigateTo('purchase-orders')"><mat-icon>shopping_cart</mat-icon><span>Purchase Orders</span></li>
-      <li (click)="navigateTo('goods-receipt')"><mat-icon>inventory</mat-icon><span>Goods Receipt</span></li>
-      <li (click)="navigateTo('financials')"><mat-icon>account_balance</mat-icon><span>Financials</span></li>
-    </ul>
-
-    <ul class="nav-list bottom-list">
-      <li (click)="logout()" class="sign-out-button"><mat-icon>logout</mat-icon><span>Sign Out</span></li>
-    </ul>
-  </div>
-
   <div class="content-area">
     <div class="welcome-section">
-      <button mat-icon-button (click)="toggleSidebar()" class="menu-button">
-        <mat-icon>menu</mat-icon>
-      </button>
+      <!-- Hamburger removed -->
       <div class="welcome-text">
         <h2><mat-icon class="dashboard-icon">dashboard</mat-icon> Welcome to Your Business Hub</h2>
         <p>Access all your transactions, orders, and financials in one place.</p>
@@ -38,10 +22,26 @@
     </div>
 
     <div class="tiles-container">
-      <mat-card class="tile" (click)="navigateTo('rfq')"><mat-icon>description</mat-icon><h3>RFQ</h3><p>Manage your Requests for Quotation</p></mat-card>
-      <mat-card class="tile" (click)="navigateTo('purchase-orders')"><mat-icon>shopping_cart</mat-icon><h3>Purchase Orders</h3><p>View and track your Purchase Orders</p></mat-card>
-      <mat-card class="tile" (click)="navigateTo('goods-receipt')"><mat-icon>inventory</mat-icon><h3>Goods Receipt</h3><p>Check and manage received goods</p></mat-card>
-      <mat-card class="tile" (click)="navigateTo('financials')"><mat-icon>account_balance</mat-icon><h3>Financials</h3><p>View invoices, payments, and financial reports</p></mat-card>
+      <mat-card class="tile" (click)="navigateTo('rfq')">
+        <mat-icon>description</mat-icon>
+        <h3>RFQ</h3>
+        <p>Manage your Requests for Quotation</p>
+      </mat-card>
+      <mat-card class="tile" (click)="navigateTo('purchase-orders')">
+        <mat-icon>shopping_cart</mat-icon>
+        <h3>Purchase Orders</h3>
+        <p>View and track your Purchase Orders</p>
+      </mat-card>
+      <mat-card class="tile" (click)="navigateTo('goods-receipt')">
+        <mat-icon>inventory</mat-icon>
+        <h3>Goods Receipt</h3>
+        <p>Check and manage received goods</p>
+      </mat-card>
+      <mat-card class="tile" (click)="navigateTo('financials')">
+        <mat-icon>account_balance</mat-icon>
+        <h3>Financials</h3>
+        <p>View invoices, payments, and financial reports</p>
+      </mat-card>
     </div>
 
     <router-outlet></router-outlet>

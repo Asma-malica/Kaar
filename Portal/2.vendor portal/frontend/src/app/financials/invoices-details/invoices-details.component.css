@@ -1,32 +1,22 @@
-.page-title {
-  text-align: center;
-  font-weight: bold;
-  margin: 20px 0;
-  color: #3f51b5; /* Theme Blue */
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
-.custom-table {
-  width: 90%;
-  margin: 0 auto;
-  border-radius: 8px;
-  overflow: hidden;
+.invoice-table th,
+.invoice-table td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
 }
 
-.mat-header-cell {
-  background-color: #3f51b5; /* Theme Blue */
+.invoice-table th {
+  background-color: #1A397E;
   color: white;
-  font-weight: bold;
-  font-size: 14px;
 }
 
-.mat-cell {
-  font-size: 14px;
-  color: #333;
-}
-
-.no-data {
-  text-align: center;
-  margin-top: 50px;
-  font-weight: bold;
-  color: gray;
+.error {
+  color: red;
+  margin-top: 20px;
 }

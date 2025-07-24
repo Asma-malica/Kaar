@@ -1,54 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vendor Portal Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+<div class="login-wrapper">
+  <h1 class="main-heading">Welcome to Vendor Portal</h1>
 
-    <link rel="stylesheet" href="login.component.css"> </head>
-<body>
-    <div class="login-wrapper">
-        <h1 class="main-heading">Welcome to Vendor Portal</h1>
-
-        <div class="login-container">
-            <div class="left-panel">
-                <h2>Why Choose Us?</h2>
-                <p>Simplified Vendor Collaboration</p>
-                <p>Track Orders & Invoices Anytime</p>
-                <p>Secure & Reliable Authentication</p>
-                <p>Access Real-Time Financial Data</p>
-                <p>User-Friendly Interface Designed for You</p>
-            </div>
-
-            <div class="right-panel">
-                <mat-card class="login-card">
-                    <h2>Login</h2>
-
-                    <div class="error-msg" [style.display]="'none'"> </div>
-
-                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                        <mat-form-field appearance="outline" class="full-width">
-                            <mat-label>Vendor ID</mat-label>
-                            <mat-icon matPrefix>person</mat-icon>
-                            <input matInput formControlName="vendorId" required />
-                            </mat-form-field>
-
-                        <mat-form-field appearance="outline" class="full-width">
-                            <mat-label>Password</mat-label>
-                            <mat-icon matPrefix>lock</mat-icon>
-                            <input matInput type="password" formControlName="password" required />
-                            </mat-form-field>
-
-                        <button mat-raised-button color="primary" class="full-width" type="submit">
-                            Login
-                        </button>
-                    </form>
-                </mat-card>
-            </div>
-        </div>
+  <div class="login-container">
+    <div class="left-panel">
+      <h2>Why Choose Us?</h2>
+      <p>Simplified Vendor Collaboration</p>
+      <p>Track Orders & Invoices Anytime</p>
+      <p>Secure & Reliable Authentication</p>
+      <p>Access Real-Time Financial Data</p>
+      <p>User-Friendly Interface Designed for You</p>
     </div>
 
-    </body>
-</html>
+    <div class="right-panel">
+      <mat-card class="login-card">
+        <h2>Login</h2>
+
+        <div *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</div>
+        <div *ngIf="successMessage" class="success-msg">{{ successMessage }}</div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Vendor ID</mat-label>
+            <mat-icon matPrefix>person</mat-icon>
+            <input matInput formControlName="vendorId" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            <mat-icon matPrefix>lock</mat-icon>
+            <input matInput type="password" formControlName="password" required />
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" class="full-width" type="submit" [disabled]="isLoading">
+            {{ isLoading ? 'Logging in...' : 'Login' }}
+          </button>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>

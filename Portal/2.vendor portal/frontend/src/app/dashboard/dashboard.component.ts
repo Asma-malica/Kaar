@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button'; // Ensure MatButtonModule is imported
+import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -16,30 +16,23 @@ import { AuthService } from '../services/auth.service';
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
-    MatButtonModule // Added MatButtonModule here if it wasn't already
+    MatButtonModule
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
   vendorId: string = '';
-  isSidebarCollapsed: boolean = false; // Initial state: sidebar is open by default on desktop
+  isSidebarCollapsed: boolean = false;
 
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.vendorId = this.authService.getVendorId() || '';
-    // You can set initial collapse state here if desired, e.g., based on screen size
-    // For "always visible hamburger and collapse in place", no specific init based on screen size is strictly needed here.
-  }
-
-  toggleSidebar() {
-    this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
 
   navigateTo(path: string) {
     this.router.navigate([`/dashboard/${path}`]);
-    // No automatic sidebar collapse after navigation for this type of in-place collapse
   }
 
   viewProfile() {
@@ -49,5 +42,6 @@ export class DashboardComponent implements OnInit {
   logout() {
     this.authService.clearVendorId();
     this.router.navigate(['/login']);
+   
   }
 }

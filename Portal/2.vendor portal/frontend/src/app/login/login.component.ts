@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { AuthService } from '../services/auth.service'; // ✅ Import AuthService
+import { AuthService } from '../services/auth.service';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -29,12 +29,14 @@ import { MatIconModule } from '@angular/material/icon';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   errorMessage: string = '';
+  successMessage: string = '';
+  isLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
     private router: Router,
-    private authService: AuthService // ✅ Inject AuthService
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -45,29 +47,37 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.loginForm.valid) {
-      this.loginService.loginVendor(this.loginForm.value).subscribe({
-        next: (response: any) => {
-          console.log('✅ Login Successful:', response);
+    this.errorMessage = '';
+    this.successMessage = '';
 
-          const vendorId =
-            response?.vendorId ||
-            response?.data?.vendorId ||
-            this.loginForm.value.vendorId;
-
-          if (vendorId) {
-            this.authService.setVendorId(vendorId);  // ✅ Store in AuthService
-            this.router.navigate(['/dashboard']);
-          } else {
-            console.warn('⚠️ Vendor ID not found in response.');
-            this.errorMessage = 'Vendor ID not found in response.';
-          }
-        },
-        error: (error) => {
-          console.error('❌ Login Failed:', error);
-          this.errorMessage = error.error?.message || 'Login failed. Please try again.';
-        }
-      });
+    if (this.loginForm.invalid) {
+      this.errorMessage = 'Please enter both Vendor ID and Password.';
+      return;
     }
+
+    this.isLoading = true;
+
+    this.loginService.loginVendor(this.loginForm.value).subscribe({
+      next: (response: any) => {
+        const vendorId =
+          response?.vendorId || response?.data?.vendorId || this.loginForm.value.vendorId;
+
+        if (vendorId) {
+          this.authService.setVendorId(vendorId);
+          this.successMessage = 'Login successful! Redirecting to dashboard...';
+          setTimeout(() => {
+            this.router.navigate(['/dashboard']);
+          }, 1500); // Wait 1.5s to show success message
+        } else {
+          this.errorMessage = 'Vendor ID not found in server response.';
+        }
+
+        this.isLoading = false;
+      },
+      error: (error) => {
+        this.errorMessage = error.error?.message || 'Login failed. Please try again.';
+        this.isLoading = false;
+      }
+    });
   }
 }

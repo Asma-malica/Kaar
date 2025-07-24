@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 import { CreditDebitService } from '../../services/creditdebit.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-credit-debit-memo',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatIconModule, HttpClientModule],
+  imports: [CommonModule, MatCardModule, MatIconModule, HttpClientModule, FormsModule],
   templateUrl: './credit-debit-memo.component.html',
   styleUrl: './credit-debit-memo.component.css',
   providers: [CreditDebitService]
@@ -17,6 +18,8 @@ import { AuthService } from '../../services/auth.service';
 export class CreditDebitMemoComponent implements OnInit {
   creditDebits: any[] = [];
   vendorId: string = '';
+  searchTerm: string = '';
+  sortAsc: boolean = true;
 
   constructor(
     private creditDebitService: CreditDebitService,
@@ -41,5 +44,24 @@ export class CreditDebitMemoComponent implements OnInit {
     if (!dateString) return '';
     const timestamp = parseInt(dateString.replace(/[^\d]/g, ''), 10);
     return isNaN(timestamp) ? '' : new Date(timestamp).toLocaleDateString();
+  }
+
+  filteredMemos() {
+    let filtered = this.creditDebits.filter(memo =>
+      memo.MemoNumber?.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+
+    return filtered.sort((a, b) => {
+      const comparison = a.MemoNumber.localeCompare(b.MemoNumber);
+      return this.sortAsc ? comparison : -comparison;
+    });
+  }
+
+  toggleSort() {
+    this.sortAsc = !this.sortAsc;
+  }
+
+  printTable() {
+    window.print();
   }
 }

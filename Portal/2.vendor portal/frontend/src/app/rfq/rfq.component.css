@@ -1,6 +1,6 @@
 h2 {
   font-size: 24px;
-  color: #3f51b5;
+  color: #1A397E;
   text-align: center;
   margin-bottom: 20px;
   font-weight: bold;
@@ -21,7 +21,7 @@ h2 {
 }
 
 .rfq-actions button {
-  background-color: #3f51b5;
+  background-color: #1A397E;
   color: white;
   border: none;
   padding: 6px 12px;
@@ -33,7 +33,7 @@ h2 {
 }
 
 .rfq-actions button:hover {
-  background-color: #303f9f;
+  background-color: #1A397E;
 }
 
 .rfq-container {
@@ -55,7 +55,7 @@ h2 {
 }
 
 .rfq-table th {
-  background-color: #3f51b5;
+  background-color: #1A397E;
   color: white;
   font-weight: bold;
 }

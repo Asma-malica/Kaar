@@ -1,6 +1,20 @@
 <h2 class="heading">Payments & Aging</h2>
 
-<div class="table-container">
+<div class="toolbar">
+  <input type="text" placeholder="Search by Invoice Number" [(ngModel)]="searchTerm" />
+  <button (click)="toggleSort()">
+    <mat-icon>sort</mat-icon> {{ sortAsc ? 'Sort Asc' : 'Sort Desc' }}
+  </button>
+  <button (click)="printTable()">
+    <mat-icon>print</mat-icon> Print
+  </button>
+</div>
+
+<div *ngIf="filteredPayments().length === 0" class="no-data">
+  <mat-icon>info</mat-icon> No Payments found.
+</div>
+
+<div class="table-container" *ngIf="filteredPayments().length > 0">
   <table>
     <thead>
       <tr>
@@ -14,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let payment of payments">
+      <tr *ngFor="let payment of filteredPayments()">
         <td>{{ payment.InvoiceNumber }}</td>
         <td>{{ payment.FiscalYear }}</td>
         <td>{{ parseDate(payment.InvoiceDate) }}</td>

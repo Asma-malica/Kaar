@@ -1,34 +1,46 @@
 <div class="container">
   <h2 class="heading">Credit / Debit Memos</h2>
 
-  <table class="custom-table" *ngIf="creditDebits.length > 0">
+  <div class="toolbar">
+    <input
+      type="text"
+      placeholder="Search by Memo Number"
+      [(ngModel)]="searchTerm"
+    />
+    <button (click)="toggleSort()">
+      <mat-icon>sort</mat-icon> {{ sortAsc ? 'Sort Asc' : 'Sort Desc' }}
+    </button>
+    <button (click)="printTable()">
+      <mat-icon>print</mat-icon> Print
+    </button>
+  </div>
+
+  <p *ngIf="filteredMemos().length === 0" class="no-data">
+    <mat-icon>info</mat-icon> No Credit/Debit Memos found.
+  </p>
+
+  <table class="custom-table" *ngIf="filteredMemos().length > 0">
     <thead>
       <tr>
         <th>Memo Number</th>
         <th>Fiscal Year</th>
         <th>Posting Date</th>
         <th>Amount</th>
-        <th>Currency</th>
         <th>Doc Type</th>
         <th>Created By</th>
         <th>Memo Type</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let memo of creditDebits">
+      <tr *ngFor="let memo of filteredMemos()">
         <td>{{ memo.MemoNumber }}</td>
         <td>{{ memo.FiscalYear }}</td>
         <td>{{ parseDate(memo.PostingDate) }}</td>
         <td>{{ memo.Amount }}</td>
-        <td>{{ memo.Currency }}</td>
         <td>{{ memo.DocType }}</td>
         <td>{{ memo.CreatedBy }}</td>
         <td>{{ memo.MemoType }}</td>
       </tr>
     </tbody>
   </table>
-
-  <p *ngIf="creditDebits.length === 0" class="no-data">
-    No Credit/Debit Memos found.
-  </p>
 </div>

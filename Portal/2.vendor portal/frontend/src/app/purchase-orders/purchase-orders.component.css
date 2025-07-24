@@ -1,7 +1,7 @@
 h2 {
   text-align: center;
   margin: 20px 0;
-  color: #3f51b5;
+  color: #1A397E;
   font-weight: bold;
 }
 
@@ -20,7 +20,7 @@ h2 {
 }
 
 .po-actions button {
-  background-color: #3f51b5;
+  background-color: #1A397E;
   color: white;
   border: none;
   padding: 6px 12px;
@@ -54,7 +54,7 @@ h2 {
 }
 
 .po-table th {
-  background-color: #3f51b5;
+  background-color: #1A397E;
   color: white;
   font-weight: bold;
 }

@@ -1,57 +1,53 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTableModule } from '@angular/material/table';
 import { InvoiceService } from '../../services/invoice.service';
 import { AuthService } from '../../services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-invoices-details',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatIconModule, MatTableModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './invoices-details.component.html',
-  styleUrl: './invoices-details.component.css',
-  providers: [InvoiceService]
+  styleUrls: ['./invoices-details.component.css']
 })
 export class InvoicesDetailsComponent implements OnInit {
   invoices: any[] = [];
-  vendorId: string = '';
+  loading = true;
+  error = '';
 
-  displayedColumns: string[] = [
-    'InvoiceNumber',
-    'FiscalYear',
-    'InvoiceDate',
-    'PoNumber',
-    'PoItem',
-    'Material',
-    'Quantity',
-    'Amount'
-  ];
+  constructor(private invoiceService: InvoiceService, private authService: AuthService) {}
 
-  constructor(
-    private invoiceService: InvoiceService,
-    private authService: AuthService
-  ) {}
-
-  ngOnInit() {
-    this.vendorId = this.authService.getVendorId() || '';
-    if (this.vendorId) {
-      this.invoiceService.getInvoices(this.vendorId).subscribe({
-        next: (res: any) => {
-          this.invoices = res.data || [];
-        },
-        error: (err: any) => {
-          console.error('❌ Error fetching invoices:', err);
-        }
-      });
+  ngOnInit(): void {
+    const vendorId = this.authService.getVendorId();
+    if (!vendorId) {
+      this.error = 'Vendor ID not found. Please log in again.';
+      this.loading = false;
+      return;
     }
+
+    const paddedVendorId = vendorId.toString().padStart(10, '0');
+    console.log('[InvoicesDetailsComponent] Padded Vendor ID:', paddedVendorId);
+
+    this.invoiceService.getInvoicesByVendor(paddedVendorId).subscribe({
+      next: (data) => {
+        this.invoices = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('[InvoicesDetailsComponent] Error fetching invoices:', err);
+        this.error = 'Failed to load invoices.';
+        this.loading = false;
+      }
+    });
   }
 
-  parseDate(dateString: string): string {
-    if (!dateString) return '';
-    const timestamp = parseInt(dateString.replace(/[^\d]/g, ''), 10);
-    return isNaN(timestamp) ? '' : new Date(timestamp).toLocaleDateString();
+  formatDate(dateString: string): string {
+    const timestamp = parseInt(dateString.replace(/\/Date\((\d+)\)\//, '$1'));
+    return new Date(timestamp).toLocaleDateString();
+  }
+
+  downloadInvoice(belnr: string) {
+    this.invoiceService.downloadInvoicePDF(belnr);
   }
 }
