@@ -181,11 +181,18 @@ body, html {
   font-weight: bold;
   font-size: 0.95em;
 }
-
+.login-card {
+  padding: 30px;
+  background: #ffffff; /* ✅ white background */
+  width: 100%;
+  max-width: 350px;
+  border-radius: 12px; /* ✅ smooth corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* ✅ soft shadow */
+}
 /* ✅ Responsive adjustments for small screens */
 @media (max-width: 768px) {
   .login-container {
-    flex-direction: column;
+    flex-direction: row;
     height: auto;
     max-height: 95vh;
   }

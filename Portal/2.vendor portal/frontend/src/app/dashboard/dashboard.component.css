@@ -1,14 +1,13 @@
 /* General Body and Fonts */
-
 html, body {
   height: 100%;
-  min-height: 100vh;
   margin: 0;
   padding: 0;
   background-color: #b6c9e6;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   color: #333;
   overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 /* Toolbar Styling */
@@ -25,7 +24,7 @@ html, body {
 .title {
   font-size: 1.6rem;
   font-weight: 700;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   letter-spacing: 0.5px;
 }
 
@@ -76,19 +75,24 @@ html, body {
 
 /* Layout for Dashboard Content */
 .dashboard-container {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
   overflow: hidden;
-    /* background-color: #f0f2f5; */
+  background-color: transparent;
 }
 
 .content-area {
   width: 100%;
-  padding: 40px;
-  /* background-color: #f0f2f5; */
+  padding: 40px 20px;
+  box-sizing: border-box;
   overflow-x: hidden;
-  background-color: transparent;
 }
 
+/* Welcome Text */
 .welcome-text {
   text-align: center;
   margin-bottom: 50px;
@@ -119,16 +123,18 @@ html, body {
   line-height: 1.6;
 }
 
-/* Tiles */
+/* Tiles Container */
 .tiles-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 30px;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  overflow: hidden;
+  box-sizing: border-box;
 }
 
+/* Individual Tile */
 .tile {
   height: 200px;
   text-align: center;
@@ -174,31 +180,54 @@ html, body {
   display: none !important;
 }
 
-/* Responsive adjustments */
+/* Responsive Adjustments */
 @media (max-width: 1024px) {
-  .tiles-container {
-    grid-template-columns: repeat(2, 1fr);
+  .welcome-text h2 {
+    font-size: 2rem;
   }
 }
 
-@media (max-width: 480px) {
-  .tiles-container {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  html,body{
+    height :100%;
+    overflow: hidden;
+  }
+  .content-area {
+    padding: 20px 10px;
+  }
+
+  .tile {
+    height: 130px;
+    padding: 1px;
   }
 
   .welcome-text h2 {
     font-size: 1.6rem;
   }
 
-  .welcome-text h2 .dashboard-icon {
-    font-size: 30px;
-  }
-
   .welcome-text p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  html, body {
+    overflow-y: auto;
   }
 
   .tile {
-    height: 180px;
+    height: 10px;
+  }
+
+  .tile h3 {
+    font-size: 1rem;
+  }
+
+  .tile p {
+    font-size: 0.9rem;
+  }
+
+  .welcome-text h2 .dashboard-icon {
+    font-size: 28px;
   }
 }
