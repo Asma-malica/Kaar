@@ -1,49 +1,86 @@
-<mat-toolbar color="primary" class="toolbar">
-  <span class="title">Vendor Portal</span>
-  <span class="spacer"></span>
+<html>
+<mat-sidenav-container class="sidenav-container">
+  <!-- Sidebar -->
+  <mat-sidenav #drawer mode="side" class="sidenav" fixedInViewport>
+    <div class="sidenav-content">
+      <mat-nav-list>
+        <!-- <a mat-list-item routerLink="/dashboard" routerLinkActive="active">Dashboard</a> -->
+        <a mat-list-item (click)="navigateTo('rfq')">RFQ</a>
+        <a mat-list-item (click)="navigateTo('purchase-orders')">Purchase Orders</a>
+        <a mat-list-item (click)="navigateTo('goods-receipt')">Goods Receipt</a>
+        <a mat-list-item (click)="navigateTo('financials')">Financials</a>
 
-  <span class="vendor-info">
-    <mat-icon class="welcome-icon">check_circle</mat-icon> Welcome, <span class="vendor-id-text">{{ vendorId }}</span>
-  </span>
-
-  <button mat-icon-button (click)="viewProfile()" class="profile-button no-hover-effect">
-    <mat-icon>account_circle</mat-icon>
-  </button>
-</mat-toolbar>
-
-<div class="dashboard-container">
-  <div class="content-area">
-    <div class="welcome-section">
-      <!-- Hamburger removed -->
-      <div class="welcome-text">
-        <h2><mat-icon class="dashboard-icon">dashboard</mat-icon> Welcome to Your Business Hub</h2>
-        <p>Access all your transactions, orders, and financials in one place.</p>
+      </mat-nav-list>
+      <!-- Sign out button at bottom -->
+      <div class="signout-wrapper">
+        <button mat-button color="warn" (click)="signOut()">
+          <mat-icon>logout</mat-icon>
+          Sign Out
+        </button>
       </div>
     </div>
+  </mat-sidenav>
 
-    <div class="tiles-container">
-      <mat-card class="tile" (click)="navigateTo('rfq')">
-        <mat-icon>description</mat-icon>
-        <h3>RFQ</h3>
-        <p>Manage your Requests for Quotation</p>
-      </mat-card>
-      <mat-card class="tile" (click)="navigateTo('purchase-orders')">
-        <mat-icon>shopping_cart</mat-icon>
-        <h3>Purchase Orders</h3>
-        <p>View and track your Purchase Orders</p>
-      </mat-card>
-      <mat-card class="tile" (click)="navigateTo('goods-receipt')">
-        <mat-icon>inventory</mat-icon>
-        <h3>Goods Receipt</h3>
-        <p>Check and manage received goods</p>
-      </mat-card>
-      <mat-card class="tile" (click)="navigateTo('financials')">
-        <mat-icon>account_balance</mat-icon>
-        <h3>Financials</h3>
-        <p>View invoices, payments, and financial reports</p>
-      </mat-card>
+  <!-- Main Content Area -->
+  <mat-sidenav-content>
+
+    <!-- Toolbar -->
+    <mat-toolbar class="toolbar white-navbar">
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="title">Vendor Portal</span>
+      <span class="spacer"></span>
+
+      <span class="vendor-info">
+        <mat-icon class="welcome-icon">check_circle</mat-icon> Welcome,
+        <span class="vendor-id-text">{{ vendorId }}</span>
+      </span>
+
+      <button mat-icon-button (click)="viewProfile()" class="profile-button no-hover-effect">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <!-- Content Section -->
+    <div class="dashboard-container">
+      <div class="content-area">
+        <div class="welcome-section">
+          <div class="welcome-text">
+            <h2>
+              <mat-icon class="dashboard-icon">dashboard</mat-icon>
+              Welcome to Your Business Hub
+            </h2>
+            <p>Access all your transactions, orders, and financials in one place.</p>
+          </div>
+        </div>
+
+        <div class="tiles-container">
+          <mat-card class="tile" (click)="navigateTo('rfq')">
+            <mat-icon>description</mat-icon>
+            <h3>RFQ</h3>
+            <p>Manage your Requests for Quotation</p>
+          </mat-card>
+          <mat-card class="tile" (click)="navigateTo('purchase-orders')">
+            <mat-icon>shopping_cart</mat-icon>
+            <h3>Purchase Orders</h3>
+            <p>View and track your Purchase Orders</p>
+          </mat-card>
+          <mat-card class="tile" (click)="navigateTo('goods-receipt')">
+            <mat-icon>inventory</mat-icon>
+            <h3>Goods Receipt</h3>
+            <p>Check and manage received goods</p>
+          </mat-card>
+          <mat-card class="tile" (click)="navigateTo('financials')">
+            <mat-icon>account_balance</mat-icon>
+            <h3>Financials</h3>
+            <p>View invoices, payments, and financial reports</p>
+          </mat-card>
+        </div>
+
+        <router-outlet></router-outlet>
+      </div>
     </div>
-
-    <router-outlet></router-outlet>
-  </div>
-</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+</html>

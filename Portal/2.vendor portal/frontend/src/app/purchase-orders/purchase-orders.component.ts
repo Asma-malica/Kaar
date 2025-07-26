@@ -1,16 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+// Angular Material modules
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+
 import { PurchaseOrderService } from '../services/purchaseorder.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-purchase-orders',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, MatCardModule, MatIconModule, FormsModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    MatCardModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatInputModule
+  ],
   templateUrl: './purchase-orders.component.html',
   styleUrl: './purchase-orders.component.css'
 })
@@ -60,5 +75,9 @@ export class PurchaseOrdersComponent implements OnInit {
 
   printPOs() {
     window.print();
+  }
+
+  goBack(): void {
+    window.history.back();
   }
 }

@@ -1,44 +1,66 @@
-<h2>RFQ List</h2>
+<div class="rfq-wrapper">
+  <!-- NAVBAR -->
+  <mat-toolbar color="primary" class="rfq-navbar">
+    <button mat-icon-button (click)="goBack()" aria-label="Back">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
 
-<div class="rfq-actions">
-  <input [(ngModel)]="searchTerm" placeholder="Search by RFQ or Material Number" />
-  <button (click)="toggleSort()">
-    <mat-icon>sort</mat-icon> {{ sortAsc ? 'Sort Asc' : 'Sort Desc' }}
-  </button>
-  <button (click)="printRFQs()">
-    <mat-icon>print</mat-icon> Print
-  </button>
-</div>
+    <span class="rfq-navbar-title">RFQ List</span>
 
-<div *ngIf="getFilteredAndSortedRFQs().length === 0" class="no-data">
-  <mat-icon>info</mat-icon> No RFQs found for your account.
-</div>
+    <span class="spacer"></span>
 
-<div class="rfq-container">
-  <table class="rfq-table" *ngIf="getFilteredAndSortedRFQs().length > 0">
-    <thead>
-      <tr>
-        <th>RFQ Number</th>
-        <th>Document Type</th>
-        <th>Purchase Org</th>
-        <th>Document Date</th>
-        <th>Material Number</th>
-        <th>Short Text</th>
-        <th>Quantity</th>
-        <th>Net Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let rfq of getFilteredAndSortedRFQs()">
-        <td>{{ rfq.RfqNumber }}</td>
-        <td>{{ rfq.DocType }}</td>
-        <td>{{ rfq.PurchaseOrg }}</td>
-        <td>{{ parseSAPDate(rfq.DocDate) }}</td>
-        <td>{{ rfq.MatNumber }}</td>
-        <td>{{ rfq.ShortText }}</td>
-        <td>{{ rfq.Quantity }} {{ rfq.UnitMeasure }}</td>
-        <td>{{ rfq.NetPrice }} {{ rfq.Currency }}</td>
-      </tr>
-    </tbody>
-  </table>
+    <mat-icon class="tick-icon">check_circle</mat-icon>
+    <span class="vendor-id">Vendor : {{ vendorId }}</span>
+
+   
+  </mat-toolbar>
+
+  <!-- PAGE TITLE -->
+  <!-- <h2 class="page-title">RFQ List</h2> -->
+<h2></h2>
+  <!-- ACTION BAR -->
+  <div class="rfq-actions">
+    <input [(ngModel)]="searchTerm" placeholder="Search by RFQ or Material Number" />
+    <button mat-raised-button color="accent" (click)="toggleSort()">
+      <mat-icon>sort</mat-icon> {{ sortAsc ? 'Sort Asc' : 'Sort Desc' }}
+    </button>
+    <button mat-raised-button color="primary" (click)="printRFQs()">
+      <mat-icon>print</mat-icon> Print
+    </button>
+  </div>
+
+  <!-- NO DATA MESSAGE -->
+  <div *ngIf="getFilteredAndSortedRFQs().length === 0" class="no-data">
+    <mat-icon>info</mat-icon> No RFQs found for your account.
+  </div>
+
+  <!-- TABLE -->
+  <div class="rfq-container" *ngIf="getFilteredAndSortedRFQs().length > 0">
+    <table class="rfq-table">
+      <thead>
+        <tr>
+          <th>RFQ Number</th>
+          <th>Document Type</th>
+          <th>Purchase Org</th>
+          <th>Document Date</th>
+          <th>Material Number</th>
+          <th>Short Text</th>
+          <th>Quantity</th>
+          <th>Net Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rfq of getFilteredAndSortedRFQs()">
+          <td>{{ rfq.RfqNumber }}</td>
+          <td>{{ rfq.DocType }}</td>
+          <td>{{ rfq.PurchaseOrg }}</td>
+          <td>{{ parseSAPDate(rfq.DocDate) }}</td>
+          <td>{{ rfq.MatNumber }}</td>
+          <td>{{ rfq.ShortText }}</td>
+          <td>{{ rfq.Quantity }} {{ rfq.UnitMeasure }}</td>
+          <td>{{ rfq.NetPrice }} {{ rfq.Currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

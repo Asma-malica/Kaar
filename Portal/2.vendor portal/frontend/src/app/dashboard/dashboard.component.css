@@ -1,30 +1,47 @@
-/* General Body and Fonts */
-html, body {
-  height: 100%;
+/* RESET STYLES */
+* {
   margin: 0;
   padding: 0;
-  background-color: #b6c9e6;
-  font-family: 'Times New Roman', Times, serif;
-  color: #333;
-  overflow-x: hidden;
   box-sizing: border-box;
+  
 }
 
-/* Toolbar Styling */
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Times New Roman', Times, serif;
+  overflow-x: hidden;
+}
+
+/* =========================
+   TOOLBAR / NAVBAR
+========================= */
 .toolbar {
-  background: #1A397E;
-  color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   height: 64px;
+  padding: 0 16px;
   display: flex;
   align-items: center;
-  padding: 0 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.white-navbar {
+  background-color: #1A397E !important;
+  color: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.white-navbar .mat-icon {
+  color: white;
+}
+
+.menu-button {
+  display: none;
+  margin-right: 16px;
 }
 
 .title {
   font-size: 1.6rem;
   font-weight: 700;
-  font-family: 'Times New Roman', Times, serif;
   letter-spacing: 0.5px;
 }
 
@@ -38,12 +55,13 @@ html, body {
   margin-right: 15px;
   font-size: 0.95rem;
   font-weight: 500;
+  color: white;
 }
 
 .vendor-info .welcome-icon {
   margin-right: 6px;
   font-size: 20px;
-  color: #A9D18E;
+  color: #4CAF50;
 }
 
 .vendor-id-text {
@@ -52,47 +70,92 @@ html, body {
 
 .profile-button {
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid white;
   border-radius: 50%;
-  padding: 6px;
-  width: 40px;
-  height: 40px;
+  width:  35px;
+  height: 35px;
+  padding:0px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   transition: background-color 0.3s ease;
 }
 
 .profile-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: white;
+  color: #1A397E;
 }
 
-.profile-button mat-icon {
+/* .profile-button mat-icon {
   font-size: 28px;
-  width: 28px;
-  height: 28px;
+} */
+
+/* =========================
+   SIDENAV
+========================= */
+.sidenav {
+  width: 220px;
+  background-color: #f0f4ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
 }
 
-/* Layout for Dashboard Content */
+.sidenav-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.mat-nav-list a.mat-list-item {
+  color: #1A397E;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.mat-nav-list a.mat-list-item:hover,
+.mat-nav-list a.mat-list-item.active {
+  background-color: #d7e3ff;
+}
+
+.signout-wrapper {
+  border-top: 1px solid #ccc;
+  background-color: #e6eeff;
+}
+
+.signout-wrapper button {
+  width: 100%;
+  justify-content: flex-start;
+  font-weight: bold;
+}
+
+/* =========================
+   MAIN DASHBOARD CONTAINER
+========================= */
 .dashboard-container {
+  flex-grow: 1;
+  padding: 20px;
+  background: #e3f2fd;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-  box-sizing: border-box;
   overflow: hidden;
-  background-color: transparent;
+  height: 711px;
 }
 
 .content-area {
   width: 100%;
+  max-width: 1200px;
   padding: 40px 20px;
-  box-sizing: border-box;
-  overflow-x: hidden;
 }
 
-/* Welcome Text */
+/* =========================
+   WELCOME SECTION
+========================= */
 .welcome-text {
   text-align: center;
   margin-bottom: 50px;
@@ -102,17 +165,18 @@ html, body {
 .welcome-text h2 {
   color: #1A397E;
   font-size: 2.2rem;
-  margin-bottom: 15px;
+  font-weight: 700;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 700;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
 }
 
 .welcome-text h2 .dashboard-icon {
   font-size: 36px;
-  margin-right: 15px;
   color: #4A6BA3;
+  margin-right: 15px;
 }
 
 .welcome-text p {
@@ -123,31 +187,28 @@ html, body {
   line-height: 1.6;
 }
 
-/* Tiles Container */
+/* =========================
+   DASHBOARD TILES
+========================= */
 .tiles-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
+  gap: 20px;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
-  box-sizing: border-box;
 }
 
-/* Individual Tile */
 .tile {
-  height: 200px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background: white;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  padding: 20px;
 }
 
 .tile:hover {
@@ -162,10 +223,10 @@ html, body {
 }
 
 .tile h3 {
-  margin: 0 0 8px;
   color: #1A397E;
-  font-weight: 700;
   font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 8px;
 }
 
 .tile p {
@@ -174,31 +235,53 @@ html, body {
   line-height: 1.4;
 }
 
-/* Hide sidebar and hamburger */
-.side-nav,
-.menu-button {
-  display: none !important;
-}
-
-/* Responsive Adjustments */
+/* =========================
+   RESPONSIVE STYLES
+========================= */
 @media (max-width: 1024px) {
-  .welcome-text h2 {
-    font-size: 2rem;
+  .menu-button {
+    display: inline-flex !important;
+  }
+
+  .sidenav {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    z-index: 1000;
+    height: calc(100vh - 64px);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidenav.open {
+    transform: translateX(0);
+  }
+
+  .dashboard-container {
+    padding: 10px;
+  }
+
+  .tiles-container {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
 }
 
 @media (max-width: 768px) {
-  html,body{
-    height :100%;
-    overflow: hidden;
-  }
-  .content-area {
-    padding: 20px 10px;
+  .tiles-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
   }
 
   .tile {
-    height: 130px;
-    padding: 1px;
+    padding: 10px;
+  }
+
+  .tile h3 {
+    font-size: 1rem;
+  }
+
+  .tile p {
+    font-size: 0.85rem;
   }
 
   .welcome-text h2 {
@@ -211,23 +294,23 @@ html, body {
 }
 
 @media (max-width: 480px) {
-  html, body {
-    overflow-y: auto;
-  }
-
-  .tile {
-    height: 10px;
+  .tiles-container {
+    grid-template-columns: 1fr;
   }
 
   .tile h3 {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .tile p {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
+  }
+
+  .welcome-text h2 {
+    font-size: 1.4rem;
   }
 
   .welcome-text h2 .dashboard-icon {
-    font-size: 28px;
+    font-size: 24px;
   }
 }

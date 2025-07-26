@@ -1,10 +1,27 @@
-<h2>Purchase Orders</h2>
+<mat-toolbar color="primary" class="po-navbar">
+  <button mat-icon-button class="go-back-icon" (click)="goBack()" aria-label="Back">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <span class="po-navbar-title">Purchase Orders</span>
+
+  <span class="spacer"></span>
+
+  <mat-icon class="tick-icon">check_circle</mat-icon>
+  <span class="vendor-id">Vendor: {{ vendorId }}</span>
+
+  <button mat-icon-button aria-label="Profile">
+    <mat-icon class="profile-icon">account_circle</mat-icon>
+  </button>
+</mat-toolbar>
 
 <div class="po-actions">
   <input [(ngModel)]="searchTerm" placeholder="Search by PO or Material Number" />
+
   <button (click)="toggleSort()">
     <mat-icon>sort</mat-icon> {{ sortAsc ? 'Sort Asc' : 'Sort Desc' }}
   </button>
+
   <button (click)="printPOs()">
     <mat-icon>print</mat-icon> Print
   </button>

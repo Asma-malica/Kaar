@@ -1,11 +1,20 @@
+html{
+  background: #e3f2fd;
+    padding-top: 50px; 
+
+}
+
+
 .profile-card {
+height:510px ;
   max-width: 700px;
-  margin: 40px auto;
+  margin:  auto;
+  width: 90%;
   padding: 25px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   border-radius: 12px;
   background: #ffffff;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Times New Roman', sans-serif;
 }
 
 h2 {
@@ -27,7 +36,7 @@ h2 {
 
 h3 {
   color: #3f51b5;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 15px;
   font-size: 20px;
   border-bottom: 1px solid #ddd;
@@ -78,11 +87,9 @@ h3 {
   h3 {
     font-size: 18px;
   }
-
-  .profile-field {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.profile-card{
+  margin: auto;
+}
 
   .profile-label {
     flex: none;

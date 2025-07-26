@@ -1,16 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+// Angular Material Modules
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { MatToolbarModule } from '@angular/material/toolbar';   // ✅ Add this
+import { MatButtonModule } from '@angular/material/button';     // ✅ Add this
+import { MatInputModule } from '@angular/material/input';       // Optional: For input styling
+
+// Services
 import { RfqService } from '../services/rfq.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-rfq',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, MatCardModule, MatIconModule, FormsModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+
+    // ✅ Angular Material Modules
+    MatCardModule,
+    MatIconModule,
+    MatToolbarModule,  // ✅ Required for <mat-toolbar>
+    MatButtonModule,   // ✅ Required for <button mat-icon-button>
+    MatInputModule     // ✅ Optional for better styled input
+  ],
   templateUrl: './rfq.component.html',
   styleUrl: './rfq.component.css'
 })
@@ -24,7 +42,7 @@ export class RfqComponent implements OnInit {
   constructor(private rfqService: RfqService, private authService: AuthService) {}
 
   ngOnInit() {
-    this.vendorId = this.authService.getVendorId() || '';
+    this.vendorId = this.authService.getVendorId() || this.getVendorId() || '';
     if (this.vendorId) {
       this.rfqService.getRfqData(this.vendorId).subscribe({
         next: (res) => {
@@ -43,6 +61,10 @@ export class RfqComponent implements OnInit {
     return new Date(timestamp).toLocaleDateString();
   }
 
+  getVendorId(): string | null {
+    return sessionStorage.getItem('vendorId');  // Fallback method
+  }
+
   parseSAPDate(sapDate: string): string {
     const timestamp = parseInt(sapDate.replace(/[^0-9]/g, ''), 10);
     const date = new Date(timestamp);
@@ -59,6 +81,10 @@ export class RfqComponent implements OnInit {
       const comparison = a.RfqNumber.localeCompare(b.RfqNumber);
       return this.sortAsc ? comparison : -comparison;
     });
+  }
+
+  goBack(): void {
+    window.history.back();
   }
 
   toggleSort() {

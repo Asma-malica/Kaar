@@ -1,3 +1,4 @@
+<html><body>
 <mat-card class="profile-card">
   <h2>
     <mat-icon class="profile-header-icon">account_circle</mat-icon>
@@ -9,14 +10,18 @@
 
     <div class="profile-field">
       <mat-icon class="profile-icon">badge</mat-icon>
-      <span class="profile-label">Vendor ID:</span>
-      <span class="profile-value">{{ vendorProfile?.VendorId || '-' }}</span>
+      <div class="profile-line">
+        <span class="profile-label">Vendor ID:</span>
+        <span class="profile-value">{{ vendorProfile?.VendorId || '-' }}</span>
+      </div>
     </div>
 
     <div class="profile-field">
       <mat-icon class="profile-icon">person</mat-icon>
-      <span class="profile-label">Name:</span>
-      <span class="profile-value">{{ vendorProfile?.Name || '-' }}</span>
+      <div class="profile-line">
+        <span class="profile-label">Name:</span>
+        <span class="profile-value">{{ vendorProfile?.Name || '-' }}</span>
+      </div>
     </div>
   </div>
 
@@ -25,36 +30,28 @@
 
     <div class="profile-field">
       <mat-icon class="profile-icon">home</mat-icon>
-      <span class="profile-label">Street:</span>
-      <span class="profile-value">{{ vendorProfile?.Street || '-' }}</span>
+      <div class="profile-line">
+        <span class="profile-label">Street:</span>
+        <span class="profile-value">{{ vendorProfile?.Street || '-' }}</span>
+      </div>
     </div>
 
     <div class="profile-field">
       <mat-icon class="profile-icon">location_city</mat-icon>
-      <span class="profile-label">City:</span>
-      <span class="profile-value">{{ vendorProfile?.City || '-' }}</span>
+      <div class="profile-line">
+        <span class="profile-label">City:</span>
+        <span class="profile-value">{{ vendorProfile?.City || '-' }}</span>
+      </div>
     </div>
 
     <div class="profile-field">
       <mat-icon class="profile-icon">pin_drop</mat-icon>
-      <span class="profile-label">Postal Code:</span>
-      <span class="profile-value">{{ vendorProfile?.PostalCode || '-' }}</span>
-    </div>
-  </div>
-
-  <div class="profile-section">
-    <h3>Contact Details</h3>
-
-    <div class="profile-field">
-      <mat-icon class="profile-icon">email</mat-icon>
-      <span class="profile-label">Email:</span>
-      <span class="profile-value">{{ vendorProfile?.Email || '-' }}</span>
-    </div>
-
-    <div class="profile-field">
-      <mat-icon class="profile-icon">call</mat-icon>
-      <span class="profile-label">Telephone:</span>
-      <span class="profile-value">{{ vendorProfile?.Telephone || '-' }}</span>
+      <div class="profile-line">
+        <span class="profile-label">Postal Code:</span>
+        <span class="profile-value">{{ vendorProfile?.PostalCode || '-' }}</span>
+      </div>
     </div>
   </div>
 </mat-card>
+</body>
+</html>

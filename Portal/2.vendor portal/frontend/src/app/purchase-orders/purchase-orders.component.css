@@ -1,15 +1,56 @@
-h2 {
-  text-align: center;
-  margin: 20px 0;
-  color: #1A397E;
-  font-weight: bold;
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #e3f2fd; /* Dashboard light blue */
+  font-family: 'Times New Roman', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.go-back-icon mat-icon {
+  color: white; /* Ensure arrow icon is white */
+}
+
+/* NAVBAR STYLING */
+.po-navbar {
+  background-color: #1A397E;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.po-navbar-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 12px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.tick-icon {
+  color: #00e676;
+  margin-right: 8px;
+}
+
+.vendor-id {
+  font-weight: bold;
+  margin-right: 16px;
+}
+
+.profile-icon {
+  color: white;
+}
+
+/* ACTION BAR */
 .po-actions {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  padding: 0 16px;
 }
 
 .po-actions input {
@@ -17,24 +58,27 @@ h2 {
   border: 1px solid #ccc;
   border-radius: 6px;
   width: 250px;
+  max-width: 100%;
 }
 
 .po-actions button {
   background-color: #1A397E;
   color: white;
   border: none;
-  padding: 6px 12px;
+  padding: 8px 16px;
   border-radius: 6px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+  transition: background-color 0.3s ease;
 }
 
 .po-actions button:hover {
   background-color: #303f9f;
 }
 
+/* TABLE STYLING */
 .po-container {
   max-width: 100%;
   overflow-x: auto;
@@ -67,6 +111,7 @@ h2 {
   background-color: #f1f1f1;
 }
 
+/* NO DATA MESSAGE */
 .no-data {
   text-align: center;
   color: #888;
@@ -79,23 +124,33 @@ h2 {
   margin-right: 5px;
 }
 
+/* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
-  h2 {
-    font-size: 20px;
-  }
-
   .po-actions {
-    flex-direction: column;
+    flex-direction: row;       /* Keep items in a row */
+    flex-wrap: wrap;           /* Allow wrapping if needed */
+    justify-content: center;
     align-items: center;
   }
 
-  .po-actions input {
-    width: 90%;
+  .po-actions input,
+  .po-actions button {
+    width: auto;
+    flex: 1 1 auto;
+    min-width: 100px;
   }
 
   .po-table th,
   .po-table td {
     font-size: 12px;
     padding: 6px;
+  }
+
+  .po-navbar-title {
+    font-size: 18px;
+  }
+
+  .vendor-id {
+    font-size: 14px;
   }
 }
