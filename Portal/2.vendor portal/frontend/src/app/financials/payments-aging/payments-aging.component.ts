@@ -1,15 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+
 import { PaymentService } from '../../services/payment.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-payments-aging',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, MatIconModule, FormsModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatInputModule
+  ],
   templateUrl: './payments-aging.component.html',
   styleUrl: './payments-aging.component.css',
   providers: [PaymentService]
@@ -47,8 +59,8 @@ export class PaymentsAgingComponent implements OnInit {
 
   filteredPayments() {
     let filtered = this.payments.filter(payment =>
-      payment.InvoiceNumber.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      payment.FiscalYear.toString().includes(this.searchTerm)
+      payment.InvoiceNumber?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      payment.FiscalYear?.toString().includes(this.searchTerm)
     );
 
     return filtered.sort((a, b) => {
@@ -63,5 +75,9 @@ export class PaymentsAgingComponent implements OnInit {
 
   printTable() {
     window.print();
+  }
+
+  goBack(): void {
+    window.history.back();
   }
 }

@@ -1,20 +1,87 @@
+/* Font and base setup */
+body, html {
+  font-family: 'Times New Roman', serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #e3f2fd;
+  width: 100%;
+  overflow-x: hidden;
+}
+.gr-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1A397E;
+  color: white;
+  font-family: 'Times New Roman', serif;
+  padding: 0 16px;
+}
+
+.go-back-icon {
+  color: white;
+}
+
+.gr-navbar-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.tick-icon {
+  color: green;
+  margin-right: 10px;
+}
+
+.vendor-id {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #1A397E;
+  color: white;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.vendor-id {
+  font-size: 16px;
+  /* font-style: italic; */
+}
+
+/* Page Heading */
 .heading {
   text-align: center;
   color: #1A397E;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin: 20px 0;
+  font-size: 24px;
 }
 
+/* Toolbar for search, sort, print */
 .toolbar {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 12px;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .toolbar input {
-  padding: 6px 10px;
+  padding: 8px 12px;
   border: 1px solid #ccc;
   border-radius: 6px;
   width: 250px;
@@ -24,42 +91,47 @@
   background-color: #1A397E;
   color: white;
   border: none;
-  padding: 6px 12px;
+  padding: 8px 14px;
   border-radius: 6px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   transition: background-color 0.3s ease;
 }
 
 .toolbar button:hover {
-  background-color: #303f9f;
+  background-color: #2c387e;
 }
 
+/* Table Container */
 .table-container {
   display: flex;
   justify-content: center;
+  margin-bottom: 40px;
 }
 
+/* Table Styles */
 table {
   width: 90%;
   border-collapse: collapse;
-  background: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
   overflow: hidden;
 }
 
 th, td {
-  border: 1px solid #ddd;
-  padding: 12px;
+  padding: 14px;
   text-align: center;
+  border: 1px solid #ddd;
+  font-size: 15px;
 }
 
 th {
   background-color: #1A397E;
   color: white;
+  font-weight: bold;
 }
 
 tr:nth-child(even) {
@@ -70,21 +142,23 @@ tr:hover {
   background-color: #f1f1f1;
 }
 
+/* No Data Message */
 .no-data {
   text-align: center;
-  color: #888;
   font-size: 16px;
+  color: #777;
   margin-top: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .no-data mat-icon {
-  vertical-align: middle;
+  font-size: 20px;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .heading {
     font-size: 20px;
@@ -99,8 +173,12 @@ tr:hover {
     width: 90%;
   }
 
+  table {
+    width: 95%;
+  }
+
   th, td {
     font-size: 12px;
-    padding: 6px;
+    padding: 8px;
   }
 }

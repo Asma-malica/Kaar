@@ -6,11 +6,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { CreditDebitService } from '../../services/creditdebit.service';
 import { AuthService } from '../../services/auth.service';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-credit-debit-memo',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatIconModule, HttpClientModule, FormsModule],
+  imports: [CommonModule, MatCardModule,  HttpClientModule, FormsModule, MatToolbarModule,
+    MatIconModule,
+    MatButtonModule],
   templateUrl: './credit-debit-memo.component.html',
   styleUrl: './credit-debit-memo.component.css',
   providers: [CreditDebitService]
@@ -64,4 +67,8 @@ export class CreditDebitMemoComponent implements OnInit {
   printTable() {
     window.print();
   }
+  goBack() {
+  window.history.back();
+}
+
 }

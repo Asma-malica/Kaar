@@ -1,22 +1,159 @@
-.invoice-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+/* Global */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #e3f2fd;
+  font-family: 'Times New Roman', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.invoice-table th,
-.invoice-table td {
-  border: 1px solid #ccc;
-  padding: 8px 12px;
-  text-align: left;
-}
-
-.invoice-table th {
+/* Navbar */
+.gr-navbar {
   background-color: #1A397E;
   color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.gr-navbar-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 12px;
+}
+
+.go-back-icon mat-icon {
+  color: white;
+}
+
+.tick-icon {
+  color: #00e676;
+  margin-right: 8px;
+}
+
+.vendor-id {
+  font-weight: bold;
+  margin-right: 16px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Toolbar */
+.gr-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  padding: 0 16px;
+}
+
+.gr-actions input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 250px;
+  max-width: 100%;
+}
+
+.gr-actions button {
+  background-color: #1A397E;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.gr-actions button:hover {
+  background-color: #303f9f;
+}
+
+/* Table */
+.table-container {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.styled-table {
+  width: 90%;
+  margin: 0 auto 20px auto;
+  border-collapse: collapse;
+}
+
+.styled-table th,
+.styled-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.styled-table th {
+  background-color: #1A397E;
+  color: white;
+  font-weight: bold;
+}
+
+.styled-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.styled-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* No data */
+.no-data {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+  margin-top: 40px;
+}
+
+.no-data mat-icon {
+  vertical-align: middle;
+  margin-right: 5px;
 }
 
 .error {
   color: red;
   margin-top: 20px;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gr-navbar-title {
+    font-size: 18px;
+  }
+
+  .vendor-id {
+    font-size: 14px;
+  }
+
+  .gr-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .gr-actions input,
+  .gr-actions button {
+    width: auto;
+    flex: 1 1 auto;
+    min-width: 100px;
+  }
+
+  .styled-table th,
+  .styled-table td {
+    font-size: 12px;
+    padding: 6px;
+  }
 }

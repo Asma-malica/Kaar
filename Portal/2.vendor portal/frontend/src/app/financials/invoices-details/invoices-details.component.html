@@ -1,43 +1,69 @@
+<body>
+<mat-toolbar color="primary" class="gr-navbar">
+  <button mat-icon-button class="go-back-icon" (click)="goBack()" aria-label="Back">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <span class="gr-navbar-title">Invoice List</span>
+
+  <span class="spacer"></span>
+
+  <mat-icon class="tick-icon">check_circle</mat-icon>
+  <span class="vendor-id">Vendor: {{ vendorId }}</span>
+</mat-toolbar>
+
+<div class="gr-actions">
+  <input [(ngModel)]="searchTerm" (input)="filterAndSort()" placeholder="Search by Invoice No" />
+  <button (click)="toggleSort()">
+    <mat-icon>sort</mat-icon> {{ sortAsc ? 'Sort Asc' : 'Sort Desc' }}
+  </button>
+</div>
+
 <div *ngIf="loading">Loading invoices...</div>
 <div *ngIf="error" class="error">{{ error }}</div>
 
-<table *ngIf="!loading && invoices.length > 0" class="invoice-table">
-  <thead>
-    <tr>
-      <th>Invoice No</th>
-      <th>Invoice Date</th>
-      <th>Total Amount</th>
-      <th>Currency</th>
-      <th>PO No</th>
-      <th>PO Item</th>
-      <th>Material No</th>
-      <th>Description</th>
-      <th>Quantity</th>
-      <th>Unit Price</th>
-      <th>Unit</th>
-      <th>Download</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let invoice of invoices">
-      <td>{{ invoice.InvoiceNo }}</td>
-      <td>{{ formatDate(invoice.InvoiceDate) }}</td>
-      <td>{{ invoice.TotalAmount }}</td>
-      <td>{{ invoice.Currency }}</td>
-      <td>{{ invoice.PoNo }}</td>
-      <td>{{ invoice.PoItem }}</td>
-      <td>{{ invoice.MaterialNo }}</td>
-      <td>{{ invoice.Description }}</td>
-      <td>{{ invoice.Quantity }}</td>
-      <td>{{ invoice.UnitPrice }}</td>
-      <td>{{ invoice.Unit }}</td>
-      <td>
-        <button (click)="downloadInvoice(invoice.InvoiceNo)">Download</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<div *ngIf="!loading && invoices.length === 0">
-  No invoices found.
+<div *ngIf="!loading && filteredInvoices.length === 0" class="no-data">
+  <mat-icon>info</mat-icon> No Invoices Found.
 </div>
+
+<div class="table-container" *ngIf="!loading && filteredInvoices.length > 0">
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Invoice No</th>
+        <th>Invoice Date</th>
+        <th>Total Amount</th>
+        <th>Currency</th>
+        <th>PO No</th>
+        <th>PO Item</th>
+        <th>Material No</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Unit Price</th>
+        <th>Unit</th>
+        <th>Download</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invoice of filteredInvoices">
+        <td>{{ invoice.InvoiceNo }}</td>
+        <td>{{ formatDate(invoice.InvoiceDate) }}</td>
+        <td>{{ invoice.TotalAmount }}</td>
+        <td>{{ invoice.Currency }}</td>
+        <td>{{ invoice.PoNo }}</td>
+        <td>{{ invoice.PoItem }}</td>
+        <td>{{ invoice.MaterialNo }}</td>
+        <td>{{ invoice.Description }}</td>
+        <td>{{ invoice.Quantity }}</td>
+        <td>{{ invoice.UnitPrice }}</td>
+        <td>{{ invoice.Unit }}</td>
+        <td>
+          <button (click)="downloadInvoice(invoice.InvoiceNo)">
+            <mat-icon>download</mat-icon> Download
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>

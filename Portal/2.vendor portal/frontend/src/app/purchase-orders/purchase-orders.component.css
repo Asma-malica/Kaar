@@ -1,21 +1,25 @@
+/* Base styles */
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #e3f2fd; /* Dashboard light blue */
+  background-color: #e3f2fd; /* Light dashboard blue */
   font-family: 'Times New Roman', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
 }
 
+/* Icon inside back button */
 .go-back-icon mat-icon {
-  color: white; /* Ensure arrow icon is white */
+  color: white;
 }
 
-/* NAVBAR STYLING */
+/* Navbar styling */
 .po-navbar {
   background-color: #1A397E;
   color: white;
   display: flex;
   align-items: center;
   padding: 0 16px;
+  height: 64px;
 }
 
 .po-navbar-title {
@@ -30,19 +34,21 @@ html, body {
 
 .tick-icon {
   color: #00e676;
-  margin-right: 8px;
+  margin-right: 6px;
 }
 
 .vendor-id {
   font-weight: bold;
   margin-right: 16px;
+  font-size: 15px;
 }
 
+/* Profile icon if added later */
 .profile-icon {
   color: white;
 }
 
-/* ACTION BAR */
+/* Action bar styles */
 .po-actions {
   display: flex;
   flex-wrap: wrap;
@@ -59,6 +65,7 @@ html, body {
   border-radius: 6px;
   width: 250px;
   max-width: 100%;
+  font-size: 14px;
 }
 
 .po-actions button {
@@ -71,6 +78,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 6px;
+  font-size: 14px;
   transition: background-color 0.3s ease;
 }
 
@@ -78,23 +86,32 @@ html, body {
   background-color: #303f9f;
 }
 
-/* TABLE STYLING */
+.po-actions mat-icon {
+  font-size: 18px;
+}
+
+/* Table container */
 .po-container {
   max-width: 100%;
   overflow-x: auto;
+  padding: 0 16px 30px;
 }
 
+/* Table styling */
 .po-table {
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
   border-collapse: collapse;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .po-table th,
 .po-table td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 10px;
   text-align: center;
+  font-size: 14px;
 }
 
 .po-table th {
@@ -108,10 +125,10 @@ html, body {
 }
 
 .po-table tr:hover {
-  background-color: #f1f1f1;
+  background-color: #e0e0e0;
 }
 
-/* NO DATA MESSAGE */
+/* No data message */
 .no-data {
   text-align: center;
   color: #888;
@@ -122,35 +139,35 @@ html, body {
 .no-data mat-icon {
   vertical-align: middle;
   margin-right: 5px;
+  font-size: 20px;
 }
 
-/* RESPONSIVE DESIGN */
+/* Responsive adjustments */
 @media (max-width: 768px) {
+  .po-navbar-title {
+    font-size: 18px;
+  }
+
+  .vendor-id {
+    font-size: 13px;
+    margin-right: 8px;
+  }
+
   .po-actions {
-    flex-direction: row;       /* Keep items in a row */
-    flex-wrap: wrap;           /* Allow wrapping if needed */
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
   }
 
   .po-actions input,
   .po-actions button {
-    width: auto;
-    flex: 1 1 auto;
-    min-width: 100px;
+    width: 100%;
+    min-width: unset;
   }
 
   .po-table th,
   .po-table td {
     font-size: 12px;
     padding: 6px;
-  }
-
-  .po-navbar-title {
-    font-size: 18px;
-  }
-
-  .vendor-id {
-    font-size: 14px;
   }
 }

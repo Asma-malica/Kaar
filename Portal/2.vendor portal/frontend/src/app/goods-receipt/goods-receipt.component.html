@@ -1,7 +1,21 @@
-<h2>Goods Receipt List</h2>
+<body>
+<mat-toolbar color="primary" class="gr-navbar">
+  <button mat-icon-button class="go-back-icon" (click)="goBack()" aria-label="Back">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
 
-<div class="toolbar">
-  <input type="text" placeholder="Search by Material / PO Number" [(ngModel)]="searchTerm" />
+  <span class="gr-navbar-title">Goods Receipt</span>
+
+  <span class="spacer"></span>
+
+  <mat-icon class="tick-icon">check_circle</mat-icon>
+  <span class="vendor-id">Vendor: {{ vendorId }}</span>
+
+  
+</mat-toolbar>
+
+<div class="gr-actions">
+  <input [(ngModel)]="searchTerm" placeholder="Search by Material / PO Number" />
   <button (click)="toggleSort()">
     <mat-icon>sort</mat-icon> {{ sortAsc ? 'Sort Asc' : 'Sort Desc' }}
   </button>
@@ -44,3 +58,4 @@
     </tbody>
   </table>
 </div>
+</body>

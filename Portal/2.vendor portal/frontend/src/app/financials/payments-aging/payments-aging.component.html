@@ -1,7 +1,21 @@
-<h2 class="heading">Payments & Aging</h2>
+<!-- Navbar -->
+<mat-toolbar color="primary" class="gr-navbar">
+  <button mat-icon-button class="go-back-icon" (click)="goBack()" aria-label="Back">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
 
+  <span class="gr-navbar-title">Payment Aging</span>
+
+  <span class="spacer"></span>
+
+  <mat-icon class="tick-icon">check_circle</mat-icon>
+  <span class="vendor-id">Vendor: {{ vendorId }}</span>
+</mat-toolbar>
+<!-- Page Heading -->
+<h2> </h2>
+<!-- Toolbar -->
 <div class="toolbar">
-  <input type="text" placeholder="Search by Invoice Number" [(ngModel)]="searchTerm" />
+  <input type="text" placeholder="Search by Invoice Number or Year" [(ngModel)]="searchTerm" />
   <button (click)="toggleSort()">
     <mat-icon>sort</mat-icon> {{ sortAsc ? 'Sort Asc' : 'Sort Desc' }}
   </button>
@@ -10,10 +24,12 @@
   </button>
 </div>
 
+<!-- No Data Message -->
 <div *ngIf="filteredPayments().length === 0" class="no-data">
   <mat-icon>info</mat-icon> No Payments found.
 </div>
 
+<!-- Payments Table -->
 <div class="table-container" *ngIf="filteredPayments().length > 0">
   <table>
     <thead>

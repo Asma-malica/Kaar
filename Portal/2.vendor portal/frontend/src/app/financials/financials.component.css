@@ -1,99 +1,125 @@
 @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
 
-/* Apply Times New Roman to the entire component */
 :host {
   font-family: 'Times New Roman', serif;
-  display: block; /* Ensures the host element takes up space for styling */
+  display: block;
+  background-color: #e3f2fd; /* Light dashboard-like background */
+  min-height: 100vh;
 }
 
+/* Navbar */
+.custom-navbar {
+  background-color: #1A397E !important;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-family: 'Times New Roman', serif;
+}
+
+.custom-navbar mat-icon {
+  color: white;
+}
+
+.toolbar-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.vendor-info {
+  font-weight: 500;
+  color: white;
+  margin-right: 12px;
+}
+
+/* Container */
 .container {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  font-family: 'Times New Roman', serif; /* Ensure font is applied */
 }
 
+/* Header Title */
 .title {
   text-align: center;
-  font-size: 2.5em; /* Increased font size for attractiveness */
+  font-size: 2.5em;
   font-weight: bold;
-  margin-top: 40px; /* More top margin */
-  color: #2c3e50; /* Darker, professional color */
+  margin-top: 40px;
+  color: #2c3e50;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-family: 'Times New Roman', serif;
 }
 
 .icon-dollar {
-  font-size: 1em; /* Adjust icon size relative to text */
-  color: #27ae60; /* A subtle accent color for the icon (green for financials) */
-  font-family: 'Times New Roman', serif;
+  font-size: 1em;
+  color: #27ae60;
 }
 
+/* Subtitle */
 .subtitle {
   text-align: center;
-  font-size: 1.2em; /* Slightly larger subtitle */
-  color: #7f8c8d; /* Softer grey for subtitle */
-  margin-bottom: 50px; /* More bottom margin */
-  font-family: 'Times New Roman', serif;
+  font-size: 1.2em;
+  color: #7f8c8d;
+  margin-bottom: 50px;
 }
 
+/* Tile Layout */
 .tile-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 30px; /* Increased gap for better spacing */
-  font-family: 'Times New Roman', serif;
+  gap: 30px;
 }
 
 .tile {
-  width: 280px; /* Increased tile width */
-  height: 250px; /* Increased tile height */
-  background-color: #ffffff; /* White background for tiles */
-  border-radius: 15px; /* More rounded corners */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Stronger, softer shadow */
+  width: 280px;
+  height: 250px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   text-align: center;
-  padding: 30px; /* More padding */
-  transition: all 0.3s ease-in-out; /* Smooth transition for all properties */
+  padding: 30px;
+  transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid #e0e0e0; /* Subtle border */
-  font-family: 'Times New Roman', serif;
+  border: 1px solid #e0e0e0;
 }
 
 .tile:hover {
-  transform: translateY(-10px) scale(1.02); /* More pronounced lift and slight scale */
-  background-color: #f8f9fa; /* Very light grey on hover */
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
-  border-color: #a7d9f8; /* Highlight border on hover */
-  font-family: 'Times New Roman', serif;
+  transform: translateY(-10px) scale(1.02);
+  background-color: #f8f9fa;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+  border-color: #1A397E;
 }
 
+/* Tile Contents */
 .tile-icon {
-  font-size: 3.5em; /* Larger icons */
-  color: #3498db; /* A vibrant blue for icons */
+  font-size: 3.5em;
+  color: #1A397E;
   margin-bottom: 15px;
   display: block;
-  font-family: 'Times New Roman', serif;
 }
 
 .tile h3 {
-  font-size: 1.6em; /* Larger heading */
+  font-size: 1.6em;
   margin: 10px 0 8px;
-  color: #2c3e50; /* Darker color for headings */
-  font-family: 'Times New Roman', serif;
+  color: #2c3e50;
 }
 
 .tile p {
-  font-size: 1em; /* Adjusted paragraph size */
-  color: #7f8c8d; /* Softer grey for paragraphs */
-  line-height: 1.5; /* Better readability */
-  font-family: 'Times New Roman', serif;
+  font-size: 1em;
+  color: #7f8c8d;
+  line-height: 1.5;
 }
 
 /* Responsive Design */
@@ -109,7 +135,7 @@
   }
 
   .tile {
-    width: 90%; /* Occupy more width on smaller screens */
+    width: 90%;
     height: auto;
     padding: 25px;
   }
@@ -141,7 +167,7 @@
   }
 
   .tile {
-    width: 100%; /* Full width on very small screens */
+    width: 100%;
     padding: 20px;
   }
 

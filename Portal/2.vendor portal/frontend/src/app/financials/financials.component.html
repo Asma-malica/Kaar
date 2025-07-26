@@ -1,6 +1,16 @@
+<mat-toolbar color="primary" class="custom-navbar">
+  <button mat-icon-button (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span class="toolbar-title">Financials</span>
+  <span class="spacer"></span>
+  <span class="vendor-info">Vendor: {{ vendorId }}</span>
+
+</mat-toolbar>
+
 <div class="container">
   <h2 class="title">
-    <span class="icon-dollar">💲</span> Welcome to Your Financial Hub
+    <span class="icon-dollar">💲</span> Welcome to Financial Hub
   </h2>
   <p class="subtitle">Access all your invoices, payments, and memos in one place.</p>
 

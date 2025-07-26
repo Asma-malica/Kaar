@@ -1,42 +1,85 @@
-h2 {
-  text-align: center;
-  margin: 20px 0;
-  color: #1A397E;
-  font-weight: bold;
+/* Global */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #e3f2fd;
+  font-family: 'Times New Roman', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.toolbar {
+/* Navbar */
+.gr-navbar {
+  background-color: #1A397E;
+  color: white;
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 16px;
 }
 
-.toolbar input {
+.gr-navbar-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 12px;
+}
+
+.go-back-icon mat-icon {
+  color: white;
+}
+
+.tick-icon {
+  color: #00e676;
+  margin-right: 8px;
+}
+
+.vendor-id {
+  font-weight: bold;
+  margin-right: 16px;
+}
+
+.profile-icon {
+  color: white;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Toolbar */
+.gr-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  padding: 0 16px;
+}
+
+.gr-actions input {
   padding: 6px 10px;
   border: 1px solid #ccc;
   border-radius: 6px;
   width: 250px;
+  max-width: 100%;
 }
 
-.toolbar button {
+.gr-actions button {
   background-color: #1A397E;
   color: white;
   border: none;
-  padding: 6px 12px;
+  padding: 8px 16px;
   border-radius: 6px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   transition: background-color 0.3s ease;
 }
 
-.toolbar button:hover {
+.gr-actions button:hover {
   background-color: #303f9f;
 }
 
+/* Table */
 .table-container {
   max-width: 100%;
   overflow-x: auto;
@@ -69,6 +112,7 @@ h2 {
   background-color: #f1f1f1;
 }
 
+/* No data */
 .no-data {
   text-align: center;
   color: #888;
@@ -81,18 +125,28 @@ h2 {
   margin-right: 5px;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
-  h2 {
-    font-size: 20px;
+  .gr-navbar-title {
+    font-size: 18px;
   }
 
-  .toolbar {
-    flex-direction: column;
+  .vendor-id {
+    font-size: 14px;
+  }
+
+  .gr-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
   }
 
-  .toolbar input {
-    width: 90%;
+  .gr-actions input,
+  .gr-actions button {
+    width: auto;
+    flex: 1 1 auto;
+    min-width: 100px;
   }
 
   .styled-table th,

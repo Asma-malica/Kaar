@@ -1,15 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+
+// Angular Material Modules
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+
+// Services
 import { GoodsReceiptService } from '../services/goodsreceipt.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-goods-receipt',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, MatIconModule, FormsModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule
+  ],
   templateUrl: './goods-receipt.component.html',
   styleUrl: './goods-receipt.component.css'
 })
@@ -44,9 +59,10 @@ export class GoodsReceiptComponent implements OnInit {
   }
 
   filteredGoodsReceipts() {
-    let filtered = this.goodsReceipts.filter(gr =>
-      gr.Material.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      gr.PoNumber.toLowerCase().includes(this.searchTerm.toLowerCase())
+    const term = this.searchTerm.toLowerCase();
+    const filtered = this.goodsReceipts.filter(gr =>
+      gr.Material.toLowerCase().includes(term) ||
+      gr.PoNumber.toLowerCase().includes(term)
     );
 
     return filtered.sort((a, b) => {
@@ -61,5 +77,9 @@ export class GoodsReceiptComponent implements OnInit {
 
   printTable() {
     window.print();
+  }
+
+  goBack(): void {
+    window.history.back();
   }
 }

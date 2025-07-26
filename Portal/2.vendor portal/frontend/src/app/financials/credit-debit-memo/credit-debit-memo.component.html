@@ -1,25 +1,38 @@
-<div class="container">
-  <h2 class="heading">Credit / Debit Memos</h2>
+<mat-toolbar color="primary" class="cd-navbar">
+  <button mat-icon-button class="go-back-icon" (click)="goBack()" aria-label="Back">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
 
-  <div class="toolbar">
-    <input
-      type="text"
-      placeholder="Search by Memo Number"
-      [(ngModel)]="searchTerm"
-    />
-    <button (click)="toggleSort()">
-      <mat-icon>sort</mat-icon> {{ sortAsc ? 'Sort Asc' : 'Sort Desc' }}
-    </button>
-    <button (click)="printTable()">
-      <mat-icon>print</mat-icon> Print
-    </button>
-  </div>
+  <span class="cd-navbar-title">Credit / Debit Memos</span>
 
-  <p *ngIf="filteredMemos().length === 0" class="no-data">
-    <mat-icon>info</mat-icon> No Credit/Debit Memos found.
-  </p>
+  <span class="spacer"></span>
 
-  <table class="custom-table" *ngIf="filteredMemos().length > 0">
+  <mat-icon class="tick-icon">check_circle</mat-icon>
+  <span class="vendor-id">Vendor: {{ vendorId }}</span>
+</mat-toolbar>
+
+<div class="cd-actions">
+  <input
+    type="text"
+    placeholder="Search by Memo Number"
+    [(ngModel)]="searchTerm"
+  />
+
+  <button (click)="toggleSort()">
+    <mat-icon>sort</mat-icon> {{ sortAsc ? 'Sort Asc' : 'Sort Desc' }}
+  </button>
+
+  <button (click)="printTable()">
+    <mat-icon>print</mat-icon> Print
+  </button>
+</div>
+
+<div *ngIf="filteredMemos().length === 0" class="no-data">
+  <mat-icon>info</mat-icon> No Credit/Debit Memos found.
+</div>
+
+<div class="cd-container" *ngIf="filteredMemos().length > 0">
+  <table class="cd-table">
     <thead>
       <tr>
         <th>Memo Number</th>
