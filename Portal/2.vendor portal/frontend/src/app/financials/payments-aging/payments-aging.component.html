@@ -1,4 +1,4 @@
-<!-- Navbar -->
+<body>
 <mat-toolbar color="primary" class="gr-navbar">
   <button mat-icon-button class="go-back-icon" (click)="goBack()" aria-label="Back">
     <mat-icon>arrow_back</mat-icon>
@@ -11,10 +11,9 @@
   <mat-icon class="tick-icon">check_circle</mat-icon>
   <span class="vendor-id">Vendor: {{ vendorId }}</span>
 </mat-toolbar>
-<!-- Page Heading -->
-<h2> </h2>
+
 <!-- Toolbar -->
-<div class="toolbar">
+<div class="gr-actions">
   <input type="text" placeholder="Search by Invoice Number or Year" [(ngModel)]="searchTerm" />
   <button (click)="toggleSort()">
     <mat-icon>sort</mat-icon> {{ sortAsc ? 'Sort Asc' : 'Sort Desc' }}
@@ -31,7 +30,7 @@
 
 <!-- Payments Table -->
 <div class="table-container" *ngIf="filteredPayments().length > 0">
-  <table>
+  <table class="styled-table">
     <thead>
       <tr>
         <th>Invoice Number</th>
@@ -56,3 +55,4 @@
     </tbody>
   </table>
 </div>
+</body>
