@@ -69,9 +69,6 @@ html, body {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 14px;
-  flex: 1 1 30%;
-  min-width: 140px;
   transition: background-color 0.3s ease;
 }
 
@@ -143,8 +140,9 @@ html, body {
 
   .cd-actions input,
   .cd-actions button {
-    flex: 1 1 30%;
-    max-width: 32%;
+    width: auto;
+    flex: 1 1 auto;
+    min-width: 100px;
   }
 
   .cd-navbar-title {

@@ -1,61 +1,67 @@
 <body>
-<mat-toolbar color="primary" class="cd-navbar">
-  <button mat-icon-button class="go-back-icon" (click)="goBack()" aria-label="Back">
-    <mat-icon>arrow_back</mat-icon>
-  </button>
+  <!-- Top Navbar -->
+  <mat-toolbar color="primary" class="cd-navbar">
+    <button mat-icon-button class="go-back-icon" (click)="goBack()" aria-label="Back">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
 
-  <span class="cd-navbar-title">Credit / Debit Memos</span>
+    <span class="cd-navbar-title">Credit / Debit Memos</span>
 
-  <span class="spacer"></span>
+    <span class="spacer"></span>
 
-  <mat-icon class="tick-icon">check_circle</mat-icon>
-  <span class="vendor-id">Vendor: {{ vendorId }}</span>
-</mat-toolbar>
+    <mat-icon class="tick-icon">check_circle</mat-icon>
+    <span class="vendor-id">Vendor: {{ vendorId }}</span>
+  </mat-toolbar>
 
-<div class="cd-actions">
-  <input
-    type="text"
-    placeholder="Search by Memo Number"
-    [(ngModel)]="searchTerm"
-  />
+  <!-- Search + Sort + Print -->
+  <div class="cd-actions">
+    <input
+      type="text"
+      placeholder="Search by Memo Number"
+      [(ngModel)]="searchTerm"
+    />
 
-  <button (click)="toggleSort()">
-    <mat-icon>sort</mat-icon> {{ sortAsc ? 'Sort Asc' : 'Sort Desc' }}
-  </button>
+    <button (click)="toggleSort()">
+      <mat-icon>sort</mat-icon> {{ sortAsc ? 'Sort Asc' : 'Sort Desc' }}
+    </button>
 
-  <button (click)="printTable()">
-    <mat-icon>print</mat-icon> Print
-  </button>
-</div>
+    <button (click)="printTable()">
+      <mat-icon>print</mat-icon> Print
+    </button>
+  </div>
 
-<div *ngIf="filteredMemos().length === 0" class="no-data">
-  <mat-icon>info</mat-icon> No Credit/Debit Memos found.
-</div>
+  <!-- No Data Message -->
+  <div *ngIf="filteredMemos().length === 0" class="no-data">
+    <mat-icon>info</mat-icon> No Credit/Debit Memos found.
+  </div>
 
-<div class="cd-container" *ngIf="filteredMemos().length > 0">
-  <table class="cd-table">
-    <thead>
-      <tr>
-        <th>Memo Number</th>
-        <th>Fiscal Year</th>
-        <th>Posting Date</th>
-        <th>Amount</th>
-        <th>Doc Type</th>
-        <th>Created By</th>
-        <th>Memo Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let memo of filteredMemos()">
-        <td>{{ memo.MemoNumber }}</td>
-        <td>{{ memo.FiscalYear }}</td>
-        <td>{{ parseDate(memo.PostingDate) }}</td>
-        <td>{{ memo.Amount }}</td>
-        <td>{{ memo.DocType }}</td>
-        <td>{{ memo.CreatedBy }}</td>
-        <td>{{ memo.MemoType }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <!-- Memo Table -->
+  <div class="cd-container" *ngIf="filteredMemos().length > 0">
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Memo Number</th>
+          <th>Fiscal Year</th>
+          <th>Posting Date</th>
+          <th>Amount</th>
+          <!-- <th>Currency</th> -->
+          <th>Doc Type</th>
+          <th>Memo Type</th>
+          <th>Created By</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let memo of filteredMemos()">
+          <td>{{ memo.MemoNumber }}</td>
+          <td>{{ memo.FiscalYear }}</td>
+          <td>{{ parseDate(memo.PostingDate) }}</td>
+          <td>{{ memo.Amount }}</td>
+          <!-- <td>{{ memo.Currency }}</td> -->
+          <td>{{ memo.DocType }}</td>
+          <td>{{ memo.MemoType }}</td>
+          <td>{{ memo.CreatedBy }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
