@@ -4,7 +4,7 @@ export const getVendorData = (VendorId, Password) => {
   return new Promise((resolve, reject) => {
     const options = {
       method: 'GET',
-      url: `http://AZKTLDS5CP.kcloud.com:8000/sap/opu/odata/SAP/ZMM_VEND63_ODATA_SRV/ZVEND_LOGIN63Set(VendorId='0000100000',Password='123')?$format=json`,
+      url: `http://AZKTLDS5CP.kcloud.com:8000/sap/opu/odata/SAP/ZMM_VEND63_ODATA_SRV/ZVEND_LOGIN63Set(VendorId='${VendorId}',Password='${Password}')?$format=json`,
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Basic SzkwMTU2MzpBc21hbWFsaWNhQDIwMDQ=',

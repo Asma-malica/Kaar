@@ -8,8 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { AuthService } from '../services/auth.service';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -41,12 +41,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      vendorId: ['', Validators.required],
-      password: ['', Validators.required]
+      VendorId: ['', Validators.required], // ✅ match backend key
+      Password: ['', Validators.required]
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.errorMessage = '';
     this.successMessage = '';
 
@@ -57,27 +57,30 @@ export class LoginComponent implements OnInit {
 
     this.isLoading = true;
 
-    this.loginService.loginVendor(this.loginForm.value).subscribe({
-      next: (response: any) => {
-        const vendorId =
-          response?.vendorId || response?.data?.vendorId || this.loginForm.value.vendorId;
+   this.loginService.loginVendor(this.loginForm.value).subscribe({
+  next: (response: any) => {
+    const vendorId = response?.vendor?.VendorId || this.loginForm.value.VendorId;
 
-        if (vendorId) {
-          this.authService.setVendorId(vendorId);
-          this.successMessage = 'Login successful! Redirecting to dashboard...';
-          setTimeout(() => {
-            this.router.navigate(['/dashboard']);
-          }, 1500); // Wait 1.5s to show success message
-        } else {
-          this.errorMessage = 'Vendor ID not found in server response.';
-        }
+    if (vendorId) {
+      this.authService.setVendorId(vendorId);
+      this.successMessage = 'Login successful! Redirecting to dashboard...';
+      setTimeout(() => {
+        this.router.navigate(['/dashboard']);
+      }, 1500);
+    } else {
+      this.errorMessage = 'Vendor ID not found in response.';
+    }
 
-        this.isLoading = false;
-      },
-      error: (error) => {
-        this.errorMessage = error.error?.message || 'Login failed. Please try again.';
-        this.isLoading = false;
-      }
-    });
+    this.isLoading = false;
+  },
+  error: (error) => {
+    this.errorMessage = error.error?.message || 'Login failed. Please try again.';
+    console.error('Login Error:', error);
+    this.isLoading = false;
+  }
+});
+
+
+
   }
 }

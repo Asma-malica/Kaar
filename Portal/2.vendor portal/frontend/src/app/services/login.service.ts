@@ -9,10 +9,11 @@ export class LoginService {
 
   constructor(private http: HttpClient) {}
 
-  loginVendor(credentials: { vendorId: string; password: string }) {
+  // ACCEPT object with VendorId and Password (matching backend)
+  loginVendor(credentials: { VendorId: string; Password: string }) {
     return this.http.post(this.apiUrl, {
-      VendorId: credentials.vendorId,
-      Password: credentials.password
+      VendorId: credentials.VendorId,
+      Password: credentials.Password
     });
   }
 }

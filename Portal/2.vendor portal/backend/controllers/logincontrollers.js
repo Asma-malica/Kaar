@@ -9,17 +9,10 @@ export const loginVendor = async (req, res) => {
   }
 
   try {
-    const vendor = await getVendorData(VendorId);
+    const vendor = await getVendorData(VendorId, Password);
+
     if (!vendor) {
-      return res.status(401).json({ message: 'Invalid Vendor ID' });
-    }
-
-    if (vendor.VendorId !== VendorId) {
-      return res.status(401).json({ message: 'Incorrect VendorId' });
-    }
-
-    if (vendor.Password !== Password) {
-      return res.status(401).json({ message: 'Incorrect Password' });
+      return res.status(401).json({ message: 'Invalid Vendor ID or Password' });
     }
 
     return res.status(200).json({ message: 'Login successful', vendor });
