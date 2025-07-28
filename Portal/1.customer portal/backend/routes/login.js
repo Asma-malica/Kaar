@@ -1,8 +1,9 @@
+// routes/login.js
 import express from 'express';
-import { handleCustomerLogin } from '../controllers/logincontrollers.js'; // ✅ extension required
+import { loginCustomer } from '../controllers/logincontrollers.js';
 
 const router = express.Router();
 
-router.post('/', handleCustomerLogin);
+router.post('/login', loginCustomer);
 
 export default router;

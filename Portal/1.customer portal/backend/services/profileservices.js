@@ -1,23 +1,23 @@
+// services/profileServices.js
 import request from 'request';
 import { parseStringPromise } from 'xml2js';
 
-export const getCustomerData = (customerId, password) => {
+export const getCustomerProfile = (customerId) => {
   return new Promise((resolve, reject) => {
     const soapBody = `
       <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:rfc:functions">
         <soapenv:Header/>
         <soapenv:Body>
-          <urn:ZCUST63_FM>
-            <IV_KUNNR>${customerId}</IV_KUNNR>
-            <IV_PASS>${password}</IV_PASS>
-          </urn:ZCUST63_FM>
+          <urn:ZCUST_PROFILE63_FM>
+            <IV_CUSTOMER_ID>${customerId}</IV_CUSTOMER_ID>
+          </urn:ZCUST_PROFILE63_FM>
         </soapenv:Body>
       </soapenv:Envelope>
     `;
 
     const options = {
       method: 'POST',
-      url: 'http://AZKTLDS5CP.kcloud.com:8000/sap/bc/srt/scs/sap/zcust_loginservices63?sap-client=100&',
+      url: 'http://AZKTLDS5CP.kcloud.com:8000/sap/bc/srt/scs/sap/zcust_profileservice63?sap-client=100',
       headers: {
         'SOAPAction': 'urn:sap-com:document:sap:rfc:functions',
         'Content-Type': 'text/xml',
@@ -34,16 +34,11 @@ export const getCustomerData = (customerId, password) => {
         const result = await parseStringPromise(body, { explicitArray: false });
 
         const soapBody = result['soap-env:Envelope']['soap-env:Body'];
-        const responseData = soapBody['n0:ZCUST63_FMResponse'];
+        const profileData = soapBody['n0:ZCUST_PROFILE63_FMResponse']['ES_PROFILE'];
 
-        const parsed = {
-          status: responseData.EV_STATUS,
-          message: responseData.EV_MESSAGE
-        };
-
-        resolve(parsed);
+        resolve(profileData);
       } catch (err) {
-        reject(`Failed to parse SOAP response: ${err}`);
+        reject(`Failed to parse profile response: ${err}`);
       }
     });
   });

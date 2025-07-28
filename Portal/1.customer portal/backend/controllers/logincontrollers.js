@@ -1,17 +1,29 @@
-import { loginCustomer } from '../services/loginservices.js'; // ✅ extension required
+import { getCustomerData } from '../services/loginservices.js';
 
-export const handleCustomerLogin = (req, res) => {
-  const { customerId, password } = req.body;
+export const loginCustomer = async (req, res) => {
+  const { CustomerId, Password } = req.body;
 
-  if (!customerId || !password) {
-    return res.status(400).json({ message: 'Customer ID and Password are required.' });
+  if (!CustomerId || !Password) {
+    return res.status(400).json({ message: 'CustomerId and Password are required.' });
   }
 
-  loginCustomer(customerId, password, (error, soapResponse) => {
-    if (error) {
-      return res.status(500).json({ message: 'Error calling SAP RFC', error: error.message });
+  try {
+    const response = await getCustomerData(CustomerId, Password);
+
+    if (response.status === 'S') {
+      return res.status(200).json({
+        message: response.message || 'Login successful',
+        CustomerId,
+        Password
+      });
+    } else {
+      return res.status(401).json({
+        message: response.message || 'Login failed'
+      });
     }
 
-    res.status(200).send(soapResponse);
-  });
+  } catch (error) {
+    console.error('Login error:', error);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
 };
