@@ -1,0 +1,73 @@
+<div class="page-container">
+  <h1 class="header-title">WELCOME TO CUSTOMER PORTAL</h1>
+
+  <div class="panels-container">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <h2>Welcome to your Customer Portal</h2>
+      <p>
+        Access your account, manage your information, and explore all the features we offer
+        with ease and security.
+      </p>
+      <p>Please login with your Customer ID and Password to continue.</p>
+    </div>
+
+    <!-- Right Panel (Login Form) -->
+    <form 
+      class="right-panel" 
+      (ngSubmit)="onSubmit()" 
+      #loginForm="ngForm" 
+      autocomplete="off" 
+      novalidate
+    >
+      <div class="input-group">
+        <label for="customerId">Customer ID</label>
+        <div class="input-icon-wrapper">
+          <input
+            type="text"
+            id="customerId"
+            name="CustomerId"
+            [(ngModel)]="credentials.CustomerId"
+            required
+            minlength="3"
+            #customerIdControl="ngModel"
+            autocomplete="off"
+            placeholder="Enter Customer ID"
+            [class.invalid]="customerIdControl.invalid && customerIdControl.touched"
+          />
+          <span class="icon material-icons">person</span>
+        </div>
+        <div class="error" *ngIf="customerIdControl.invalid && customerIdControl.touched">
+          Customer ID is required and must be at least 3 characters.
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <div class="input-icon-wrapper">
+          <input
+            type="password"
+            id="password"
+            name="Password"
+            [(ngModel)]="credentials.Password"
+            required
+            #passwordControl="ngModel"
+            autocomplete="off"
+            placeholder="Enter Password"
+            [class.invalid]="passwordControl.invalid && passwordControl.touched"
+          />
+          <span class="icon material-icons">lock</span>
+        </div>
+        <div class="error" *ngIf="passwordControl.invalid && passwordControl.touched">
+          Password is required.
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loading || loginForm.invalid">
+        {{ loading ? 'Logging in...' : 'Login' }}
+      </button>
+
+      <p class="message" *ngIf="message">{{ message }}</p>
+    </form>
+  </div>
+</div>
