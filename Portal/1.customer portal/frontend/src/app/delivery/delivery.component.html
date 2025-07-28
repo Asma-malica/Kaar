@@ -1,0 +1,153 @@
+<nav class="navbar delivery-navbar">
+  <div class="nav-left">
+    <button class="back-btn" (click)="goBack()" aria-label="Go back">
+      <span class="material-icons">arrow_back</span>
+    </button>
+    <span class="page-title">Delivery</span>
+  </div>
+
+  <div class="nav-right">
+    <span class="welcome-msg">Welcome, {{ customerId }}</span>
+  </div>
+</nav>
+
+<section class="main-heading">
+  List of Deliveries
+</section>
+
+<section class="controls-row">
+  <input
+    type="text"
+    placeholder="Search deliveries..."
+    [(ngModel)]="searchTerm"
+    (input)="applyFilter()"
+    aria-label="Search deliveries"
+    class="search-input"
+  />
+
+  <select [(ngModel)]="sortKey" (change)="applySort()" aria-label="Sort deliveries" class="sort-select">
+    <option value="" disabled [selected]="!sortKey">Sort by</option>
+    <option value="DELIVERY_NO">Delivery No.</option>
+    <option value="DELIVERY_DATE">Delivery Date</option>
+    <option value="STATUS">Status</option>
+    <option value="GI_DATE">GI Date</option>
+    <option value="MAT_CODE">Material Code</option>
+    <option value="DESCRIPTION">Description</option>
+    <option value="DELIVERY_QTY">Delivery Qty</option>
+    <option value="TARGET_QTY">Target Qty</option>
+    <option value="UNIT">Unit</option>
+  </select>
+
+  <button class="print-btn" (click)="printTable()" aria-label="Print delivery table">
+    <span class="material-icons">print</span> Print
+  </button>
+</section>
+
+<section class="table-container" *ngIf="filteredDeliveries.length > 0; else noData">
+  <table class="delivery-table" aria-live="polite" aria-describedby="deliveryTableCaption" role="grid">
+    <!-- <caption id="deliveryTableCaption" class="sr-only">List of Deliveries</caption> -->
+    <thead>
+      <tr>
+        <th
+          (click)="setSort('DELIVERY_NO')"
+          [class.sort-active]="sortKey === 'DELIVERY_NO'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'DELIVERY_NO' ? 'ascending' : 'none'"
+        >Delivery No.</th>
+
+        <th
+          (click)="setSort('DELIVERY_DATE')"
+          [class.sort-active]="sortKey === 'DELIVERY_DATE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'DELIVERY_DATE' ? 'ascending' : 'none'"
+        >Delivery Date</th>
+
+        <th
+          (click)="setSort('STATUS')"
+          [class.sort-active]="sortKey === 'STATUS'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'STATUS' ? 'ascending' : 'none'"
+        >Status</th>
+
+        <th
+          (click)="setSort('GI_DATE')"
+          [class.sort-active]="sortKey === 'GI_DATE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'GI_DATE' ? 'ascending' : 'none'"
+        >GI Date</th>
+
+        <th
+          (click)="setSort('MAT_CODE')"
+          [class.sort-active]="sortKey === 'MAT_CODE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'MAT_CODE' ? 'ascending' : 'none'"
+        >Material Code</th>
+
+        <th
+          (click)="setSort('DESCRIPTION')"
+          [class.sort-active]="sortKey === 'DESCRIPTION'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'DESCRIPTION' ? 'ascending' : 'none'"
+        >Description</th>
+
+        <th
+          (click)="setSort('DELIVERY_QTY')"
+          [class.sort-active]="sortKey === 'DELIVERY_QTY'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'DELIVERY_QTY' ? 'ascending' : 'none'"
+        >Delivery Qty</th>
+
+        <th
+          (click)="setSort('TARGET_QTY')"
+          [class.sort-active]="sortKey === 'TARGET_QTY'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'TARGET_QTY' ? 'ascending' : 'none'"
+        >Target Qty</th>
+
+        <th
+          (click)="setSort('UNIT')"
+          [class.sort-active]="sortKey === 'UNIT'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'UNIT' ? 'ascending' : 'none'"
+        >Unit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let delivery of filteredDeliveries; trackBy: trackByDeliveryNo" role="row">
+        <td>{{ delivery.DELIVERY_NO }}</td>
+        <td>{{ delivery.DELIVERY_DATE }}</td>
+        <td>{{ delivery.STATUS }}</td>
+        <td>{{ delivery.GI_DATE }}</td>
+        <td>{{ delivery.MAT_CODE }}</td>
+        <td>{{ delivery.DESCRIPTION }}</td>
+        <td>{{ delivery.DELIVERY_QTY }}</td>
+        <td>{{ delivery.TARGET_QTY }}</td>
+        <td>{{ delivery.UNIT }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template #noData>
+  <div class="no-data-msg" role="alert">
+    No deliveries found for your account.
+  </div>
+</ng-template>

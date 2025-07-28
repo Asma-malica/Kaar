@@ -1,0 +1,144 @@
+<nav class="navbar inquiry-navbar">
+  <div class="nav-left">
+    <button class="back-btn" (click)="goBack()" aria-label="Go back">
+      <span class="material-icons">arrow_back</span>
+    </button>
+    <span class="page-title">Inquiry</span>
+  </div>
+
+  <div class="nav-right">
+    <span class="welcome-msg">Welcome, {{ customerId }}</span>
+  </div>
+</nav>
+
+<section class="main-heading">
+  List of Customer Inquiries
+</section>
+
+<section class="controls-row">
+  <input
+    type="text"
+    placeholder="Search inquiries..."
+    [(ngModel)]="searchTerm"
+    (input)="applyFilter()"
+    aria-label="Search inquiries"
+    class="search-input"
+  />
+
+  <select [(ngModel)]="sortKey" (change)="applySort()" aria-label="Sort inquiries" class="sort-select">
+    <option value="" disabled [selected]="!sortKey">Sort by</option>
+    <option value="INQUIRY_NO">Inquiry No.</option>
+    <option value="ITEM_DATE">Date</option>
+    <option value="DESCRIPTION">Description</option>
+    <option value="ORDER_QTY">Order Qty</option>
+    <option value="STATUS">Status</option>
+    <option value="REQ_DEL_DATE">Req. Delivery Date</option>
+  </select>
+
+  <button class="print-btn" (click)="printTable()" aria-label="Print inquiry table">
+    <span class="material-icons">print</span> Print
+  </button>
+</section>
+
+<section class="table-container" *ngIf="filteredInquiries.length > 0; else noData">
+  <table class="inquiry-table" aria-live="polite" aria-describedby="inquiryTableCaption" role="grid">
+    <!-- <caption id="inquiryTableCaption" class="sr-only">List of Customer Inquiries</caption> -->
+    <thead>
+      <tr>
+        <th
+          (click)="setSort('INQUIRY_NO')"
+          [class.sort-active]="sortKey === 'INQUIRY_NO'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'INQUIRY_NO' ? 'ascending' : 'none'"
+        >Inquiry No.</th>
+
+        <th
+          (click)="setSort('ITEM_DATE')"
+          [class.sort-active]="sortKey === 'ITEM_DATE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'ITEM_DATE' ? 'ascending' : 'none'"
+        >Date</th>
+
+        <th
+          (click)="setSort('MAT_CODE')"
+          [class.sort-active]="sortKey === 'MAT_CODE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'MAT_CODE' ? 'ascending' : 'none'"
+        >Material Code</th>
+
+        <th
+          (click)="setSort('DESCRIPTION')"
+          [class.sort-active]="sortKey === 'DESCRIPTION'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'DESCRIPTION' ? 'ascending' : 'none'"
+        >Description</th>
+
+        <th
+          (click)="setSort('ORDER_QTY')"
+          [class.sort-active]="sortKey === 'ORDER_QTY'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'ORDER_QTY' ? 'ascending' : 'none'"
+        >Order Qty</th>
+
+        <th
+          (click)="setSort('UNIT')"
+          [class.sort-active]="sortKey === 'UNIT'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'UNIT' ? 'ascending' : 'none'"
+        >Unit</th>
+
+        <th
+          (click)="setSort('STATUS')"
+          [class.sort-active]="sortKey === 'STATUS'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'STATUS' ? 'ascending' : 'none'"
+        >Status</th>
+
+        <th
+          (click)="setSort('REQ_DEL_DATE')"
+          [class.sort-active]="sortKey === 'REQ_DEL_DATE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'REQ_DEL_DATE' ? 'ascending' : 'none'"
+        >Req. Delivery Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let inquiry of filteredInquiries; trackBy: trackByInquiryNo" role="row">
+        <td>{{ inquiry.INQUIRY_NO }}</td>
+        <td>{{ inquiry.ITEM_DATE }}</td>
+        <td>{{ inquiry.MAT_CODE }}</td>
+        <td>{{ inquiry.DESCRIPTION }}</td>
+        <td>{{ inquiry.ORDER_QTY }}</td>
+        <td>{{ inquiry.UNIT }}</td>
+        <td>
+          <span
+            [class.status-active]="inquiry.STATUS === 'A'"
+            [class.status-inactive]="inquiry.STATUS !== 'A'"
+            >{{ inquiry.STATUS }}</span
+          >
+        </td>
+        <td>{{ inquiry.REQ_DEL_DATE }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template #noData>
+  <div class="no-data-msg" role="alert">No inquiries found for your account.</div>
+</ng-template>

@@ -1,0 +1,59 @@
+<nav class="navbar financials-navbar">
+  <div class="nav-left">
+    <button class="back-btn" routerLink="/dashboard" aria-label="Go back to dashboard">
+      <span class="material-icons">arrow_back</span>
+    </button>
+    <span class="page-title">Financials</span>
+  </div>
+  <div class="nav-right">
+    <span class="welcome-msg">Welcome, {{ customerId }}</span>
+  </div>
+</nav>
+
+<div class="nav-center">
+  <h1 class="center-heading">Welcome to Financial Hub</h1>
+</div>
+
+<section class="financial-intro">
+  <p>
+    Explore your financial data quickly and easily. Use the options below to view invoices,
+    payments and aging details, credit and debit memos, and your overall sales data.
+  </p>
+</section>
+
+<section class="tiles-container">
+  <button class="tile-link" aria-label="Invoice Details" (click)="navigateTo('invoice')">
+    <div class="tile">
+      <span class="material-icons tile-icon">description</span>
+      <span class="tile-title">Invoice Details</span>
+      <p class="tile-desc">View and manage your invoices, including detailed transaction history and status.</p>
+    </div>
+  </button>
+
+  <button class="tile-link" aria-label="Payments And Aging" (click)="navigateTo('payment')">
+    <div class="tile">
+      <span class="material-icons tile-icon">account_balance_wallet</span>
+      <span class="tile-title">Payments and Aging</span>
+      <p class="tile-desc">Track your payments, outstanding amounts, and aging reports to stay on top of financials.</p>
+    </div>
+  </button>
+
+  <button class="tile-link" aria-label="Credit and Debit Memo" (click)="navigateTo('creditdebit')">
+    <div class="tile">
+      <span class="material-icons tile-icon">receipt_long</span>
+      <span class="tile-title">Credit/Debit Memo</span>
+      <p class="tile-desc">Access credit and debit memos issued against your account for clear financial overview.</p>
+    </div>
+  </button>
+
+  <button class="tile-link" aria-label="Overall Sales Data" (click)="navigateTo('overallsales')">
+    <div class="tile">
+      <span class="material-icons tile-icon">bar_chart</span>
+      <span class="tile-title">Overall Sales Data</span>
+      <p class="tile-desc">Analyze overall sales metrics and trends across your account with detailed charts.</p>
+    </div>
+  </button>
+</section>
+
+<!-- Render router children here -->
+<!-- <router-outlet></router-outlet> -->

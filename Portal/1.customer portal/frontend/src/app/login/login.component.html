@@ -4,7 +4,6 @@
   <div class="panels-container">
     <!-- Left Panel -->
     <div class="left-panel">
-      <h2>Welcome to your Customer Portal</h2>
       <p>
         Access your account, manage your information, and explore all the features we offer
         with ease and security.
@@ -67,7 +66,14 @@
         {{ loading ? 'Logging in...' : 'Login' }}
       </button>
 
-      <p class="message" *ngIf="message">{{ message }}</p>
+      <!-- Message paragraph with dynamic class binding -->
+      <p 
+        class="message" 
+        *ngIf="message" 
+        [ngClass]="{'success': messageType === 'success', 'error': messageType === 'error'}"
+      >
+        {{ message }}
+      </p>
     </form>
   </div>
 </div>

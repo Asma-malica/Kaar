@@ -1,4 +1,86 @@
-<h2>Welcome to your Dashboard</h2>
-<p>Customer ID: {{ customerId }}</p>
+<nav class="navbar">
+  <div class="navbar-left">
+    <button class="hamburger" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+      <span class="material-icons">menu</span>
+    </button>
+    <span class="portal-title">CUSTOMER PORTAL</span>
+  </div>
 
-<!-- Later add your Profile, Inquiries, Orders etc. -->
+  <div class="navbar-right">
+    <span class="welcome-msg">Welcome, {{ customerId }}</span>
+    <button class="profile-btn" (click)="goToProfile()" aria-label="Go to profile page">
+      <span class="material-icons">account_circle</span>
+    </button>
+  </div>
+</nav>
+
+<main class="dashboard-container" [class.sidebar-open]="sidebarOpen">
+  <header class="dashboard-header">
+    <h1>Dashboard</h1>
+    <p class="dashboard-subtitle">
+      Welcome to your portal! Explore your inquiries, orders, deliveries, and financial data easily from one place.
+    </p>
+  </header>
+
+  <section class="tiles-grid" aria-label="Dashboard Tiles">
+    <div
+      class="tile"
+      tabindex="0"
+      (click)="navigateTo('inquiry')"
+      (keyup.enter)="navigateTo('inquiry')"
+      role="button"
+      aria-label="Inquiry Data"
+    >
+      <span class="material-icons tile-icon">search</span>
+      <h2 class="tile-title">Inquiry Data</h2>
+      <p class="tile-desc">
+        View and manage all your inquiries — requests for quotation or product info without obligation.
+      </p>
+    </div>
+
+    <div
+      class="tile"
+      tabindex="0"
+      (click)="navigateTo('salesorder')"
+      (keyup.enter)="navigateTo('salesorder')"
+      role="button"
+      aria-label="Sale Order Data"
+    >
+      <span class="material-icons tile-icon">shopping_cart</span>
+      <h2 class="tile-title">Sale Order Data</h2>
+      <p class="tile-desc">
+        Track your sale orders — requests for products or services with defined quantities and schedules.
+      </p>
+    </div>
+
+    <div
+      class="tile"
+      tabindex="0"
+      (click)="navigateTo('delivery')"
+      (keyup.enter)="navigateTo('delivery')"
+      role="button"
+      aria-label="List of Delivery"
+    >
+      <span class="material-icons tile-icon">local_shipping</span>
+      <h2 class="tile-title">List of Delivery</h2>
+      <p class="tile-desc">
+        Get updates on your shipment statuses and delivery documents to monitor your logistics.
+      </p>
+    </div>
+
+    <div
+      class="tile"
+      tabindex="0"
+      (click)="navigateTo('financial')"
+      (keyup.enter)="navigateTo('financial')"
+      role="button"
+      aria-label="Customer Financial"
+    >
+      <span class="material-icons tile-icon">account_balance_wallet</span>
+      <h2 class="tile-title">Customer Financial</h2>
+      <p class="tile-desc">
+        Review your invoices, payments, aging reports, and credit/debit memos comprehensively.
+      </p>
+    </div>
+  </section>
+</main>

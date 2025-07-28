@@ -20,6 +20,7 @@ export class LoginComponent {
 
   loading = false;
   message = '';
+  messageType: 'error' | 'success' | '' = '';
 
   constructor(
     private loginService: LoginService,
@@ -30,19 +31,28 @@ export class LoginComponent {
   onSubmit() {
     if (!this.credentials.CustomerId || !this.credentials.Password) {
       this.message = 'Please fill in all required fields.';
+      this.messageType = 'error';
       return;
     }
 
     this.loading = true;
     this.message = '';
+    this.messageType = '';
 
     this.loginService.loginCustomer(this.credentials).subscribe({
       next: (response) => {
         this.authService.setCustomerId(response.CustomerId);
-        this.router.navigate(['/dashboard']);
+        this.message = 'Login Successful! Redirecting to dashboard...';
+        this.messageType = 'success';
+
+        // Brief delay so the user sees success message before navigation
+        setTimeout(() => {
+          this.router.navigate(['/dashboard']);
+        }, 1500);
       },
       error: (error) => {
         this.message = error.error?.message || 'Login failed. Please try again.';
+        this.messageType = 'error';
         this.loading = false;
       },
       complete: () => {

@@ -1,0 +1,146 @@
+<nav class="navbar salesorder-navbar">
+  <div class="nav-left">
+    <button class="back-btn" (click)="goBack()" aria-label="Go back">
+      <span class="material-icons">arrow_back</span>
+    </button>
+    <span class="page-title">Sales Order</span>
+  </div>
+
+  <div class="nav-right">
+    <span class="welcome-msg">Welcome, {{ customerId }}</span>
+  </div>
+</nav>
+
+<section class="main-heading">
+  List of Sales Orders
+</section>
+
+<section class="controls-row">
+  <input
+    type="text"
+    placeholder="Search sales orders..."
+    [(ngModel)]="searchTerm"
+    (input)="applyFilter()"
+    aria-label="Search sales orders"
+    class="search-input"
+  />
+
+  <select [(ngModel)]="sortKey" (change)="applySort()" aria-label="Sort sales orders" class="sort-select">
+    <option value="" disabled [selected]="!sortKey">Sort by</option>
+    <option value="ORDER_NO">Order No.</option>
+    <option value="ORDER_DATE">Order Date</option>
+    <option value="DESCRIPTION">Description</option>
+    <option value="ORDER_QTY">Quantity</option>
+    <option value="STATUS">Status</option>
+    <option value="REQ_DEL_DATE">Req. Delivery Date</option>
+  </select>
+
+  <button class="print-btn" (click)="printTable()" aria-label="Print sales order table">
+    <span class="material-icons">print</span> Print
+  </button>
+</section>
+
+<section class="table-container" *ngIf="filteredSalesOrders.length > 0; else noData">
+  <table class="salesorder-table" aria-live="polite" aria-describedby="salesOrderTableCaption" role="grid">
+    <!-- <caption id="salesOrderTableCaption" class="sr-only">List of Sales Orders</caption> -->
+    <thead>
+      <tr>
+        <th
+          (click)="setSort('ORDER_NO')"
+          [class.sort-active]="sortKey === 'ORDER_NO'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'ORDER_NO' ? 'ascending' : 'none'"
+        >Order No.</th>
+
+        <th
+          (click)="setSort('ORDER_DATE')"
+          [class.sort-active]="sortKey === 'ORDER_DATE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'ORDER_DATE' ? 'ascending' : 'none'"
+        >Order Date</th>
+
+        <th
+          (click)="setSort('MAT_CODE')"
+          [class.sort-active]="sortKey === 'MAT_CODE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'MAT_CODE' ? 'ascending' : 'none'"
+        >Material Code</th>
+
+        <th
+          (click)="setSort('DESCRIPTION')"
+          [class.sort-active]="sortKey === 'DESCRIPTION'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'DESCRIPTION' ? 'ascending' : 'none'"
+        >Description</th>
+
+        <th
+          (click)="setSort('ORDER_QTY')"
+          [class.sort-active]="sortKey === 'ORDER_QTY'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'ORDER_QTY' ? 'ascending' : 'none'"
+        >Quantity</th>
+
+        <th
+          (click)="setSort('UNIT')"
+          [class.sort-active]="sortKey === 'UNIT'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'UNIT' ? 'ascending' : 'none'"
+        >Unit</th>
+
+        <th
+          (click)="setSort('STATUS')"
+          [class.sort-active]="sortKey === 'STATUS'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'STATUS' ? 'ascending' : 'none'"
+        >Status</th>
+
+        <th
+          (click)="setSort('REQ_DEL_DATE')"
+          [class.sort-active]="sortKey === 'REQ_DEL_DATE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'REQ_DEL_DATE' ? 'ascending' : 'none'"
+        >Req. Delivery Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of filteredSalesOrders; trackBy: trackByOrderNo" role="row">
+        <td>{{ order.ORDER_NO }}</td>
+        <td>{{ order.ORDER_DATE }}</td>
+        <td>{{ order.MAT_CODE }}</td>
+        <td>{{ order.DESCRIPTION }}</td>
+        <td>{{ order.ORDER_QTY }}</td>
+        <td>{{ order.UNIT }}</td>
+        <td>
+          <span
+            [class.status-active]="order.STATUS === 'A'"
+            [class.status-inactive]="order.STATUS !== 'A'"
+            >{{ order.STATUS }}</span
+          >
+        </td>
+        <td>{{ order.REQ_DEL_DATE }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template #noData>
+  <div class="no-data-msg" role="alert">
+    No sales orders found for your account.
+  </div>
+</ng-template>
