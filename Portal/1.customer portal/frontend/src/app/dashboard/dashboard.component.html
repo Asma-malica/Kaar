@@ -1,6 +1,11 @@
 <nav class="navbar">
   <div class="navbar-left">
-    <button class="hamburger" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+    <button
+      class="hamburger"
+      (click)="toggleSidebar()"
+      aria-label="Toggle sidebar"
+      [attr.aria-expanded]="sidebarOpen"
+    >
       <span class="material-icons">menu</span>
     </button>
     <span class="portal-title">CUSTOMER PORTAL</span>
@@ -8,11 +13,49 @@
 
   <div class="navbar-right">
     <span class="welcome-msg">Welcome, {{ customerId }}</span>
-    <button class="profile-btn" (click)="goToProfile()" aria-label="Go to profile page">
+    <button
+      class="profile-btn"
+      (click)="goToProfile()"
+      aria-label="Go to profile page"
+    >
       <span class="material-icons">account_circle</span>
     </button>
   </div>
 </nav>
+
+<!-- Sidebar -->
+<aside 
+  class="sidebar" 
+  [class.open]="sidebarOpen" 
+  role="complementary" 
+  aria-label="Sidebar navigation"
+>
+  <nav class="sidebar-nav" aria-label="Main sidebar navigation">
+    <ul>
+      <li><a href="#" (click)="navigateTo('inquiry')">Inquiry Data</a></li>
+      <li><a href="#" (click)="navigateTo('salesorder')">Sale Order Data</a></li>
+      <li><a href="#" (click)="navigateTo('delivery')">List of Delivery</a></li>
+      <li><a href="#" (click)="navigateTo('financial')">Customer Financial</a></li>
+    </ul>
+  </nav>
+
+  <button 
+    class="sidebar-signout" 
+    (click)="signOut()" 
+    aria-label="Sign out"
+  >
+    Sign Out
+  </button>
+</aside>
+
+<!-- Backdrop -->
+<div 
+  class="backdrop" 
+  [class.active]="sidebarOpen" 
+  (click)="toggleSidebar()" 
+  [attr.aria-hidden]="!sidebarOpen" 
+  tabindex="-1"
+></div>
 
 <main class="dashboard-container" [class.sidebar-open]="sidebarOpen">
   <header class="dashboard-header">
@@ -23,12 +66,11 @@
   </header>
 
   <section class="tiles-grid" aria-label="Dashboard Tiles">
-    <div
-      class="tile"
-      tabindex="0"
-      (click)="navigateTo('inquiry')"
-      (keyup.enter)="navigateTo('inquiry')"
-      role="button"
+    <div 
+      class="tile" tabindex="0" 
+      (click)="navigateTo('inquiry')" 
+      (keyup.enter)="navigateTo('inquiry')" 
+      role="button" 
       aria-label="Inquiry Data"
     >
       <span class="material-icons tile-icon">search</span>
@@ -38,12 +80,11 @@
       </p>
     </div>
 
-    <div
-      class="tile"
-      tabindex="0"
-      (click)="navigateTo('salesorder')"
-      (keyup.enter)="navigateTo('salesorder')"
-      role="button"
+    <div 
+      class="tile" tabindex="0" 
+      (click)="navigateTo('salesorder')" 
+      (keyup.enter)="navigateTo('salesorder')" 
+      role="button" 
       aria-label="Sale Order Data"
     >
       <span class="material-icons tile-icon">shopping_cart</span>
@@ -53,12 +94,11 @@
       </p>
     </div>
 
-    <div
-      class="tile"
-      tabindex="0"
-      (click)="navigateTo('delivery')"
-      (keyup.enter)="navigateTo('delivery')"
-      role="button"
+    <div 
+      class="tile" tabindex="0" 
+      (click)="navigateTo('delivery')" 
+      (keyup.enter)="navigateTo('delivery')" 
+      role="button" 
       aria-label="List of Delivery"
     >
       <span class="material-icons tile-icon">local_shipping</span>
@@ -68,12 +108,11 @@
       </p>
     </div>
 
-    <div
-      class="tile"
-      tabindex="0"
-      (click)="navigateTo('financial')"
-      (keyup.enter)="navigateTo('financial')"
-      role="button"
+    <div 
+      class="tile" tabindex="0" 
+      (click)="navigateTo('financial')" 
+      (keyup.enter)="navigateTo('financial')" 
+      role="button" 
       aria-label="Customer Financial"
     >
       <span class="material-icons tile-icon">account_balance_wallet</span>

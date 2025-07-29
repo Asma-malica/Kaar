@@ -1,1 +1,230 @@
-<p>overallsales works!</p>
+<nav class="navbar inquiry-navbar">
+  <div class="nav-left">
+    <button class="back-btn" (click)="goBack()" aria-label="Go back">
+      <span class="material-icons">arrow_back</span>
+    </button>
+    <span class="page-title">Overall Sales</span>
+  </div>
+
+  <div class="nav-right">
+    <span class="welcome-msg">Welcome, {{ customerId }}</span>
+  </div>
+</nav>
+
+<section class="main-heading">List of Overall Sales</section>
+
+<section class="controls-row">
+  <input
+    type="text"
+    placeholder="Search overall sales..."
+    [(ngModel)]="searchTerm"
+    (input)="applyFilter()"
+    aria-label="Search overall sales"
+    class="search-input"
+  />
+
+  <select
+    [(ngModel)]="sortKey"
+    (change)="setSort(sortKey)"
+    aria-label="Sort overall sales"
+    class="sort-select"
+  >
+    <option value="" disabled [selected]="!sortKey">Sort by</option>
+    <option value="BILLING_DOC_NO">Billing Doc No.</option>
+    <option value="BILLING_DATE">Billing Date</option>
+    <option value="CUSTOMER_ID">Customer ID</option>
+    <option value="SALES_ORG">Sales Org</option>
+    <option value="DISTRIBUTION_CHANNEL">Distribution Channel</option>
+    <option value="DIVISION">Division</option>
+    <option value="CURRENCY">Currency</option>
+    <option value="NET_VALUE">Net Value</option>
+    <option value="BILLING_TYPE">Billing Type</option>
+    <option value="ITEM_NO">Item No.</option>
+    <option value="MATERIAL_NO">Material No.</option>
+    <option value="MATERIAL_DESC">Material Desc.</option>
+    <option value="BILLED_QTY">Billed Qty</option>
+    <option value="SALES_UNIT">Sales Unit</option>
+  </select>
+
+  <button class="print-btn" (click)="printTable()" aria-label="Print overall sales table">
+    <span class="material-icons">print</span> Print
+  </button>
+</section>
+
+<section class="table-container" *ngIf="filteredSales.length > 0; else noData">
+  <table
+    class="inquiry-table"
+    aria-live="polite"
+    aria-describedby="overallSalesTableCaption"
+    role="grid"
+  >
+
+    <thead>
+      <tr>
+        <th
+          (click)="setSort('BILLING_DOC_NO')"
+          [class.sort-active]="sortKey === 'BILLING_DOC_NO'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'BILLING_DOC_NO' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Billing Doc No.
+        </th>
+        <th
+          (click)="setSort('BILLING_DATE')"
+          [class.sort-active]="sortKey === 'BILLING_DATE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'BILLING_DATE' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Billing Date
+        </th>
+        <th
+          (click)="setSort('CUSTOMER_ID')"
+          [class.sort-active]="sortKey === 'CUSTOMER_ID'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'CUSTOMER_ID' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Customer ID
+        </th>
+        <th
+          (click)="setSort('SALES_ORG')"
+          [class.sort-active]="sortKey === 'SALES_ORG'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'SALES_ORG' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Sales Org
+        </th>
+        <th
+          (click)="setSort('DISTRIBUTION_CHANNEL')"
+          [class.sort-active]="sortKey === 'DISTRIBUTION_CHANNEL'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'DISTRIBUTION_CHANNEL' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Distribution Channel
+        </th>
+        <th
+          (click)="setSort('DIVISION')"
+          [class.sort-active]="sortKey === 'DIVISION'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'DIVISION' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Division
+        </th>
+        <th
+          (click)="setSort('CURRENCY')"
+          [class.sort-active]="sortKey === 'CURRENCY'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'CURRENCY' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Currency
+        </th>
+        <th
+          (click)="setSort('NET_VALUE')"
+          [class.sort-active]="sortKey === 'NET_VALUE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'NET_VALUE' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Net Value
+        </th>
+        <th
+          (click)="setSort('BILLING_TYPE')"
+          [class.sort-active]="sortKey === 'BILLING_TYPE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'BILLING_TYPE' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Billing Type
+        </th>
+        <th
+          (click)="setSort('ITEM_NO')"
+          [class.sort-active]="sortKey === 'ITEM_NO'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'ITEM_NO' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Item No.
+        </th>
+        <th
+          (click)="setSort('MATERIAL_NO')"
+          [class.sort-active]="sortKey === 'MATERIAL_NO'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'MATERIAL_NO' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Material No.
+        </th>
+        <th
+          (click)="setSort('MATERIAL_DESC')"
+          [class.sort-active]="sortKey === 'MATERIAL_DESC'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'MATERIAL_DESC' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Material Desc.
+        </th>
+        <th
+          (click)="setSort('BILLED_QTY')"
+          [class.sort-active]="sortKey === 'BILLED_QTY'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'BILLED_QTY' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Billed Qty
+        </th>
+        <th
+          (click)="setSort('SALES_UNIT')"
+          [class.sort-active]="sortKey === 'SALES_UNIT'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'SALES_UNIT' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Sales Unit
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let sale of filteredSales; trackBy: trackByBillingDocNo" role="row">
+        <td>{{ sale.BILLING_DOC_NO }}</td>
+        <td>{{ sale.BILLING_DATE }}</td>
+        <td>{{ sale.CUSTOMER_ID }}</td>
+        <td>{{ sale.SALES_ORG }}</td>
+        <td>{{ sale.DISTRIBUTION_CHANNEL }}</td>
+        <td>{{ sale.DIVISION }}</td>
+        <td>{{ sale.CURRENCY }}</td>
+        <td>{{ sale.NET_VALUE }}</td>
+        <td>{{ sale.BILLING_TYPE }}</td>
+        <td>{{ sale.ITEM_NO }}</td>
+        <td>{{ sale.MATERIAL_NO }}</td>
+        <td>{{ sale.MATERIAL_DESC }}</td>
+        <td>{{ sale.BILLED_QTY }}</td>
+        <td>{{ sale.SALES_UNIT }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template #noData>
+  <div class="no-data-msg" role="alert">No overall sales data found for your account.</div>
+</ng-template>

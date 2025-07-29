@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+:host {
+  display: block;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f7fa;
+  color: #2c3e50;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+.inquiry-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  background-color: #2962ff;
+  color: white;
+  padding: 0 1rem;
+  user-select: none;
+  gap: 8px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-grow: 1;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.nav-right {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Back button */
+.back-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.back-btn:focus {
+  outline: 2px solid #ffffffcc;
+  outline-offset: 2px;
+}
+
+/* Top Page Title next to back button */
+.page-title {
+  user-select: none;
+}
+
+/* Main heading above controls and table */
+.main-heading {
+  max-width: 960px;
+  font-weight: 900;
+  font-size: 2rem;
+  margin: 2.5rem auto 1rem auto;
+  text-align: center;
+  color: #2962ff;
+  user-select: none;
+}
+
+/* Controls Row */
+.controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 960px;
+  margin: 1rem auto 1.8rem auto;
+  gap: 1rem;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.45rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #b0bec5;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #2962ff;
+  outline: none;
+  box-shadow: 0 0 10px rgba(41, 98, 255, 0.4);
+}
+
+.sort-select {
+  width: 190px;
+  padding: 0.45rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #b0bec5;
+  transition: border-color 0.3s ease;
+}
+
+.sort-select:focus {
+  border-color: #2962ff;
+  outline: none;
+  box-shadow: 0 0 10px rgba(41, 98, 255, 0.4);
+}
+
+.print-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #2962ff;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 6px 20px rgba(41, 98, 255, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.print-btn:hover,
+.print-btn:focus {
+  background-color: #0039cb;
+  outline: none;
+}
+
+/* Table Container */
+.table-container {
+  max-width: 960px;
+  margin: 0 auto 3rem;
+  overflow-x: auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.1);
+  user-select: none;
+}
+
+/* Inquiry Table */
+.inquiry-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.inquiry-table th,
+.inquiry-table td {
+  padding: 1rem 1.1rem;
+  border: 1.5px solid #e0e0e0;
+  text-align: left;
+  color: #37474f;
+}
+
+.inquiry-table thead th {
+  font-weight: 800;
+  background-color: #e8f0fe;
+  cursor: pointer;
+  user-select: none;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.inquiry-table thead th.sort-active {
+  color: #2962ff;
+  text-decoration: underline;
+}
+
+.inquiry-table tbody tr:hover {
+  background-color: #f1f5fc;
+}
+
+/* No data message */
+.no-data-msg {
+  max-width: 960px;
+  margin: 4rem auto;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #999;
+  user-select: none;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .controls-row {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .sort-select {
+    width: 100%;
+  }
+
+  .print-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

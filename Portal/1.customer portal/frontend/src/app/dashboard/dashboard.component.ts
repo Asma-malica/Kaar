@@ -26,33 +26,34 @@ export class DashboardComponent {
   navigateTo(routeKey: string): void {
     const routeMap: Record<string, string> = {
       inquiry: '/dashboard/inquiry',
-      'salesorder': '/dashboard/salesorder',
-      'delivery': '/dashboard/delivery',
-      'financial': '/dashboard/financial',
+      salesorder: '/dashboard/salesorder',
+      delivery: '/dashboard/delivery',
+      financial: '/dashboard/financial',
     };
     const route = routeMap[routeKey] || '/dashboard';
     this.router.navigate([route]);
-    this.sidebarOpen = false; // close sidebar after nav
+    this.sidebarOpen = false; // close sidebar after navigation
   }
 
   goToProfile(): void {
-    // Navigate to profile page (component to be created later)
     this.router.navigate(['/profile']);
   }
 
-  logout(): void {
+  signOut(): void {
     if (this.authService.logout) {
       this.authService.logout();
     }
     this.router.navigate(['/login']);
   }
 
-  // Close sidebar if click outside sidebar or hamburger
-  @HostListener('document:click', ['$event.target'])
-  onClick(target: HTMLElement): void {
-    const clickedInsideSidebar =
-      target.closest('.sidebar') || target.closest('.hamburger');
-    if (!clickedInsideSidebar) {
+  // Close sidebar if clicking outside sidebar or hamburger button
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    const clickedInsideSidebar = target.closest('.sidebar');
+    const clickedHamburger = target.closest('.hamburger');
+
+    if (!clickedInsideSidebar && !clickedHamburger && this.sidebarOpen) {
       this.sidebarOpen = false;
     }
   }

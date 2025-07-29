@@ -1,1 +1,137 @@
-<p>payment works!</p>
+<nav class="navbar inquiry-navbar">
+  <div class="nav-left">
+    <button class="back-btn" (click)="goBack()" aria-label="Go back">
+      <span class="material-icons">arrow_back</span>
+    </button>
+    <span class="page-title">Payments</span>
+  </div>
+
+  <div class="nav-right">
+    <span class="welcome-msg">Welcome, {{ customerId }}</span>
+  </div>
+</nav>
+
+<section class="main-heading">List of Payments</section>
+
+<section class="controls-row">
+  <input
+    type="text"
+    placeholder="Search payments..."
+    [(ngModel)]="searchTerm"
+    (input)="applyFilter()"
+    aria-label="Search payments"
+    class="search-input"
+  />
+
+  <select
+    [(ngModel)]="sortKey"
+    (change)="setSort(sortKey)"
+    aria-label="Sort payments"
+    class="sort-select"
+  >
+    <option value="" disabled [selected]="!sortKey">Sort by</option>
+    <option value="BILLING_DOC_NO">Billing Doc No.</option>
+    <option value="BILLING_DATE">Billing Date</option>
+    <option value="DUE_DATE">Due Date</option>
+    <option value="NET_VALUE">Net Value</option>
+    <option value="CURRENCY">Currency</option>
+    <option value="AGING_DAYS">Aging Days</option>
+  </select>
+
+  <button class="print-btn" (click)="printTable()" aria-label="Print payment table">
+    <span class="material-icons">print</span> Print
+  </button>
+</section>
+
+<section class="table-container" *ngIf="filteredPayments.length > 0; else noData">
+  <table
+    class="inquiry-table"
+    aria-live="polite"
+    aria-describedby="paymentTableCaption"
+    role="grid"
+  >
+   
+
+    <thead>
+      <tr>
+        <th
+          (click)="setSort('BILLING_DOC_NO')"
+          [class.sort-active]="sortKey === 'BILLING_DOC_NO'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'BILLING_DOC_NO' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Billing Doc No.
+        </th>
+        <th
+          (click)="setSort('BILLING_DATE')"
+          [class.sort-active]="sortKey === 'BILLING_DATE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'BILLING_DATE' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Billing Date
+        </th>
+        <th
+          (click)="setSort('DUE_DATE')"
+          [class.sort-active]="sortKey === 'DUE_DATE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'DUE_DATE' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Due Date
+        </th>
+        <th
+          (click)="setSort('NET_VALUE')"
+          [class.sort-active]="sortKey === 'NET_VALUE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'NET_VALUE' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Net Value
+        </th>
+        <th
+          (click)="setSort('CURRENCY')"
+          [class.sort-active]="sortKey === 'CURRENCY'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'CURRENCY' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Currency
+        </th>
+        <th
+          (click)="setSort('AGING_DAYS')"
+          [class.sort-active]="sortKey === 'AGING_DAYS'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'AGING_DAYS' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Aging Days
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let payment of filteredPayments; trackBy: trackByBillingDocNo"
+        role="row"
+      >
+        <td>{{ payment.BILLING_DOC_NO }}</td>
+        <td>{{ payment.BILLING_DATE }}</td>
+        <td>{{ payment.DUE_DATE }}</td>
+        <td>{{ payment.NET_VALUE }}</td>
+        <td>{{ payment.CURRENCY }}</td>
+        <td>{{ payment.AGING_DAYS.trim() }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template #noData>
+  <div class="no-data-msg" role="alert">No payments found for your account.</div>
+</ng-template>

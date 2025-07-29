@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';  // Import Router
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -20,7 +20,6 @@ export class FinancialComponent implements OnInit {
   }
 
   navigateTo(path: string): void {
-    // Navigate to child route under 'dashboard/financial'
     this.router.navigate(['/dashboard/financial', path]);
   }
 }

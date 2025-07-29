@@ -10,6 +10,7 @@ import deliveryRoutes from './routes/delivery.js';
 import paymentRoutes from './routes/payment.js';
 import creditdebitRoutes from './routes/creditdebit.js';
 import overallsalesRoutes from './routes/overallsales.js';
+import invoiceRoutes from'./routes/invoice.js';
 
 const app = express();
 const PORT = 3000;
@@ -24,7 +25,7 @@ app.use('/api', deliveryRoutes);
 app.use('/api', paymentRoutes);
 app.use('/api', creditdebitRoutes); 
 app.use('/api', overallsalesRoutes); 
-
+app.use('/api', invoiceRoutes);
 
 app.listen(PORT, () => {
   console.log(`Customer Portal Backend running at http://localhost:${PORT}`);

@@ -3,12 +3,24 @@
 :host {
   display: block;
   height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Times New Roman', Times, serif; /* Changed font */
   background: #f5f7fa;
   color: #2c3e50;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
-/* Navbar styles */
+/* Reset body and html to prevent overflow */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Navbar */
 .navbar {
   height: 64px;
   background-color: #2962ff;
@@ -41,10 +53,11 @@
 }
 
 .portal-title {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 2px;
   user-select: none;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .navbar-right {
@@ -57,6 +70,7 @@
   font-weight: 600;
   font-size: 1rem;
   user-select: none;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .profile-btn {
@@ -73,30 +87,34 @@
   outline-offset: 2px;
 }
 
-/* Sidebar styles */
+/* Sidebar */
 .sidebar {
   position: fixed;
   top: 64px;
   left: -280px;
   width: 280px;
+  max-width: 100vw;
   height: calc(100vh - 64px);
   background-color: #2962ff;
   color: white;
-  padding: 2rem 1.5rem 4rem 1.5rem; /* extra bottom padding for sign out */
+  padding: 2rem 1.5rem 4rem;
   box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
   transition: left 0.3s ease;
   z-index: 1200;
   overflow-y: auto;
-  user-select: none;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  user-select: none;
+  box-sizing: border-box;
+  will-change: left;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .sidebar.open {
   left: 0;
 }
 
+/* Sidebar nav links */
 .sidebar-nav ul {
   list-style: none;
   padding: 0;
@@ -105,19 +123,20 @@
 }
 
 .sidebar-nav li {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .sidebar-nav a {
   color: white;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   text-decoration: none;
-  cursor: pointer;
+  padding: 0.4rem 0;
   display: block;
-  padding: 0.35rem 0;
+  cursor: pointer;
   transition: color 0.2s ease;
   user-select: none;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .sidebar-nav a:hover,
@@ -126,19 +145,21 @@
   outline: none;
 }
 
-/* Sidebar signout button fixed at bottom */
+/* Signout button fixed at bottom */
 .sidebar-signout {
   margin-top: auto;
   background: #e53935;
   border: none;
   color: white;
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1rem;
   font-weight: 700;
   border-radius: 10px;
   cursor: pointer;
   user-select: none;
   align-self: stretch;
   transition: background-color 0.3s ease;
+  box-shadow: 0 2px 8px rgba(229, 57, 53, 0.6);
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .sidebar-signout:hover,
@@ -156,24 +177,40 @@
   height: calc(100vh - 64px);
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 1100;
+  display: none;
+  transition: opacity 0.3s ease;
+  overflow: hidden;
 }
 
-/* Adjust content margin when sidebar open */
+.backdrop.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Main content container */
 .dashboard-container {
   max-width: 1200px;
   margin: 32px auto 48px;
   padding: 0 1rem;
   transition: margin-left 0.3s ease;
+  margin-left: 0;
+  box-sizing: border-box;
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .dashboard-container.sidebar-open {
-  margin-left: 300px;
+  margin-left: 280px; /* matched sidebar width */
+  max-width: calc(100vw - 280px);
 }
 
-/* Header styling */
+/* Dashboard header */
 .dashboard-header {
   text-align: center;
   margin-bottom: 2.5rem;
+  user-select: none;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .dashboard-header h1 {
@@ -181,7 +218,6 @@
   color: #2962ff;
   font-weight: 900;
   margin-bottom: 12px;
-  user-select: none;
 }
 
 .dashboard-subtitle {
@@ -190,18 +226,17 @@
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  user-select: none;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 /* Tiles grid */
-/* Single row on big screen with big tiles */
 .tiles-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 32px;
 }
 
-/* Individual tile */
+/* Single tile */
 .tile {
   background: white;
   padding: 2.4rem 2rem 2.8rem;
@@ -216,6 +251,7 @@
   outline-offset: 3px;
   outline-color: #2962ff;
   text-align: center;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .tile:focus,
@@ -229,7 +265,6 @@
   font-size: 64px;
   color: #2962ff;
   margin-bottom: 18px;
-  user-select: none;
 }
 
 .tile-title {
@@ -237,17 +272,18 @@
   font-size: 1.5rem;
   color: #0d47a1;
   margin-bottom: 12px;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .tile-desc {
   font-size: 1rem;
   color: #546e7a;
   line-height: 1.5;
-  user-select: none;
   max-width: 280px;
+  font-family: 'Times New Roman', Times, serif;
 }
 
-/* Responsive adjustments */
+/* Responsive settings */
 @media (max-width: 1024px) {
   .tiles-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -255,9 +291,23 @@
 }
 
 @media (max-width: 600px) {
+  .sidebar {
+    width: 220px;
+    left: -220px;
+  }
+  .sidebar.open {
+    left: 0;
+  }
+
   .dashboard-container,
   .dashboard-container.sidebar-open {
     margin-left: 0;
+    max-width: 100vw;
+  }
+
+  .dashboard-container.sidebar-open {
+    margin-left: 220px;
+    max-width: calc(100vw - 220px);
   }
 
   .dashboard-container {
@@ -271,14 +321,5 @@
   .tiles-grid {
     grid-template-columns: 1fr;
     gap: 25px;
-  }
-
-  .sidebar {
-    width: 220px;
-    left: -220px;
-  }
-
-  .sidebar.open {
-    left: 0;
   }
 }

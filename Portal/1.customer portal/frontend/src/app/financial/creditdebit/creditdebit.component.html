@@ -1,1 +1,178 @@
-<p>creditdebit works!</p>
+<nav class="navbar inquiry-navbar">
+  <div class="nav-left">
+    <button class="back-btn" (click)="goBack()" aria-label="Go back">
+      <span class="material-icons">arrow_back</span>
+    </button>
+    <span class="page-title">Credit/Debit Memos</span>
+  </div>
+
+  <div class="nav-right">
+    <span class="welcome-msg">Welcome, {{ customerId }}</span>
+  </div>
+</nav>
+
+<section class="main-heading">List of Credit/Debit Memos</section>
+
+<section class="controls-row">
+  <input
+    type="text"
+    placeholder="Search memos..."
+    [(ngModel)]="searchTerm"
+    (input)="applyFilter()"
+    aria-label="Search credit/debit memos"
+    class="search-input"
+  />
+
+  <select
+    [(ngModel)]="sortKey"
+    (change)="setSort(sortKey)"
+    aria-label="Sort credit/debit memos"
+    class="sort-select"
+  >
+    <option value="" disabled [selected]="!sortKey">Sort by</option>
+    <option value="BILL_NO">Bill No.</option>
+    <option value="BILL_DATE">Bill Date</option>
+    <option value="BILL_TYPE">Bill Type</option>
+    <option value="MAT_CODE">Material Code</option>
+    <option value="DESCRIPTION">Description</option>
+    <option value="QUANTITY">Quantity</option>
+    <option value="UNIT">Unit</option>
+    <option value="NET_AMOUNT">Net Amount</option>
+    <option value="CURRENCY">Currency</option>
+  </select>
+
+  <button class="print-btn" (click)="printTable()" aria-label="Print credit/debit memo table">
+    <span class="material-icons">print</span> Print
+  </button>
+</section>
+
+<section class="table-container" *ngIf="filteredMemos.length > 0; else noData">
+  <table
+    class="inquiry-table"
+    aria-live="polite"
+    aria-describedby="creditDebitTableCaption"
+    role="grid"
+  >
+
+    <thead>
+      <tr>
+        <th
+          (click)="setSort('BILL_NO')"
+          [class.sort-active]="sortKey === 'BILL_NO'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'BILL_NO' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Bill No.
+        </th>
+
+        <th
+          (click)="setSort('BILL_DATE')"
+          [class.sort-active]="sortKey === 'BILL_DATE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'BILL_DATE' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Bill Date
+        </th>
+
+        <th
+          (click)="setSort('BILL_TYPE')"
+          [class.sort-active]="sortKey === 'BILL_TYPE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'BILL_TYPE' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Bill Type
+        </th>
+
+        <th
+          (click)="setSort('MAT_CODE')"
+          [class.sort-active]="sortKey === 'MAT_CODE'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'MAT_CODE' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Material Code
+        </th>
+
+        <th
+          (click)="setSort('DESCRIPTION')"
+          [class.sort-active]="sortKey === 'DESCRIPTION'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'DESCRIPTION' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Description
+        </th>
+
+        <th
+          (click)="setSort('QUANTITY')"
+          [class.sort-active]="sortKey === 'QUANTITY'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'QUANTITY' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Quantity
+        </th>
+
+        <th
+          (click)="setSort('UNIT')"
+          [class.sort-active]="sortKey === 'UNIT'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'UNIT' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Unit
+        </th>
+
+        <th
+          (click)="setSort('NET_AMOUNT')"
+          [class.sort-active]="sortKey === 'NET_AMOUNT'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'NET_AMOUNT' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Net Amount
+        </th>
+
+        <th
+          (click)="setSort('CURRENCY')"
+          [class.sort-active]="sortKey === 'CURRENCY'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="sortKey === 'CURRENCY' ? (sortAscending ? 'ascending' : 'descending') : 'none'"
+        >
+          Currency
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let memo of filteredMemos; trackBy: trackByBillNo" role="row">
+        <td>{{ memo.BILL_NO }}</td>
+        <td>{{ memo.BILL_DATE }}</td>
+        <td>{{ memo.BILL_TYPE }}</td>
+        <td>{{ memo.MAT_CODE }}</td>
+        <td>{{ memo.DESCRIPTION }}</td>
+        <td>{{ memo.QUANTITY }}</td>
+        <td>{{ memo.UNIT }}</td>
+        <td>{{ memo.NET_AMOUNT }}</td>
+        <td>{{ memo.CURRENCY }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template #noData>
+  <div class="no-data-msg" role="alert">No credit/debit memos found for your account.</div>
+</ng-template>

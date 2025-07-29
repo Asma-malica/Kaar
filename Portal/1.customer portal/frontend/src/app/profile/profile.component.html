@@ -1,1 +1,36 @@
-<p>profile works!</p>
+<nav class="navbar inquiry-navbar">
+  <div class="nav-left">
+    <button class="back-btn" (click)="goBack()" aria-label="Go back to dashboard">
+      <span class="material-icons">arrow_back</span>
+    </button>
+    <span class="page-title">User Profile</span>
+  </div>
+  <div class="nav-right">
+    <span class="welcome-msg">Welcome, {{ profile?.Name || customerId }}</span>
+  </div>
+</nav>
+
+<section class="main-heading">Customer Profile</section>
+
+<section class="profile-container" *ngIf="!loading && profile; else loadingOrError">
+  <div class="profile-card">
+    <h2 class="profile-name">{{ profile.Name }}</h2>
+    <div class="profile-item"><strong>Customer ID:</strong> {{ profile.CustomerId }}</div>
+    <div class="profile-item"><strong>Email:</strong> {{ profile.Email }}</div>
+    <div class="profile-item"><strong>Phone:</strong> {{ profile.Phone }}</div>
+    <div class="profile-item"><strong>Address:</strong></div>
+    <div class="profile-address">
+      {{ profile.Street }},<br />
+      {{ profile.City }}, {{ profile.Pincode }}<br />
+      {{ profile.Country }}
+    </div>
+  </div>
+</section>
+
+<ng-template #loadingOrError>
+  <section class="main-heading">
+    <div *ngIf="loading">Loading profile information...</div>
+    <div *ngIf="!loading && errorMsg" class="error-msg">{{ errorMsg }}</div>
+    <div *ngIf="!loading && !errorMsg">No profile data found.</div>
+  </section>
+</ng-template>

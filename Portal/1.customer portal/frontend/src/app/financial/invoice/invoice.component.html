@@ -1,1 +1,168 @@
-<p>invoice works!</p>
+<nav class="navbar inquiry-navbar">
+  <div class="nav-left">
+    <button class="back-btn" (click)="goBack()" aria-label="Go back">
+      <span class="material-icons">arrow_back</span>
+    </button>
+    <span class="page-title">Invoices</span>
+  </div>
+  <div class="nav-right">
+    <span class="welcome-msg">Welcome, {{ customerId }}</span>
+  </div>
+</nav>
+
+<section class="main-heading">List of Invoices</section>
+
+<section class="controls-row">
+  <input
+    type="text"
+    placeholder="Search invoices..."
+    [(ngModel)]="searchTerm"
+    (input)="applyFilter()"
+    aria-label="Search invoices"
+    class="search-input"
+  />
+
+  <select
+    [(ngModel)]="sortKey"
+    (change)="setSort(sortKey)"
+    aria-label="Sort invoices"
+    class="sort-select"
+  >
+    <option value="" disabled [selected]="!sortKey">Sort by</option>
+    <option value="VBELN">Invoice Number</option>
+    <option value="FKDAT">Billing Date</option>
+    <option value="WAERK">Currency</option>
+    <option value="NETWR">Net Amount</option>
+    <option value="KUNAG">Customer ID</option>
+    <option value="VKORG">Sales Org</option>
+    <option value="KNUMV">Invoice Doc No</option>
+    <option value="FKART">Billing Type</option>
+    <option value="POSNR">Item Number</option>
+    <option value="MATNR">Material Number</option>
+    <option value="ARKTX">Material Desc</option>
+    <option value="FKIMG">Quantity</option>
+    <option value="VRKME">Sales Unit</option>
+    <option value="ITEM_NETWR">Item Net Value</option>
+    <option value="PRSDT">Pricing Date</option>
+  </select>
+</section>
+
+<section
+  class="table-container"
+  *ngIf="filteredInvoices.length > 0 && !loading; else noDataOrLoading"
+>
+  <table
+    class="inquiry-table"
+    aria-live="polite"
+    aria-describedby="invoiceTableCaption"
+    role="grid"
+  >
+    <caption id="invoiceTableCaption" class="visually-hidden">
+      Invoices Table
+    </caption>
+    <thead>
+      <tr>
+        <th
+          (click)="setSort('VBELN')"
+          [class.sort-active]="sortKey === 'VBELN'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="
+            sortKey === 'VBELN' ? (sortAscending ? 'ascending' : 'descending') : 'none'
+          "
+        >
+          Invoice No.
+        </th>
+        <th
+          (click)="setSort('FKDAT')"
+          [class.sort-active]="sortKey === 'FKDAT'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="
+            sortKey === 'FKDAT' ? (sortAscending ? 'ascending' : 'descending') : 'none'
+          "
+        >
+          Billing Date
+        </th>
+        <th
+          (click)="setSort('WAERK')"
+          [class.sort-active]="sortKey === 'WAERK'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="
+            sortKey === 'WAERK' ? (sortAscending ? 'ascending' : 'descending') : 'none'
+          "
+        >
+          Currency
+        </th>
+        <th
+          (click)="setSort('NETWR')"
+          [class.sort-active]="sortKey === 'NETWR'"
+          scope="col"
+          tabindex="0"
+          role="button"
+          [attr.aria-sort]="
+            sortKey === 'NETWR' ? (sortAscending ? 'ascending' : 'descending') : 'none'
+          "
+        >
+          Net Amount
+        </th>
+        <th>Customer ID</th>
+        <th>Sales Org</th>
+        <th>Invoice Doc No</th>
+        <th>Billing Type</th>
+        <th>Item No.</th>
+        <th>Material No.</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Unit</th>
+        <th>Item Net Value</th>
+        <th>Pricing Date</th>
+        <th>Download PDF</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let invoice of filteredInvoices; trackBy: trackByInvoiceNumber"
+        role="row"
+      >
+        <td>{{ invoice.VBELN }}</td>
+        <td>{{ invoice.FKDAT }}</td>
+        <td>{{ invoice.WAERK }}</td>
+        <td>{{ invoice.NETWR }}</td>
+        <td>{{ invoice.KUNAG }}</td>
+        <td>{{ invoice.VKORG }}</td>
+        <td>{{ invoice.KNUMV }}</td>
+        <td>{{ invoice.FKART }}</td>
+        <td>{{ invoice.POSNR }}</td>
+        <td>{{ invoice.MATNR }}</td>
+        <td>{{ invoice.ARKTX }}</td>
+        <td>{{ invoice.FKIMG }}</td>
+        <td>{{ invoice.VRKME }}</td>
+        <td>{{ invoice.ITEM_NETWR }}</td>
+        <td>{{ invoice.PRSDT }}</td>
+        <td>
+        <button
+  class="download-btn"
+  (click)="downloadPDF(invoice.VBELN)"
+  [attr.aria-label]="'Download PDF for invoice ' + invoice.VBELN"
+>
+  <span class="material-icons">download</span>
+</button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template #noDataOrLoading>
+  <section class="main-heading" *ngIf="loading">Loading invoices...</section>
+  <section class="main-heading" *ngIf="!loading && errorMsg">{{ errorMsg }}</section>
+  <section class="main-heading" *ngIf="!loading && !errorMsg && filteredInvoices.length === 0">
+    No invoices found.
+  </section>
+</ng-template>
