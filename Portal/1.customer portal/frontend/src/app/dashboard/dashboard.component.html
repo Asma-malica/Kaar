@@ -59,15 +59,15 @@
 
 <main class="dashboard-container" [class.sidebar-open]="sidebarOpen">
   <header class="dashboard-header">
-    <h1>Dashboard</h1>
+    <h1>Welcome to Customer Hub</h1>
     <p class="dashboard-subtitle">
-      Welcome to your portal! Explore your inquiries, orders, deliveries, and financial data easily from one place.
+      Explore the inquiries, orders, deliveries, and financial data easily from one place.
     </p>
   </header>
 
   <section class="tiles-grid" aria-label="Dashboard Tiles">
     <div 
-      class="tile" tabindex="0" 
+      class="tile tile-glow" tabindex="0" 
       (click)="navigateTo('inquiry')" 
       (keyup.enter)="navigateTo('inquiry')" 
       role="button" 
@@ -81,7 +81,7 @@
     </div>
 
     <div 
-      class="tile" tabindex="0" 
+      class="tile tile-glow" tabindex="0" 
       (click)="navigateTo('salesorder')" 
       (keyup.enter)="navigateTo('salesorder')" 
       role="button" 
@@ -95,7 +95,7 @@
     </div>
 
     <div 
-      class="tile" tabindex="0" 
+      class="tile tile-glow" tabindex="0" 
       (click)="navigateTo('delivery')" 
       (keyup.enter)="navigateTo('delivery')" 
       role="button" 
@@ -109,7 +109,7 @@
     </div>
 
     <div 
-      class="tile" tabindex="0" 
+      class="tile tile-glow" tabindex="0" 
       (click)="navigateTo('financial')" 
       (keyup.enter)="navigateTo('financial')" 
       role="button" 
