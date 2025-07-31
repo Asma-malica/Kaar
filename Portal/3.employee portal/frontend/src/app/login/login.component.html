@@ -1,0 +1,65 @@
+<html>
+  <body>
+<div class="login-portal-bg">
+  <div class="login-portal-container">
+    <h1 class="login-portal-title">Welcome to Employee Portal</h1>
+
+    <div class="login-portal-panels">
+      <!-- Left Panel -->
+      <div class="login-panel login-panel-left">
+        <h2>All HR. One Place.</h2>
+        <p>
+          Seamlessly manage your profile, check your payslips, track leave, and stay connected.
+          <br />
+          <span class="highlight">Secure. Swift. Simple.</span>
+        </p>
+        <div class="illustration">
+          <!-- Add image/icon here if needed -->
+        </div>
+      </div>
+
+      <!-- Right Panel -->
+      <div class="login-panel login-panel-right">
+        <h2>Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+          <div class="input-group">
+            <label for="empId">Employee ID</label>
+            <input
+              id="empId"
+              type="text"
+              placeholder="Enter Employee ID"
+              formControlName="empId"
+              [class.invalid]="empId.invalid && (empId.dirty || empId.touched)"
+            />
+            <div class="input-error" *ngIf="empId.invalid && (empId.dirty || empId.touched)">
+              Employee ID is required
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Enter Password"
+              formControlName="password"
+              [class.invalid]="password.invalid && (password.dirty || password.touched)"
+            />
+            <div class="input-error" *ngIf="password.invalid && (password.dirty || password.touched)">
+              Password is required
+            </div>
+          </div>
+
+          <button class="login-btn" type="submit" [disabled]="loginForm.invalid || loading">
+            {{ loading ? 'Logging in...' : 'Login' }}
+          </button>
+
+          <div class="login-msg error" *ngIf="errorMessage">{{ errorMessage }}</div>
+          <div class="login-msg success" *ngIf="successMessage">{{ successMessage }}</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

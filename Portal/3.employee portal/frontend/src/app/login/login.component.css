@@ -1,0 +1,245 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  height: 100vh;
+  overflow: hidden;
+}
+/* Main background */
+.login-portal-bg {
+  min-height: 100vh;
+  background: #096B68;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 1rem;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', 'Roboto', Arial, sans-serif;
+}
+
+.login-portal-container {
+  width: 100%;
+  max-width: 880px;
+  background: #fff;
+  border-radius: 2rem;
+  box-shadow: 0 8px 40px rgba(18, 153, 144, 0.12), 0 2px 6px rgba(9, 107, 104, 0.10);
+  padding: 2rem 1rem 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-portal-title {
+  color: #096B68;
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  margin-bottom: 2.1rem;
+  text-align: center;
+  user-select: none;
+}
+
+.login-portal-panels {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0.2rem;
+  background: none;
+}
+
+.login-panel-left, .login-panel-right {
+  flex: 1 1 320px;
+  min-width: 290px;
+  max-width: 420px;
+  padding: 2.4rem 2rem;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+}
+
+/* LEFT PANEL */
+.login-panel-left {
+  background: #096B68;
+  color: #8eebe8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  box-shadow: 3px 0 22px rgba(144, 209, 202, 0.15);
+}
+
+.login-panel-left h2 {
+  color: #99f0eb;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.login-panel-left p {
+  font-size: 1.13rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  line-height: 1.7;
+  max-width: 320px;
+}
+
+.highlight {
+  color: #87e7e0;
+  font-weight: 700;
+  font-size: 1.08em;
+}
+
+.illustration {
+  width: 96px;
+  height: 96px;
+  margin-top: 2rem;
+  background: none; /* Optional: add image/icon here */
+}
+
+/* RIGHT PANEL */
+.login-panel-right {
+  background: #FFFBDE;
+  box-shadow: -3px 0 22px rgba(255, 224, 100, 0.07);
+  color: #096B68;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-panel-right h2 {
+  color: #096B68;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 1.7rem;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+form {
+  width: 100%;
+  max-width: 320px;
+}
+
+.input-group {
+  margin-bottom: 1.3rem;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #096B68;
+}
+
+input[type='text'],
+input[type='password'] {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 2px solid #90D1CA;
+  border-radius: 10px;
+  background: #fff;
+  color: #096B68;
+  outline: none;
+  transition: border-color 0.25s, background-color 0.20s;
+  box-sizing: border-box;
+}
+
+input[type='text']:focus,
+input[type='password']:focus {
+  border-color: #129990;
+  background: #e2f0ef;
+}
+
+.input-error {
+  color: #cc2e2e;
+  font-size: 0.86rem;
+  margin-top: 0.25rem;
+  font-weight: 600;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 13px 0;
+  background: linear-gradient(90deg, #129990 80%, #90D1CA 100%);
+  border: none;
+  border-radius: 12px;
+  color: #FFFBDE;
+  font-weight: 700;
+  font-size: 1.12rem;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.25s, color 0.16s;
+  box-shadow: 0 3px 9px rgba(18, 153, 144, 0.14);
+  margin-top: 0.6rem;
+}
+
+.login-btn:hover:not(:disabled) {
+  background: #096B68;
+}
+
+.login-btn:disabled {
+  background: #3c958c;
+  color: #fbf2f2;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.login-msg {
+  margin-top: 1.2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  user-select: text;
+  line-height: 1.3;
+}
+
+.login-msg.error {
+  color: #cc2e2e;
+}
+
+.login-msg.success {
+  color: #129990;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 900px) {
+  .login-portal-container {
+    padding: 1.5rem 0.5rem;
+  }
+  .login-portal-title {
+    font-size: 2rem;
+  }
+  .main-container {
+    flex-direction: column;
+    gap: 0;
+    min-height: unset;
+    width: 98vw;
+    max-width: 500px;
+  }
+  .login-panel-left,
+  .login-panel-right {
+    max-width: 100%;
+    min-width: 0;
+    border-radius: 1.25rem;
+    box-shadow: none;
+    padding: 2rem 1rem;
+    align-items: center;
+    text-align: center;
+  }
+  .login-panel-left {
+    order: 2;
+  }
+  .login-panel-right {
+    order: 1;
+  }
+  .illustration {
+    display: none;
+  }
+}

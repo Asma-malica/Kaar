@@ -1,0 +1,34 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Employee Dashboard</h1>
+    <button (click)="logout()" class="logout-btn">Logout</button>
+  </header>
+
+  <section class="dashboard-cards">
+    <div class="card profile-card">
+      <h2>Profile</h2>
+      <p><strong>Name:</strong> John Doe</p>
+      <p><strong>Employee ID:</strong> 12345</p>
+      <p><strong>Department:</strong> IT</p>
+    </div>
+
+    <div class="card leave-card">
+      <h2>Leave Balance</h2>
+      <p>Annual Leave: 12 days</p>
+      <p>Sick Leave: 5 days</p>
+      <p>Casual Leave: 3 days</p>
+    </div>
+
+    <div class="card payslip-card">
+      <h2>Latest Pay Slip</h2>
+      <p>Month: July 2025</p>
+      <button class="btn">View / Download</button>
+    </div>
+  </section>
+
+  <section class="dashboard-performance">
+    <h2>Performance Summary</h2>
+    <!-- Placeholder for charts, can add Angular chart libs here -->
+    <div class="chart-placeholder">[Performance Chart Placeholder]</div>
+  </section>
+</div>
