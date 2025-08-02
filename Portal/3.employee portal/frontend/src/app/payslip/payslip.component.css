@@ -1,156 +1,121 @@
-:host {
-  display: block;
-  min-height: 100vh;
-  background-color: #FFFBDE;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #096B68;
-  overflow-x: hidden;
+:root {
+  --color-background-light: #FFFBDE;
+  --color-accent-light: #90D1CA;
+  --color-accent-mid: #129990;
+  --color-primary: #096B68;
+  --font-family: 'Times New Roman', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Navbar */
-.navbar {
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  background-color: var(--color-background-light);
+  color: var(--color-primary);
+}
+
+.container {
+  max-width: 480px;
+  background: white;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+
+.nav-bar {
   display: flex;
   align-items: center;
-  background-color: #096B68;
-  color: #FFFBDE;
-  padding: 12px 20px;
-  font-weight: 600;
-  font-size: 1.2rem;
-  gap: 12px;
-  box-shadow: 0 2px 8px #12999040;
-  position: relative;
+  border-bottom: 2px solid var(--color-accent-light);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .back-btn {
-  background: none;
+  background-color: transparent;
   border: none;
-  color: #FFFBDE;
-  font-size: 2rem;
+  color: var(--color-primary);
+  font-size: 18px;
   cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  margin-right: 12px;
+  margin-right: 16px;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .back-btn:hover {
-  color: #90D1CA;
+  color: var(--color-accent-mid);
 }
 
-.navbar-id {
+h2 {
+  margin: 0;
+  color: var(--color-primary);
   flex-grow: 1;
-  user-select: none;
+  font-weight: 700;
 }
 
-.pdf-btn {
-  background: #129990;
-  border: none;
-  color: #FFFBDE;
-  padding: 6px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: background 0.3s;
-}
-
-.pdf-btn:hover {
-  background: #096B68;
-}
-
-/* Loading & error messages */
-.loading {
-  padding: 48px;
+.content p {
+  font-size: 16px;
   text-align: center;
-  font-size: 1.2rem;
-  color: #129990;
+  margin-top: 20px;
+  color: var(--color-primary);
 }
 
 .error {
-  padding: 18px;
-  margin: 24px;
-  background: #FFFBDE;
-  border: 1px solid #129990;
-  color: #129990;
-  border-radius: 7px;
+  color: #D93025; /* Red-ish color for errors */
   font-weight: 600;
-  text-align: center;
 }
 
-.no-payslip {
-  padding: 36px 24px;
-  text-align: center;
-  color: #129990;
-  font-weight: 600;
-  font-size: 1.15rem;
-}
-
-/* Payslip cards container */
-.payslip-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 26px;
-  padding: 20px 12px 60px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-/* Each payslip card */
 .payslip-card {
-  background: #90D1CA;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px #12999066;
-  padding: 20px 30px;
-  width: 320px;
-  box-sizing: border-box;
-  color: #096B68;
-  font-weight: 500;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  background-color: var(--color-background-light);
+  border-radius: 10px;
+  padding: 15px 24px;
+  box-shadow: 0 2px 8px rgba(9,107,104, 0.1);
 }
 
-.payslip-card h2 {
-  margin: 0 0 14px 0;
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: #096B68;
-  border-bottom: 2px solid #096B68;
-  padding-bottom: 6px;
-}
-
-/* Each field row */
-.payslip-row {
+.row {
   display: flex;
   justify-content: space-between;
-  font-size: 1.05rem;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-accent-light);
+  font-weight: 500;
 }
 
-.payslip-row .label {
+.label {
+  color: var(--color-accent-mid);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.value {
+  color: var(--color-primary);
+  font-size: 1rem;
   font-weight: 600;
-  color: #129990;
-  max-width: 45%;
-  word-wrap: break-word;
 }
 
-.payslip-row span:last-child {
-  max-width: 55%;
-  text-align: right;
-  word-wrap: break-word;
+.pdf-btn {
+  display: block;
+  margin: 25px auto 0;
+  background-color: var(--color-primary);
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 28px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Responsive for smaller screens */
-@media (max-width: 700px) {
-  .payslip-container {
-    flex-direction: column;
-    align-items: center;
-  }
+.pdf-btn:disabled {
+  background-color: var(--color-accent-light);
+  cursor: not-allowed;
+}
 
-  .payslip-card {
-    width: 90%;
-  }
+.pdf-btn:hover:not(:disabled) {
+  background-color: var(--color-accent-mid);
 }

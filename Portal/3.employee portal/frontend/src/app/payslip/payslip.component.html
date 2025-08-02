@@ -1,44 +1,26 @@
-<nav class="navbar">
-  <button class="back-btn" (click)="goBack()" aria-label="Back to Dashboard">
-    <span class="material-icons">arrow_back</span>
-  </button>
-  <div class="navbar-id">Payslip — {{ employeeId }}</div>
-  <button class="pdf-btn" (click)="viewPdf()" aria-label="View Payslip PDF">
-    <span class="material-icons">picture_as_pdf</span> View PDF
-  </button>
-</nav>
+<div class="container">
+  <nav class="nav-bar">
+    <button class="back-btn" (click)="goBack()" aria-label="Back">← </button>
+    <h2>Payslip Details</h2>
+  </nav>
 
-<div *ngIf="loading(); else loaded" class="loading">
-  Loading payslip data...
-</div>
 
-<ng-template #loaded>
-  <div *ngIf="error(); else payslipList" class="error">{{ error() }}</div>
-</ng-template>
-
-<ng-template #payslipList>
-  <div *ngIf="payslip().length > 0; else noPayslip">
-    <div class="payslip-container">
-      <div class="payslip-card" *ngFor="let item of payslip()">
-        <h2>{{ item.EMPNAME || 'Employee' }}</h2>
-        <div class="payslip-row"><span class="label">Employee ID:</span> <span>{{ item.EMPID }}</span></div>
-        <div class="payslip-row"><span class="label">Gender:</span> <span>{{ item.GENDER }}</span></div>
-        <div class="payslip-row"><span class="label">Payroll Area:</span> <span>{{ item.PAYROLL_AREA }}</span></div>
-        <div class="payslip-row"><span class="label">Company Code:</span> <span>{{ item.COMPANY_CODE }}</span></div>
-        <div class="payslip-row"><span class="label">Cost Center:</span> <span>{{ item.COST_CENTER }}</span></div>
-        <div class="payslip-row"><span class="label">Basic Pay:</span> <span>{{ item.BASIC_PAY }}</span></div>
-        <div class="payslip-row"><span class="label">Pay Scale Type:</span> <span>{{ item.PAY_SCALE_TYPE }}</span></div>
-        <div class="payslip-row"><span class="label">Pay Scale Area:</span> <span>{{ item.PAY_SCALE_AREA }}</span></div>
-        <div class="payslip-row"><span class="label">Pay Grade:</span> <span>{{ item.PAY_GRADE }}</span></div>
-        <div class="payslip-row"><span class="label">Pay Level:</span> <span>{{ item.PAY_LEVEL }}</span></div>
-        <div class="payslip-row"><span class="label">Amount:</span> <span>{{ item.AMOUNT }} {{ item.CURRENCY }}</span></div>
-        <div class="payslip-row"><span class="label">Wage Type:</span> <span>{{ item.WAGETYPE }}</span></div>
-        <div class="payslip-row"><span class="label">Working Hours:</span> <span>{{ item.WORKING_HOURS }}</span></div>
-      </div>
-    </div>
+  <div *ngIf="loading">
+    <p>Loading payslip data...</p>
   </div>
 
-  <ng-template #noPayslip>
-    <div class="no-payslip">No payslip data available.</div>
-  </ng-template>
-</ng-template>
+  <div *ngIf="error && !loading" class="error">
+    {{ error }}
+  </div>
+
+  <div *ngIf="payslip && !loading" class="payslip-card">
+    <div class="row" *ngFor="let item of payslipEntries">
+      <span class="label">{{ item.key }}</span>
+      <span class="value">{{ item.value }}</span>
+    </div>
+
+    <button class="pdf-btn" (click)="downloadPdf()" [disabled]="pdfDownloading">
+      {{ pdfDownloading ? 'Downloading...' : 'Download PDF' }}
+    </button>
+  </div>
+</div>

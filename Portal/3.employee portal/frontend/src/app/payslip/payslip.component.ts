@@ -1,59 +1,101 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { PayslipService, PayslipItem } from '../services/payslip.service';
+import { CommonModule } from '@angular/common'; 
+import { Component, OnInit } from '@angular/core';
+import { PayslipService } from '../services/payslip.service';
 import { AuthService } from '../services/auth.service';
+import { Location } from '@angular/common';
+import { ViewEncapsulation } from '@angular/core';
+interface PayslipData {
+  [key: string]: string | number;
+}
 
 @Component({
   selector: 'app-payslip',
-  standalone: true,
-  imports: [CommonModule],
+   standalone: true,
+   imports: [CommonModule],  
   templateUrl: './payslip.component.html',
   styleUrls: ['./payslip.component.css'],
+  encapsulation: ViewEncapsulation.None 
 })
 export class PayslipComponent implements OnInit {
-  private payslipService = inject(PayslipService);
-  private authService = inject(AuthService);
-  private router = inject(Router);
 
-  employeeId = this.authService.getEmployeeId() ?? '';
+  payslip: PayslipData | null = null;
+  payslipEntries: { key: string; value: string | number }[] = [];
+  error = '';
+  loading = false;
+  pdfDownloading = false;
+  employeeId = '';
 
-  payslip = signal<PayslipItem[]>([]);
-  loading = signal(true);
-  error = signal('');
+  constructor(
+    private payslipService: PayslipService,
+    private authService: AuthService,
+    private location: Location
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.employeeId = this.authService.getEmployeeId();
+    console.log('Employee ID:', this.employeeId); // Debug log
+
     if (!this.employeeId) {
-      this.error.set('No employee ID found. Please login again.');
-      this.loading.set(false);
+      this.error = 'Employee ID not found. Please login again.';
       return;
     }
-
-    this.payslipService.fetchPayslip(this.employeeId).subscribe({
-      next: (res) => {
-        this.payslip.set(res.payslip ?? []);
-        this.loading.set(false);
-      },
-      error: (err) => {
-        this.error.set(err?.error?.message || 'Failed to load payslip.');
-        this.loading.set(false);
-      },
-    });
+    this.fetchPayslip(this.employeeId);
   }
 
-  goBack() {
-    this.router.navigate(['/dashboard']);
-  }
-
-  viewPdf() {
-    this.payslipService.fetchPayslipPdf(this.employeeId).subscribe({
-      next: (blob) => {
-        const url = window.URL.createObjectURL(blob);
-        window.open(url, '_blank');
+  fetchPayslip(employeeId: string): void {
+    this.loading = true;
+    this.error = '';
+    this.payslipService.getPayslip(employeeId).subscribe({
+      next: (resp: { payslip: PayslipData }) => {
+        console.log('Payslip response:', resp); // Debug log
+        this.payslip = resp.payslip;
+        if (this.payslip) {
+          this.payslipEntries = Object.entries(this.payslip).map(([key, value]) => ({
+            key: this.formatLabel(key),
+            value
+          }));
+        } else {
+          this.payslipEntries = [];
+        }
+        this.loading = false;
       },
-      error: () => {
-        alert('Failed to load payslip PDF.');
+      error: (err: any) => {
+        console.error('Error loading payslip:', err);
+        this.error = 'Failed to load payslip data.';
+        this.loading = false;
       }
     });
+  }
+
+  downloadPdf(): void {
+    if (!this.payslip) return;
+    this.pdfDownloading = true;
+    this.payslipService.getPayslipPdf(this.employeeId).subscribe({
+      next: (blob: Blob) => {
+        this.pdfDownloading = false;
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `payslip_${this.employeeId}.pdf`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+      },
+      error: (err: any) => {
+        console.error('Error downloading PDF:', err);
+        this.pdfDownloading = false;
+        this.error = 'Failed to download PDF.';
+      }
+    });
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  private formatLabel(key: string): string {
+    return key
+      .replace(/_/g, ' ')
+      .toLowerCase()
+      .replace(/\b\w/g, c => c.toUpperCase());
   }
 }
