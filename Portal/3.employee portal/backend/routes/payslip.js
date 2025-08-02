@@ -1,9 +1,9 @@
 import express from 'express';
-import { getPayslipData, getPayslipPdf } from '../controllers/payslipcontrollers.js';
+import * as payslipController from '../controllers/payslipcontrollers.js';
 
 const router = express.Router();
 
-router.post('/payslip', getPayslipData);
-router.post('/payslip/pdf', getPayslipPdf);
+router.post('/payslip', payslipController.getPayslip);
+router.post('/payslip/pdf', payslipController.getPayslipPdf);
 
 export default router;

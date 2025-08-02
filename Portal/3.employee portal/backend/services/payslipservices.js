@@ -1,101 +1,94 @@
-import axios from 'axios';
+import https from 'https';
+import http from 'http';
 import { parseStringPromise } from 'xml2js';
 
-const SAP_CLIENT = '100';
+const username = 'SzkwMTU2MzpBc21hbWFsaWNhQDIwMDQ='; // Base64 encoded user:pass
+const clientSap = '100';
 
-const PAYDATA_ENDPOINT = `http://AZKTLDS5CP.kcloud.com:8000/sap/bc/srt/scs/sap/zemp_paydataservice63?sap-client=${SAP_CLIENT}`;
-const PAYPDF_ENDPOINT = `http://AZKTLDS5CP.kcloud.com:8000/sap/bc/srt/scs/sap/zemp_paypdfservice63?sap-client=${SAP_CLIENT}`;
+const SOAP_HEADERS = {
+  'Content-Type': 'text/xml',
+  'Authorization': `Basic ${username}`,
+  'SOAPAction': 'urn:sap-com:document:sap:rfc:functions',
+  'Cookie': `sap-usercontext=sap-client=${clientSap}`
+};
 
-const AUTH_HEADER = 'Basic SzkwMTU2MzpBc21hbWFsaWNhQDIwMDQ=';
-const SOAP_ACTION = 'urn:sap-com:document:sap:rfc:functions';
+const SOAP_ENVELOPE = (functionName, employeeId) => `
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:rfc:functions">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:${functionName}>
+         <EMPLOYEE_ID>${employeeId}</EMPLOYEE_ID>
+      </urn:${functionName}>
+   </soapenv:Body>
+</soapenv:Envelope>`;
 
-export async function fetchPayslipData(employeeId) {
-  const soapBody = `
-    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-                      xmlns:urn="urn:sap-com:document:sap:rfc:functions">
-      <soapenv:Header/>
-      <soapenv:Body>
-        <urn:ZEMP_PAYDATA63_FM>
-          <EMPLOYEE_ID>${employeeId}</EMPLOYEE_ID>
-        </urn:ZEMP_PAYDATA63_FM>
-      </soapenv:Body>
-    </soapenv:Envelope>`;
+function doSOAPRequest(url, xmlBody) {
+  return new Promise((resolve, reject) => {
+    const isHttps = url.startsWith('https');
+    const lib = isHttps ? https : http;
+    const urlObj = new URL(url);
 
-  try {
-    const response = await axios.post(PAYDATA_ENDPOINT, soapBody, {
+    const options = {
+      hostname: urlObj.hostname,
+      port: urlObj.port,
+      path: urlObj.pathname + urlObj.search,
+      method: 'POST',
       headers: {
-        'Content-Type': 'text/xml',
-        'SOAPAction': SOAP_ACTION,
-        Authorization: AUTH_HEADER,
-        Cookie: `sap-usercontext=sap-client=${SAP_CLIENT}`
+        ...SOAP_HEADERS,
+        'Content-Length': Buffer.byteLength(xmlBody),
       }
+    };
+
+    const req = lib.request(options, (res) => {
+      let data = '';
+      res.on('data', chunk => {
+        data += chunk;
+      });
+      res.on('end', () => {
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          resolve(data);
+        } else {
+          reject(new Error(`HTTP ${res.statusCode}: ${data}`));
+        }
+      });
     });
 
-    console.log('SAP fetchPayslipData response XML:', response.data);
+    req.on('error', (e) => reject(e));
+    req.write(xmlBody);
+    req.end();
+  });
+}
 
-    const parsedResult = await parseStringPromise(response.data, { explicitArray: false, ignoreAttrs: true });
-    const soapBodyResp = parsedResult['soapenv:Envelope']['soapenv:Body'];
-    const responseKey = Object.keys(soapBodyResp).find(k => k.toLowerCase().includes('zemp_paydata63_fmresponse'));
-    if (!responseKey) throw new Error('Missing ZEMP_PAYDATA63_FMResponse in SOAP response');
+export async function getPayslipData(employeeId) {
+  const url = `http://AZKTLDS5CP.kcloud.com:8000/sap/bc/srt/scs/sap/zemp_paydataservice63?sap-client=${clientSap}`;
+  const xmlRequest = SOAP_ENVELOPE('ZEMP_PAYDATA63_FM', employeeId);
 
-    const payDataResp = soapBodyResp[responseKey];
-    let paySlipDetails = payDataResp['PAYSLIP_DETAILS'];
+  const responseXml = await doSOAPRequest(url, xmlRequest);
+  const result = await parseStringPromise(responseXml, { explicitArray: false });
 
-    if (!paySlipDetails) throw new Error('PAYSLIP_DETAILS not found in SOAP response');
-
-    if (!Array.isArray(paySlipDetails)) {
-      const key = Object.keys(paySlipDetails).find(k => Array.isArray(paySlipDetails[k]));
-      if (key) {
-        paySlipDetails = paySlipDetails[key];
-      } else {
-        paySlipDetails = [paySlipDetails];
-      }
-    }
-
-    return paySlipDetails;
-  } catch (error) {
-    console.error('Error in fetchPayslipData:', error);
-    throw new Error(`Error fetching payslip data from SAP: ${error.message}`);
+  try {
+    const body = result['soap-env:Envelope']['soap-env:Body'];
+    const response = body['n0:ZEMP_PAYDATA63_FMResponse'];
+    const payslipDetails = response['PAYSLIP_DETAILS']['item'];
+    return payslipDetails;
+  } catch (e) {
+    throw new Error('Invalid response structure for payslip data.');
   }
 }
 
-export async function fetchPayslipPdf(employeeId) {
-  const soapBody = `
-    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-                      xmlns:urn="urn:sap-com:document:sap:rfc:functions">
-      <soapenv:Header/>
-      <soapenv:Body>
-        <urn:ZEMP_PAYPDF63_FM>
-          <EMPLOYEE_ID>${employeeId}</EMPLOYEE_ID>
-        </urn:ZEMP_PAYPDF63_FM>
-      </soapenv:Body>
-    </soapenv:Envelope>`;
+export async function getPayslipPdf(employeeId) {
+  const url = `http://AZKTLDS5CP.kcloud.com:8000/sap/bc/srt/scs/sap/zemp_paypdfservice63?sap-client=${clientSap}`;
+  const xmlRequest = SOAP_ENVELOPE('ZEMP_PAYPDF63_FM', employeeId);
+
+  const responseXml = await doSOAPRequest(url, xmlRequest);
+  const result = await parseStringPromise(responseXml, { explicitArray: false });
 
   try {
-    const response = await axios.post(PAYPDF_ENDPOINT, soapBody, {
-      headers: {
-        'Content-Type': 'text/xml',
-        'SOAPAction': SOAP_ACTION,
-        Authorization: AUTH_HEADER,
-        Cookie: `sap-usercontext=sap-client=${SAP_CLIENT}`
-      }
-    });
-
-    console.log('SAP fetchPayslipPdf response XML:', response.data);
-
-    const parsedResult = await parseStringPromise(response.data, { explicitArray: false, ignoreAttrs: true });
-    const soapBodyResp = parsedResult['soapenv:Envelope']['soapenv:Body'];
-    const responseKey = Object.keys(soapBodyResp).find(k => k.toLowerCase().includes('zemp_paypdf63_fmresponse'));
-    if (!responseKey) throw new Error('Missing ZEMP_PAYPDF63_FMResponse in SOAP response');
-
-    const payPdfResp = soapBodyResp[responseKey];
-    const base64Pdf = payPdfResp['PAYSLIP_PDF'];
-
-    if (!base64Pdf) throw new Error('PAYSLIP_PDF element missing in SOAP response');
-
+    const body = result['soap-env:Envelope']['soap-env:Body'];
+    const response = body['n0:ZEMP_PAYPDF63_FMResponse'];
+    const base64Pdf = response['PAYSLIP_PDF'];
     return base64Pdf;
-  } catch (error) {
-    console.error('Error in fetchPayslipPdf:', error);
-    throw new Error(`Error fetching payslip PDF from SAP: ${error.message}`);
+  } catch (e) {
+    throw new Error('Invalid response structure for payslip pdf.');
   }
 }

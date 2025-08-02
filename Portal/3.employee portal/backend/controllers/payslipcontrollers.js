@@ -1,33 +1,39 @@
 import * as payslipService from '../services/payslipservices.js';
 
-export async function getPayslipData(req, res) {
-  const { employeeId } = req.body;
-
-  if (!employeeId || typeof employeeId !== 'string' || !employeeId.trim()) {
-    return res.status(400).json({ error: 'Missing or invalid employeeId in request body' });
-  }
-
+export async function getPayslip(req, res, next) {
   try {
-    const data = await payslipService.fetchPayslipData(employeeId.trim());
-    res.json({ employeeId: employeeId.trim(), payslipData: data });
+    const { employeeId } = req.body;
+    if (!employeeId) {
+      return res.status(400).json({ error: 'employeeId is required in request body' });
+    }
+
+    const payslipData = await payslipService.getPayslipData(employeeId);
+    res.json({ payslip: payslipData });
+
   } catch (error) {
-    console.error('Error in getPayslipData:', error.message);
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 }
 
-export async function getPayslipPdf(req, res) {
-  const { employeeId } = req.body;
-
-  if (!employeeId || typeof employeeId !== 'string' || !employeeId.trim()) {
-    return res.status(400).json({ error: 'Missing or invalid employeeId in request body' });
-  }
-
+export async function getPayslipPdf(req, res, next) {
   try {
-    const base64Pdf = await payslipService.fetchPayslipPdf(employeeId.trim());
-    res.json({ employeeId: employeeId.trim(), payslipPdfBase64: base64Pdf });
+    const { employeeId } = req.body;
+    if (!employeeId) {
+      return res.status(400).json({ error: 'employeeId is required in request body' });
+    }
+
+    const base64Pdf = await payslipService.getPayslipPdf(employeeId);
+    if (!base64Pdf) {
+      return res.status(404).json({ error: 'Payslip PDF not found' });
+    }
+
+    const pdfBuffer = Buffer.from(base64Pdf, 'base64');
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename=payslip_${employeeId}.pdf`);
+    res.send(pdfBuffer);
+
   } catch (error) {
-    console.error('Error in getPayslipPdf:', error.message);
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 }
