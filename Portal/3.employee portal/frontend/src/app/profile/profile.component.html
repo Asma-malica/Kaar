@@ -1,0 +1,70 @@
+<nav class="navbar">
+  <button class="back-btn" (click)="goBack()" aria-label="Back to Dashboard">
+    <span class="material-icons">arrow_back</span>
+  </button>
+  <div class="employee-id">Employee ID: {{ employeeId }}</div>
+</nav>
+
+<div class="content" *ngIf="loading(); else loaded">
+  <div class="loading">Loading profile...</div>
+</div>
+
+<ng-template #loaded>
+  <div *ngIf="error(); else profileContent" class="error">{{ error() }}</div>
+</ng-template>
+
+<ng-template #profileContent>
+  <div class="profile-tile" *ngIf="profile() as p">
+    <h2>{{ p.FIRST_NAME }} {{ p.LAST_NAME }}</h2>
+
+    <div class="profile-item">
+      <span class="material-icons">badge</span>
+      <span><strong>Employee ID:</strong> {{ p.EMPID }}</span>
+    </div>
+
+    <div class="profile-item">
+      <span class="material-icons">cake</span>
+      <span><strong>Date of Birth:</strong> {{ p.DOB | date:'longDate' }}</span>
+    </div>
+
+    <div class="profile-item">
+      <span class="material-icons">wc</span>
+      <span><strong>Gender:</strong> {{ p.GENDER === '1' ? 'Male' : p.GENDER === '2' ? 'Female' : 'Other' }}</span>
+    </div>
+
+    <div class="profile-item">
+      <span class="material-icons">public</span>
+      <span><strong>Nationality:</strong> {{ p.NATIONALITY }}</span>
+    </div>
+
+    <div class="profile-item">
+      <span class="material-icons">email</span>
+      <span><strong>Email:</strong> {{ p.EMAIL }}</span>
+    </div>
+
+    <div class="profile-item">
+      <span class="material-icons">work</span>
+      <span><strong>Position:</strong> {{ p.POSITION }}</span>
+    </div>
+
+    <div class="profile-item">
+      <span class="material-icons">apartment</span>
+      <span><strong>Org Unit:</strong> {{ p.ORG_UNIT }}</span>
+    </div>
+
+    <div class="profile-item">
+      <span class="material-icons">credit_card</span>
+      <span><strong>Payroll Area:</strong> {{ p.PAYROLL_AREA }}</span>
+    </div>
+
+    <div class="profile-item">
+      <span class="material-icons">groups</span>
+      <span><strong>Employee Group:</strong> {{ p.EMPLOYEE_GROUP }}</span>
+    </div>
+
+    <div class="profile-item">
+      <span class="material-icons">business</span>
+      <span><strong>Company Code:</strong> {{ p.COMPANY_CODE }}</span>
+    </div>
+  </div>
+</ng-template>

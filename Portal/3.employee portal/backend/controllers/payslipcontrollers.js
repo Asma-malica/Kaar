@@ -1,36 +1,33 @@
 import * as payslipService from '../services/payslipservices.js';
 
-export async function getPayslip(req, res) {
-  try {
-    const empId = req.body.empId;
-    if (!empId) {
-      return res.status(400).json({ error: 'empId is required' });
-    }
+export async function getPayslipData(req, res) {
+  const { employeeId } = req.body;
 
-    const data = await payslipService.fetchPayslip(empId);
-    res.json({ payslip: data });
+  if (!employeeId || typeof employeeId !== 'string' || !employeeId.trim()) {
+    return res.status(400).json({ error: 'Missing or invalid employeeId in request body' });
+  }
+
+  try {
+    const data = await payslipService.fetchPayslipData(employeeId.trim());
+    res.json({ employeeId: employeeId.trim(), payslipData: data });
   } catch (error) {
-    console.error('Error fetching payslip data:', error);
-    res.status(500).json({ error: error.message || 'Internal server error' });
+    console.error('Error in getPayslipData:', error.message);
+    res.status(500).json({ error: error.message });
   }
 }
 
-// Send PDF inline so Postman or browser displays it immediately after Send
 export async function getPayslipPdf(req, res) {
+  const { employeeId } = req.body;
+
+  if (!employeeId || typeof employeeId !== 'string' || !employeeId.trim()) {
+    return res.status(400).json({ error: 'Missing or invalid employeeId in request body' });
+  }
+
   try {
-    const empId = req.body.empId;
-    if (!empId) {
-      return res.status(400).json({ error: 'empId is required' });
-    }
-
-    const base64pdf = await payslipService.fetchPayslipPdf(empId);
-    const pdfBuffer = Buffer.from(base64pdf, 'base64');
-
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'inline; filename="payslip.pdf"');
-    res.send(pdfBuffer);
+    const base64Pdf = await payslipService.fetchPayslipPdf(employeeId.trim());
+    res.json({ employeeId: employeeId.trim(), payslipPdfBase64: base64Pdf });
   } catch (error) {
-    console.error('Error fetching payslip PDF:', error);
-    res.status(500).json({ error: error.message || 'Internal server error' });
+    console.error('Error in getPayslipPdf:', error.message);
+    res.status(500).json({ error: error.message });
   }
 }

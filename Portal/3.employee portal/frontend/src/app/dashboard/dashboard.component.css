@@ -1,112 +1,135 @@
-.dashboard-container {
-  max-width: 1100px;
-  margin: 2rem auto;
-  padding: 1rem 2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #096B68;
+:host {
+  display: block;
+  height: 100vh;
+  background: #FFFBDE;
 }
 
-.dashboard-header {
+/* Navbar */
+.navbar {
+  height: 64px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  justify-content: flex-start;
+  background: #096B68;
+  box-shadow: 0 2px 8px #12999022;
+  padding: 0 24px;
+  color: #FFFBDE;
+  position: relative;
 }
 
-.dashboard-header h1 {
-  font-weight: 700;
+.icon-btn {
+  background: none;
+  border: none;
+  color: inherit;
   font-size: 2rem;
-  user-select: none;
-}
-
-.logout-btn {
-  background-color: #129990;
-  border: none;
-  padding: 10px 20px;
-  color: #FFFBDE;
-  border-radius: 12px;
+  margin-right: 18px;
   cursor: pointer;
+  transition: color 0.2s;
+}
+
+.profile {
+  margin-left: auto;
+}
+
+.welcome-text {
+  font-size: 1.2rem;
+  flex-grow: 1;
+  text-align: right;
+  padding-right: 12px;
+  color: #FFFBDE;
+  letter-spacing: 1px;
+}
+
+.emp-id {
+  color: #90D1CA;
   font-weight: 600;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-  user-select: none;
 }
 
-.logout-btn:hover {
-  background-color: #096B68;
+/* Sidebar Backdrop */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 153, 144, 0.53); /* #12999088 */
+  z-index: 998;
 }
 
-.dashboard-cards {
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 260px;
+  background: #096B68;
+  color: #FFFBDE;
+  box-shadow: 2px 0 16px #12999033;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.4, 2, 0.6, 1);
+  z-index: 999;
   display: flex;
-  gap: 1.8rem;
-  flex-wrap: wrap;
-  margin-bottom: 3rem;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 40px;
 }
 
-.card {
-  background-color: #FFFBDE;
-  border-radius: 16px;
-  box-shadow: 0 6px 14px rgba(9, 107, 104, 0.15);
-  flex: 1 1 300px;
-  padding: 1.8rem 2rem;
-  box-sizing: border-box;
+.sidebar.open {
+  transform: translateX(0);
 }
 
-.card h2 {
-  margin-bottom: 1rem;
-  font-weight: 700;
-  color: #129990;
-  user-select: none;
+.sidebar nav {
+  flex-grow: 1;
 }
 
-.card p {
-  margin: 0.4rem 0;
-  font-size: 1rem;
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.btn {
-  background-color: #129990;
-  color: #FFFBDE;
-  padding: 0.6rem 1.4rem;
+.sidebar li {
+  margin-bottom: 18px;
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 12px 18px;
+  background: none;
   border: none;
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  user-select: none;
-}
-
-.btn:hover {
-  background-color: #096B68;
-}
-
-.dashboard-performance {
-  background-color: #90D1CA;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 6px 16px rgba(18, 153, 144, 0.22);
-  color: #096B68;
-  user-select: none;
-}
-
-.dashboard-performance h2 {
-  margin-bottom: 1.3rem;
-  font-weight: 700;
-}
-
-.chart-placeholder {
+  color: #FFFBDE;
   font-size: 1.1rem;
-  text-align: center;
-  padding: 2rem;
-  border: 2px dashed #129990;
-  border-radius: 12px;
-  color: #129990;
-  user-select: none;
+  text-align: left;
+  border-radius: 6px;
+  transition: background 0.12s;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  cursor: pointer;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .dashboard-cards {
-    flex-direction: column;
-  }
+.sidebar button:hover,
+.sidebar li button:focus {
+  background: #90D1CA;
+  color: #096B68;
+}
+
+/* Sign Out Button */
+.signout {
+  margin: 36px 18px 18px 18px;
+  background: #FFFBDE;
+  color: #129990;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 2px solid #90D1CA;
+  transition: background 0.15s, color 0.15s;
+  font-size: 1.1rem;
+}
+
+.signout:hover,
+.signout:focus {
+  background: #129990;
+  color: #FFFBDE;
+}
+
+/* Main Content */
+.main-content {
+  padding: 44px 28px 20px 28px;
 }

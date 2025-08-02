@@ -1,0 +1,100 @@
+<nav class="navbar">
+  <button class="back-btn" (click)="goBack()" aria-label="Back to Dashboard">
+    <span class="material-icons">arrow_back</span>
+  </button>
+  <div class="navbar-id">Leaves — {{ employeeId }}</div>
+</nav>
+
+<div class="content" *ngIf="loading(); else loaded">
+  <div class="loading">Loading leave data...</div>
+</div>
+
+<ng-template #loaded>
+  <div *ngIf="error(); else leaveContent" class="error">{{ error() }}</div>
+</ng-template>
+
+<ng-template #leaveContent>
+  <div *ngIf="leaves().length > 0; else noLeaves">
+
+    <!-- Leave Details Table -->
+    <section class="leave-table-section">
+      <h3>Detailed Leave Records</h3>
+      <div class="table-wrapper">
+        <table class="leave-table">
+          <thead>
+            <tr>
+              <th>EMPID</th>
+              <th>SUBTYPE</th>
+              <th>Duration (ABWTG)</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Quota Type</th>
+              <th>Time Quota</th>
+              <th>Absence Type</th>
+              <th>Absence Quota Type</th>
+              <th>Apply Date</th>
+              <th>Full Day</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let l of leaves()">
+              <td>{{ l.EMPID }}</td>
+              <td>{{ l.SUBTYPE || '-' }}</td>
+              <td>{{ l.ABWTG }}</td>
+              <td>{{ l.START_DATE !== '0000-00-00' ? (l.START_DATE | date:'mediumDate') : 'N/A' }}</td>
+              <td>{{ l.END_DATE !== '0000-00-00' ? (l.END_DATE | date:'mediumDate') : 'N/A' }}</td>
+              <td>{{ l.QUOTA_TYPE || '-' }}</td>
+              <td>{{ l.TIME_QUOTA }}</td>
+              <td>{{ l.ABSENCE_TYPE || '-' }}</td>
+              <td>{{ l.ABSENCE_QUOTA_TYPE || '-' }}</td>
+              <td>{{ l.APPLY_DATE !== '0000-00-00' ? (l.APPLY_DATE | date:'mediumDate') : 'N/A' }}</td>
+              <td>{{ l.FULLDAY || '-' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Leave Tiles in a single row -->
+    <section class="leave-tiles-row">
+      <div class="leave-tile" *ngFor="let leave of leaves()">
+        <div class="leave-title">
+          <span class="material-icons leave-icon">{{ getIcon(leave) }}</span>
+          <span class="leave-type">{{ getLabel(leave) }}</span>
+        </div>
+
+        <div class="leave-details">
+          <div class="d-row">
+            <span class="material-icons">today</span>
+            <span>
+              <b>From:</b>
+              {{ leave.START_DATE !== '0000-00-00' ? (leave.START_DATE | date: 'mediumDate') : 'N/A' }}
+              &nbsp;<b>To:</b>
+              {{ leave.END_DATE !== '0000-00-00' ? (leave.END_DATE | date: 'mediumDate') : 'N/A' }}
+            </span>
+          </div>
+
+          <div class="d-row">
+            <span class="material-icons">hourglass_bottom</span>
+            <span><b>Duration:</b> {{ leave.ABWTG }} days</span>
+          </div>
+
+          <div class="d-row">
+            <span class="material-icons">task_alt</span>
+            <span><b>Status:</b> {{ getStatus(leave) }}</span>
+          </div>
+
+          <div class="d-row" *ngIf="leave.APPLY_DATE && leave.APPLY_DATE !== '0000-00-00'">
+            <span class="material-icons">edit_calendar</span>
+            <span><b>Applied on:</b> {{ leave.APPLY_DATE | date: 'mediumDate' }}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  </div>
+
+  <ng-template #noLeaves>
+    <div class="no-leaves">No leave records found.</div>
+  </ng-template>
+</ng-template>

@@ -1,0 +1,94 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: #FFFBDE;
+  color: #096B68;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: #096B68;
+  color: #FFFBDE;
+  padding: 12px 20px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px #12999040;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #FFFBDE;
+  font-size: 2rem;
+  cursor: pointer;
+  margin-right: 16px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.back-btn:hover {
+  color: #90D1CA;
+}
+
+.employee-id {
+  flex-grow: 1;
+  user-select: none;
+}
+
+/* Loading and error message */
+.loading {
+  padding: 40px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #129990;
+}
+
+.error {
+  padding: 20px;
+  margin: 20px;
+  background: #FFFBDE;
+  border: 1px solid #129990;
+  color: #129990;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Profile tile */
+.profile-tile {
+  background: #90D1CA;
+  border-radius: 12px;
+  margin: 24px auto;
+  padding: 28px 24px;
+  max-width: 480px;
+  box-shadow: 0 4px 12px #12999066;
+}
+
+.profile-tile h2 {
+  color: #096B68;
+  font-weight: 700;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #096B68;
+  padding-bottom: 8px;
+}
+
+/* Profile item */
+
+.profile-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #096B68;
+}
+
+.profile-item .material-icons {
+  font-size: 24px;
+  color: #129990;
+}

@@ -1,34 +1,30 @@
-<div class="dashboard-container">
-  <header class="dashboard-header">
-    <h1>Employee Dashboard</h1>
-    <button (click)="logout()" class="logout-btn">Logout</button>
-  </header>
+<div class="navbar">
+  <button class="icon-btn" (click)="openSidebar()" aria-label="Open menu">
+    <span class="material-icons">menu</span>
+  </button>
 
-  <section class="dashboard-cards">
-    <div class="card profile-card">
-      <h2>Profile</h2>
-      <p><strong>Name:</strong> John Doe</p>
-      <p><strong>Employee ID:</strong> 12345</p>
-      <p><strong>Department:</strong> IT</p>
-    </div>
+  <span class="welcome-text">
+    Welcome&nbsp;<span class="emp-id">{{ employeeId }}</span>
+  </span>
 
-    <div class="card leave-card">
-      <h2>Leave Balance</h2>
-      <p>Annual Leave: 12 days</p>
-      <p>Sick Leave: 5 days</p>
-      <p>Casual Leave: 3 days</p>
-    </div>
+  <button class="icon-btn profile" (click)="goToProfile()" aria-label="Profile">
+    <span class="material-icons">account_circle</span>
+  </button>
+</div>
 
-    <div class="card payslip-card">
-      <h2>Latest Pay Slip</h2>
-      <p>Month: July 2025</p>
-      <button class="btn">View / Download</button>
-    </div>
-  </section>
+<div class="sidebar-backdrop" *ngIf="sidebarOpen" (click)="closeSidebar()"></div>
 
-  <section class="dashboard-performance">
-    <h2>Performance Summary</h2>
-    <!-- Placeholder for charts, can add Angular chart libs here -->
-    <div class="chart-placeholder">[Performance Chart Placeholder]</div>
-  </section>
+<aside class="sidebar" [class.open]="sidebarOpen">
+  <nav>
+    <ul>
+      <li><button (click)="goToLeave()">Leave Management</button></li>
+      <li><button (click)="goToPayslip()">Payslip Details</button></li>
+    </ul>
+  </nav>
+
+  <button class="signout" (click)="signOut()">Sign Out</button>
+</aside>
+
+<div class="main-content">
+  <ng-content></ng-content>
 </div>
